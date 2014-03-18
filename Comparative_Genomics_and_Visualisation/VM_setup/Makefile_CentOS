@@ -1,0 +1,172 @@
+#
+# Makefile for UoD Comparative Genomics and Visualisation virtual
+# machine setup
+#
+# DEPENDENCIES:
+#
+# i-ADHoRe
+# ========
+#
+# i-ADHoRe’s licensing agreement requires a manual step, prior to download, 
+# and does not permit redistribution of the software.
+# (see http://bioinformatics.psb.ugent.be/webtools/i-adhore/licensing/)
+# Hence the download of i-ADHoRe is not automated via this Makefile, and we 
+# assume that the source .tar.gz file is located in the current directory.
+# Also, this means that make i-adhore must be called separately from make all.
+# 
+# (c) The James Hutton Institute 2014
+# Author: Leighton Pritchard
+#
+# Contact:
+# leighton.pritchard@hutton.ac.uk
+#
+# Leighton Pritchard,
+# Information and Computing Sciences,
+# James Hutton Institute,
+# Errol Road,
+# Invergowrie,
+# Dundee,
+# DD6 9LH,
+# Scotland,
+# UK
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+all: gcc firefox ipython biopython pandas rstudio rpy2 blast mummer act mauve prodigal mcl i-adhore extensions
+
+gcc:
+	yum -y install gcc gcc-c++
+
+firefox:
+	yum -y install firefox
+
+wget:
+	yum -y install wget
+
+epel: wget
+	wget http://mirror-fpt-telecom.fpt.net/fedora/epel/6/i386/epel-release-6-8.noarch.rpm
+	rpm -ivh epel-release-6-8.noarch.rpm
+
+ipython: epel
+	yum -y install zeromq scipy sympy python-nose python-pip python-matplotlib
+	pip install networkx
+	pip install argparse
+	pip install ipython[all]
+
+xpdf:
+	yum -y install xpdf
+
+reportlab: xpdf
+	yum -y install python-reportlab python-imaging
+	wget -nc http://www.reportlab.com/ftp/fonts/pfbfer.zip
+	yum -y install unzip
+	unzip pfbfer.zip
+	mkdir /usr/lib/python2.6/site-packages/reportlab/fonts
+	mv *.pfb /usr/lib/python2.6/site-packages/reportlab/fonts
+
+biopython: reportlab
+	pip install biopython
+
+pandas:
+	pip install numpy --upgrade
+	pip install pandas
+
+r:
+	yum -y install R
+	Rscript install_R_packages.R
+
+rstudio: r
+	wget http://download1.rstudio.org/rstudio-0.98.501-i686.rpm
+	yum -y install --nogpgcheck rstudio-0.98.501-i686.rpm
+
+mercurial:
+	yum -y install hg
+
+rpy2: r mercurial
+	hg clone https://www.bitbucket.org/lgautier/rpy2
+	cd rpy2 && \
+	hg update -C version_2.1.x && \
+	python setup.py build && \
+	python setup.py install
+
+blast_plus:
+	wget -nc ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.2.29+-ia32-linux.tar.gz
+	tar -zxvf ncbi-blast-2.2.29+-ia32-linux.tar.gz
+	mv ncbi-blast-2.2.29+ /opt/
+
+legacy_blast:
+	wget -nc ftp://ftp.ncbi.nlm.nih.gov/blast/executables/release/2.2.26/blast-2.2.26-ia32-linux.tar.gz
+	tar -zxvf blast-2.2.26-ia32-linux.tar.gz
+	mv blast-2.2.26 /opt/
+
+blast: blast_plus legacy_blast
+
+gnuplot:
+	yum -y install gnuplot eog
+
+mummer: gnuplot
+	wget -nc http://downloads.sourceforge.net/project/mummer/mummer/3.23/MUMmer3.23.tar.gz
+	tar -zxvf MUMmer3.23.tar.gz
+	mv MUMmer3.23 /opt/
+	cd /opt/MUMmer3.23 && \
+	make install
+
+act:
+	wget -nc ftp://ftp.sanger.ac.uk/pub/resources/software/act/act.tar.gz
+	tar -zxvf act.tar.gz
+	mv artemis /opt/
+
+mauve:
+	wget -nc http://gel.ahabs.wisc.edu/mauve/downloads/mauve_linux_2.3.1.tar.gz
+	tar -zxvf mauve_linux_2.3.1.tar.gz
+	mv mauve_2.3.1 /opt/
+
+prodigal:
+	wget -nc https://prodigal.googlecode.com/files/prodigal.v2_50.linux
+	mkdir -p /opt/prodigal
+	chmod 755 prodigal.v2_50.linux
+	mv -n prodigal.v2_50.linux /opt/prodigal/
+	ln -s /opt/prodigal/prodigal.v2_50.linux /opt/prodigal/prodigal
+
+mcl:
+	wget -nc http://micans.org/mcl/src/mcl-12-135.tar.gz
+	tar -zxf mcl-12-135.tar.gz
+	cd mcl-12-135 && \
+	./configure --prefix=/opt/mcl-12-135 && \
+	make install
+
+cmake:
+	yum -y install cmake
+
+i-adhore: cmake
+	tar -zxf i-adhore-3.0.01.tar.gz
+	mkdir -p i-adhore-3.0.01/build && \
+	cd i-adhore-3.0.01/build && \
+	cmake .. -DCMAKE_INSTALL_PREFIX=/opt/i-adhore_3.0 && \
+	make && \
+	make install
+
+extensions:
+	cat path_extensions.txt >> /home/centos/.bashrc
+
+clean: 
+	rm -f rstudio-0.98.501-i686.rpm
+	rm -rf rpy2	
+	rm -f ncbi-blast-2.2.29+-ia32-linux.tar.gz
+	rm -f blast-2.2.26-ia32-linux.tar.gz
+	rm -f MUMmer3.23.tar.gz
+	rm -f act.tar.gz
+	rm -f mauve_linux_2.3.1.tar.gz
+	rm -f pfbfer.zip
+	rm -rf mcl-12-135.tar.gz

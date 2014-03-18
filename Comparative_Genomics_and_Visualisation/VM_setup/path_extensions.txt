@@ -1,0 +1,6 @@
+# $PATH extensions for the BLAST and MUMmer applications required for
+# the Comparative Genomics and Visualisation VM
+
+PATH=$PATH:/opt/blast-2.2.26/bin:/opt/ncbi-blast-2.2.29+/bin:/opt/MUMmer3.23:/opt/artemis:/opt/mauve_2.3.1:/opt/prodigal:/opt/mcl-12-135/bin:/opt/i-adhore_3.0/bin
+export PATH
+

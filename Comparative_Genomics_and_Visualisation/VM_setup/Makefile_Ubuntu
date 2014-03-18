@@ -1,0 +1,171 @@
+#
+# UBUNTU-SPECIFIC Makefile for UoD Comparative Genomics and 
+# Visualisation course virtual machine setup.
+#
+# DEPENDENCIES:
+#
+# i-ADHoRe
+# ========
+#
+# i-ADHoRe’s licensing agreement requires a manual step, prior to download, 
+# and does not permit redistribution of the software.
+# (see http://bioinformatics.psb.ugent.be/webtools/i-adhore/licensing/)
+# Hence the download of i-ADHoRe is not automated via this Makefile, and we 
+# assume that the source .tar.gz file is located in the current directory.
+# Also, this means that make i-adhore must be called separately from make all.
+# 
+# (c) The James Hutton Institute 2014
+# Author: Leighton Pritchard
+#
+# Contact:
+# leighton.pritchard@hutton.ac.uk
+#
+# Leighton Pritchard,
+# Information and Computing Sciences,
+# James Hutton Institute,
+# Errol Road,
+# Invergowrie,
+# Dundee,
+# DD6 9LH,
+# Scotland,
+# UK
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+all: update gcc ipython biopython pandas rstudio rpy2 blast mummer act mauve prodigal mcl i-adhore extensions
+
+update:
+	apt-get -y update
+
+gcc:
+	apt-get -y install gcc g++
+
+ipython:
+	apt-get -y install libjpeg62 libzmq-dev python-scipy python-sympy python-nose python-pip python-matplotlib
+	pip install networkx
+	pip install argparse
+	apt-get -y install ipython-notebook
+
+xpdf:
+	apt-get -y install xpdf
+
+reportlab: xpdf
+	apt-get -y install python-reportlab python-imaging
+	wget -nc http://www.reportlab.com/ftp/fonts/pfbfer.zip
+	unzip pfbfer.zip
+	mkdir /usr/local/python2.7/dist-packages/reportlab/fonts
+	mv *.pfb /usr/local/python2.7/dist-packages/reportlab/fonts
+
+biopython: reportlab
+	pip install biopython
+
+pandas:
+	pip install numpy --upgrade
+	pip install pandas
+
+r:
+	add-apt-repository "deb http://cran.rstudio.com/bin/linux/ubuntu quantal/"
+	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+	apt-get update
+	apt-get -y --force-yes install r-base r-base-dev
+	Rscript install_R_packages.R
+
+rstudio: r
+	wget http://download1.rstudio.org/rstudio-0.98.501-i386.deb
+	dpkg -i rstudio-0.98.501-i386.deb
+
+mercurial:
+	apt-get -y install mercurial meld
+
+rpy2: r mercurial
+	rm -rf rpy2
+	hg clone https://www.bitbucket.org/lgautier/rpy2
+	cd rpy2 && \
+	hg update -C version_2.1.x && \
+	python setup.py build && \
+	python setup.py install
+
+blast_plus:
+	wget -nc ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.2.29+-ia32-linux.tar.gz
+	tar -zxvf ncbi-blast-2.2.29+-ia32-linux.tar.gz
+	mv -n ncbi-blast-2.2.29+ /opt/
+
+legacy_blast:
+	wget -nc ftp://ftp.ncbi.nlm.nih.gov/blast/executables/release/2.2.26/blast-2.2.26-ia32-linux.tar.gz
+	tar -zxvf blast-2.2.26-ia32-linux.tar.gz
+	mv -n blast-2.2.26 /opt/
+
+blast: blast_plus legacy_blast
+
+gnuplot:
+	apt-get -y install gnuplot eog
+
+mummer: gnuplot
+	wget -nc http://downloads.sourceforge.net/project/mummer/mummer/3.23/MUMmer3.23.tar.gz
+	tar -zxvf MUMmer3.23.tar.gz
+	mv -n MUMmer3.23 /opt/
+	cd /opt/MUMmer3.23 && \
+	make install
+
+java:
+	apt-get -y install openjdk-7-jdk
+
+act: java
+	wget -nc ftp://ftp.sanger.ac.uk/pub/resources/software/act/act.tar.gz
+	tar -zxvf act.tar.gz
+	mv -n artemis /opt/
+
+mauve: java
+	wget -nc http://gel.ahabs.wisc.edu/mauve/downloads/mauve_linux_2.3.1.tar.gz
+	tar -zxvf mauve_linux_2.3.1.tar.gz
+	mv -n mauve_2.3.1 /opt/
+
+prodigal:
+	wget -nc https://prodigal.googlecode.com/files/prodigal.v2_50.linux
+	mkdir -p /opt/prodigal
+	chmod 755 prodigal.v2_50.linux
+	mv -n prodigal.v2_50.linux /opt/prodigal/
+	ln -s /opt/prodigal/prodigal.v2_50.linux /opt/prodigal/prodigal
+
+mcl:
+	wget -nc http://micans.org/mcl/src/mcl-12-135.tar.gz
+	tar -zxf mcl-12-135.tar.gz
+	cd mcl-12-135 && \
+	./configure --prefix=/opt/mcl-12-135 && \
+	make install
+
+cmake:
+	apt-get -y install cmake
+
+i-adhore: cmake
+	tar -zxf i-adhore-3.0.01.tar.gz
+	mkdir -p i-adhore-3.0.01/build && \
+	cd i-adhore-3.0.01/build && \
+	cmake .. -DCMAKE_INSTALL_PREFIX=/opt/i-adhore_3.0 && \
+	make && \
+	make install
+
+extensions:
+	cat path_extensions.txt >> /home/ubuntu/.bashrc
+
+clean: 
+	rm -f rstudio-0.98.501-i386.deb
+	rm -rf rpy2	
+	rm -f ncbi-blast-2.2.29+-ia32-linux.tar.gz
+	rm -f blast-2.2.26-ia32-linux.tar.gz
+	rm -f MUMmer3.23.tar.gz
+	rm -f act.tar.gz
+	rm -f mauve_linux_2.3.1.tar.gz
+	rm -f pfbfer.zip
+	rm -rf mcl-12-135.tar.gz
