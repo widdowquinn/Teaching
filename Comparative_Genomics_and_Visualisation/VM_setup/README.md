@@ -142,7 +142,7 @@ This will place the `i-ADHoRe-3.0.01.tar.gz` file in your `~/Downloads` director
 $ mv ~/Downloads/i-ADHoRe-3.0.01.tar.gz ~/Teaching/Comparative_Genomics_and_Visualisation/VM_setup
 ```
 
-### Install course software
+### Install course software and activity data
 
 Now, change directory to the `VM_setup` directory:
 
@@ -150,7 +150,7 @@ Now, change directory to the `VM_setup` directory:
 $ cd ~/Teaching/Comparative_Genomics_and_Visualisation/VM_setup
 ```
 
-The installation for each application and tool, where possible, is handled by a `Makefile`. There are two `Makefile`s: one for CentOS, and one for Ubuntu, as they use different package managers. Be sure to follow the instructions for your choice of operating system:
+The installation for activity data, and for each application and tool (where possible) is handled by a `Makefile`. There are two `Makefile`s: one for CentOS, and one for Ubuntu, as they use different package managers. Be sure to follow the instructions for your choice of operating system:
 
 #### CentOS
 

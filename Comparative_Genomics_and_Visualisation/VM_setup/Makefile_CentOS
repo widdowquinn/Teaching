@@ -43,7 +43,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-all: gcc firefox ipython biopython pandas rstudio rpy2 blast mummer act mauve prodigal mcl i-adhore extensions
+all: gcc firefox ipython biopython pandas rstudio rpy2 blast mummer act mauve prodigal mcl i-adhore extensions data
 
 gcc:
 	yum -y install gcc gcc-c++
@@ -159,6 +159,14 @@ i-adhore: cmake
 
 extensions:
 	cat path_extensions.txt >> /home/centos/.bashrc
+
+data:
+	cd ../Part_1/data/ && \
+	./get_data.sh
+	cd ../Part_2/data && \
+	./get_data.sh
+	cd ../Exercise/data && \
+	./get_data.sh
 
 clean: 
 	rm -f rstudio-0.98.501-i686.rpm
