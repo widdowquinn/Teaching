@@ -15,7 +15,6 @@ $ git clone https://github.com/widdowquinn/Teaching.git
 The lecture is presented in a tutorial/workshop format, with interactive examples and exercises using [iPython notebooks](http://ipython.org/notebook.html). 
 
 * Slides for the talk are provided in the `presentation` subdirectory, in Powerpoint `.pptx`, `.ppt` and `.pdf` format. 
-* Many of the papers referred to in the presentation are included as `.pdf` files in the `papers` subdirectory.
 * Example data can be found in the `data` directory.
 * iPython notebooks are found in the directory containing this `README.md` file
 
@@ -24,9 +23,9 @@ The lecture is presented in a tutorial/workshop format, with interactive example
 The exercises and examples have been written, and are known to run, with the following software, but they may also run happily on other versions:
 
 * **Python 2.7**
-* **iPython (with pylab and matplotlib)**
-* **Biopython**
-* **Pandas**
+* **iPython (with pylab and matplotlib) 1.1.0**
+* **Biopython 1.63+**
+* **Pandas 0.13**
 
 ## Executing iPython notebooks
 
