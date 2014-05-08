@@ -1,7 +1,8 @@
-\documentclass{beamer}
+\documentclass[table]{beamer}
 \mode<presentation>
 \usetheme{Berlin}
 \usecolortheme{beaver}
+\usepackage{multirow}
 
 %%%
 % TITLE PREAMBLE
@@ -235,8 +236,10 @@
     \framesubtitle{Reformulating the question}
     \begin{itemize}
       \item Q: Are \texttt{gene1} and \texttt{gene2} genes coregulated?
-      \item A: We cannot determine this from expression data, so reformulate as:
-      \item NewQ: Are \texttt{gene1} and \texttt{gene2} genes coexpressed?
+      \item A: We cannot determine this from expression data alone
+      \item Reformulate the question:
+      \item NewQ: Are \texttt{gene1} and \texttt{gene2} genes coexpressed? \\
+            (are expressions \texttt{gene1} $\propto$ \texttt{gene2})
       \item How do we answer this new question?
     \end{itemize}
   \end{frame}
@@ -244,8 +247,75 @@
   \begin{frame}
     \frametitle{Exercise 1}
     \framesubtitle{Starting the analysis}
+    \includegraphics[width=.5\textwidth]{images/ex1_screenshot_a}
   \end{frame}
-  
+
+  \begin{frame}
+    \frametitle{Exercise 1}
+    \framesubtitle{Starting the analysis}
+    \includegraphics[width=.5\textwidth]{images/ex1_screenshot_b}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Exercise 1}
+    \framesubtitle{Results}
+    \begin{center}
+	\begin{tabular}{r|l|l|l|l}
+	  measure & expnA & expnB & expnC & expnD \\
+	  \hline
+	  mean(gene1) & 9     &  &  & \\
+	  mean(gene2) & 7.5   &  &  & \\
+  	  sd(gene1)   & 3.3   &  &  & \\
+  	  sd(gene1)   & 2.0   &  &  & \\  
+	  cor(data)   & 0.816 &  &  & \\  
+	\end{tabular}
+	\end{center}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Exercise 1}
+    \framesubtitle{Results}
+    \begin{center}
+	\begin{tabular}{r|l|l|l|l}
+	  measure & expnA & expnB & expnC & expnD \\
+	  \hline
+	  mean(gene1) & 9     & 9     & 9     & 9 \\
+	  mean(gene2) & 7.5   & 7.5   & 7.5   & 7.5 \\
+  	  sd(gene1)   & 3.3   & 3.3   & 3.3   & 3.3 \\
+  	  sd(gene1)   & 2.0   & 2.0   & 2.0   & 2.0 \\  
+	  cor(data)   & 0.816 & 0.816 & 0.816 & 0.816 \\  
+	\end{tabular}
+	\end{center}
+	\begin{itemize}
+      \item<2-> $r=0.816 (P<0.005)$ in every experiment
+      \item Can we conclude that \texttt{gene1} and \texttt{gene2} are coexpressed in each experiment?
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Exercise 1}
+    \framesubtitle{Plot the Data}
+    \begin{center}
+    \begin{columns}[t]
+	  \begin{column}{5cm}
+	   Should have done this, first!
+	  \end{column}
+  	  \begin{column}{5cm}
+        \includegraphics[width=\textwidth]{images/ex1_screenshot_c} \\
+        \includegraphics[width=\textwidth]{images/ex1_screenshot_d}        
+      \end{column}
+    \end{columns}
+    \end{center}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Exercise 1}
+    \framesubtitle{Always Plot the Data}
+    \begin{center}
+      \includegraphics[width=\textwidth]{images/ex1_rplot} \\
+    \end{center}
+  \end{frame}
+
   \begin{frame}
     \frametitle{First Golden Rule of Bioinformatics}
     \framesubtitle{Do not trust the data}
@@ -256,6 +326,7 @@
 	  \begin{itemize}
 	    \item Who? When? How?
 	    \item You need to understand an experiment (easier if you helped design it) to analyse it
+	    \item Be wary of block effects (experimenter, time, batch, etc.)
 	  \end{itemize}
 	\end{itemize}
   \end{frame}
@@ -264,7 +335,9 @@
   \begin{frame}
     \frametitle{Exercise 2}
     \begin{itemize}
-      \item You are in group A, B, C or D - this decides your database
+      \item You are in group A, B, C or D - this decides your database\\
+      \texttt{dbA.tab}, \texttt{dbB.tab}, \texttt{dbC.tab}, \texttt{dbD.tab}
+      \item You will use \texttt{BLAST} at the command-line to analyse your data
     \end{itemize}
   \end{frame}
 
@@ -284,10 +357,21 @@
   \subsection{Rule 3}
   \begin{frame}
     \frametitle{Third Golden Rule of Bioinformatics}
+    \framesubtitle{Don't trust yourself}
+	\begin{itemize}
+	  \item Keep raw data and analysis separate
+	  \item Avoid Excel! (off-by-one/copy errors/risk of changing data)
+	  \item Make raw data read-only, and back it up immediately
+	\end{itemize}
+  \end{frame}
+
+  \subsection{Rule 3}
+  \begin{frame}
+    \frametitle{Third Golden Rule of Bioinformatics}
     \framesubtitle{Keep raw data and analysis separate}
 	\begin{itemize}
 	  \item Keep raw data and analysis separate
-	  \item Avoid Excel! (off-by-one/copy errors)
+	  \item Avoid Excel! (off-by-one/copy errors/risk of changing data)
 	  \item Make raw data read-only, and back it up immediately
 	\end{itemize}
   \end{frame}
@@ -313,6 +397,28 @@
 %%%
 % SECTION: 
   \section{}
+
+  \begin{frame}
+    \frametitle{Assessing Performance}
+    \framesubtitle{Contingency Tables}
+    \begin{center}
+	\begin{tabular}{cc|c|c|}
+	  \cline{3-4}
+		& & \multicolumn{2}{|c|}{Condition (Gold standard)}\\
+	  \cline{3-4}
+		& & True & False \\
+	  \hline
+	  \multicolumn{1}{ |c| }{\multirow{2}{*}{Test outcome}}& 
+	  \multicolumn{1}{ |c| }{Positive} & True Positive \cellcolor{green} & 
+	    False Positive\cellcolor{red}\\
+	  \cline{2-4}
+	  \multicolumn{1}{ |c| }{} & \multicolumn{1}{ |c| }{Negative} & 
+	    False Negative\cellcolor{red} & True Negative \cellcolor{green}\\
+	  \hline
+	\end{tabular}
+	\end{center}
+  \end{frame}
+
   \begin{frame}
   \end{frame}
 
