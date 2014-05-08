@@ -269,7 +269,7 @@
   	  sd(gene1)   & 2.0   &  &  & \\  
 	  cor(data)   & 0.816 &  &  & \\  
 	\end{tabular}
-	\end{center}
+    \end{center}
   \end{frame}
 
   \begin{frame}
@@ -353,15 +353,86 @@
 	  \item Algorithms have assumptions, conditions, and applicable domains
 	\end{itemize}
   \end{frame}
+  
+  \begin{frame}
+    \frametitle{Exercise 3}
+    \framesubtitle{Classification}
+    \begin{itemize}
+      \item Rule: If there is a vowel on one side of the card, there \textit{must} be an even number on the other side.
+      \item Which cards \textit{must} be turned over to determine if the rule holds true? (How many, and which ones)
+    \end{itemize}
+    \includegraphics[width=\textwidth]{images/wason}
+  \end{frame}
 
-  \subsection{Rule 3}
+  \begin{frame}
+    \frametitle{Exercise 3}
+    \framesubtitle{Classification}
+    \begin{itemize}
+      \item This is equivalent to protein functional classification
+      \item Rule: If there is a CRN/RxLR/T3SS domain, the protein \textit{must} be an effector.
+    \end{itemize}
+    \includegraphics[width=\textwidth]{images/wason_rxlr}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Exercise 3}
+    \framesubtitle{Classification}
+    \begin{itemize}
+      \item<1-> If you chose \emph{E} and \emph{4}
+      \begin{itemize}
+        \item<2-> You are in the typical majority group
+        \item<3-> You are not correct
+        \item<4-> You have been a victim of confirmation bias (System 1 thinking)
+      \end{itemize}
+      \item<5-> If you chose \emph{E} and \emph{7}
+      \begin{itemize}
+        \item<6-> Congratulations!
+        \item<6-> Your choice was capable of \textit{falsifying} the rule.
+      \end{itemize}
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Exercise 3}
+    \framesubtitle{Classification}
+    \begin{center}
+	\begin{tabular}{c|c|c}
+	  Card & Outcome & Rule \\
+	  \hline
+	  \hline
+	    \multirow{2}{*}{E} & Even & True \emph{for this card} \\
+	                                & Odd & \emph{violated} \\
+	  \hline
+	    \multirow{2}{*}{K} & Even & na \\
+	                                & Odd & na \\	    
+	  \hline
+	    \multirow{2}{*}{4} & Vowel & True \emph{for this card} \\
+	                                & Consonant & na \\
+	  \hline
+	    \multirow{2}{*}{7} & Vowel & \emph{violated} \\
+	                                & Consonant & na \\	    
+	\end{tabular}
+    \end{center}
+  \end{frame}
+
   \begin{frame}
     \frametitle{Third Golden Rule of Bioinformatics}
     \framesubtitle{Don't trust yourself}
 	\begin{itemize}
-	  \item Keep raw data and analysis separate
-	  \item Avoid Excel! (off-by-one/copy errors/risk of changing data)
-	  \item Make raw data read-only, and back it up immediately
+	  \item Everyone has expectations of their data/experiment
+	    \begin{itemize}
+	      \item Beware cognitive errors, such as confirmation bias!
+	      \item System 1 vs. System 2 $\approx$ reason vs. intuition
+	    \end{itemize}
+	  \item Think statistically! 
+	    \begin{itemize}
+	      \item Large datasets can be counterintuitive.
+	      \item Always account for multiple tests.
+	    \end{itemize}
+	  \item Use test-driven development of analyses and code
+	    \begin{itemize}
+	      \item Use examples that pass \textit{and} fail
+	    \end{itemize}	  
 	\end{itemize}
   \end{frame}
 
