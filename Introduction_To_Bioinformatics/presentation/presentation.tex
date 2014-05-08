@@ -2,6 +2,7 @@
 \mode<presentation>
 \usetheme{Berlin}
 \usecolortheme{beaver}
+\usepackage{listings}
 \usepackage{multirow}
 
 %%%
@@ -265,20 +266,58 @@
     \end{itemize}
   \end{frame}
 
-  \begin{frame}
-    \frametitle{Exercise 1}
-    \framesubtitle{Starting the analysis}
-    \includegraphics[width=.5\textwidth]{images/ex1_screenshot_a}
-  \end{frame}
-
-  \begin{frame}
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
     \frametitle{Exercise 1}
     \framesubtitle{Starting the analysis}
     \begin{itemize}
       \item Change directory to where Exercise 1 data is located, and start R.
     \end{itemize}
-    \includegraphics[width=.5\textwidth]{images/ex1_screenshot_b}
-  \end{frame}
+    \begin{lstlisting}[language=bash]
+      $ cd ../../data/ex1_expression/
+      $ R
+    \end{lstlisting}
+\end{frame}
+
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
+    \frametitle{Exercise 1}
+    \framesubtitle{Load and inspect data in R}
+    \begin{lstlisting}[language=R]
+      > data = read.table("expnA.tab", sep="\t", 
+                          header=TRUE)
+      > head(data)
+        gene1 gene2
+      1    10  8.04
+      2     8  6.95
+      3    13  7.58
+      4     9  8.81
+      5    11  8.33
+      6    14  9.96
+    \end{lstlisting}
+    %\includegraphics[width=.5\textwidth]{images/ex1_screenshot_b}
+\end{frame}
+
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
+    \frametitle{Exercise 1}
+    \framesubtitle{Load and inspect data in R}
+    \begin{lstlisting}[language=R]
+      > mean(data$gene1)
+      [1] 9
+      > mean(data$gene2)
+      [1] 7.500909
+      > sd(data$gene1)
+      [1] 3.316625
+      > sd(data$gene2)
+      [1] 2.031568
+      > cor(data)
+                gene1     gene2
+      gene1 1.0000000 0.8164205
+      gene2 0.8164205 1.0000000
+    \end{lstlisting}
+    %\includegraphics[width=.5\textwidth]{images/ex1_screenshot_b}
+\end{frame}
 
   \begin{frame}
     \frametitle{Exercise 1}
@@ -312,31 +351,29 @@
 	\end{center}
 	\begin{itemize}
       \item<2-> $r=0.816 (P<0.005)$ in every experiment
-      \item Can we conclude that \texttt{gene1} and \texttt{gene2} are coexpressed in each experiment?
+      \item<2-> Can we conclude that \texttt{gene1} and \texttt{gene2} are coexpressed in each experiment?
     \end{itemize}
   \end{frame}
 
-  \begin{frame}
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
     \frametitle{Exercise 1}
-    \framesubtitle{Plot the Data}
+    \framesubtitle{Plot the data in R}
+    Should have done this, first! \\
+    \begin{lstlisting}[language=R]
+      > plot(data)
+    \end{lstlisting}
     \begin{center}
-    \begin{columns}[t]
-	  \begin{column}{5cm}
-	   Should have done this, first!
-	  \end{column}
-  	  \begin{column}{5cm}
-        \includegraphics[width=\textwidth]{images/ex1_screenshot_c} \\
-        \includegraphics[width=\textwidth]{images/ex1_screenshot_d}        
-      \end{column}
-    \end{columns}
+      \includegraphics[width=0.4\textwidth]{images/ex1_screenshot_d}        
     \end{center}
-  \end{frame}
+\end{frame}
 
   \begin{frame}
     \frametitle{Exercise 1}
-    \framesubtitle{Always Plot the Data}
+    \framesubtitle{Always plot the data}
+    Which gene pairs are coexpressed?
     \begin{center}
-      \includegraphics[width=\textwidth]{images/ex1_rplot} \\
+      \includegraphics[width=0.9\textwidth]{images/ex1_rplot} \\
     \end{center}
   \end{frame}
 
@@ -344,12 +381,12 @@
     \frametitle{First Golden Rule of Bioinformatics}
     \framesubtitle{Do not trust the data}
 	\begin{itemize}
-	  \item Do not trust the data
 	  \item Always inspect the raw data (trends, outliers, clustering)
-	  \item Communicate with the data collectors! (don't be afraid of pedantry)
+	  \item What is the question? Can the data answer it?
+	  \item Communicate with data collectors! (don't be afraid of pedantry)
 	  \begin{itemize}
 	    \item Who? When? How?
-	    \item You need to understand an experiment (easier if you helped design it) to analyse it
+	    \item You need to understand the experiment to analyse it (easier if you helped design it).
 	    \item Be wary of block effects (experimenter, time, batch, etc.)
 	  \end{itemize}
 	\end{itemize}
