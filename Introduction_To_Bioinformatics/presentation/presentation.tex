@@ -46,24 +46,29 @@
     \frametitle{Introduction}
     \framesubtitle{So you want to be a computational biologist?}
     \begin{itemize}
-      \item Biology using computational and mathematical tools
-      \item Bioinformatics/computational biology is a discipline within biology
-      \item Loman \& Watson (2013) \url{http://dx.doi.org/10.1038/nbt.2740}
-	  \item \url{http://biomickwatson.wordpress.com/2014/03/10/the-only-core-competency-youre-ever-going-to-need/}
-	  \item Welch \textit{et al.} (2014) \url{http://dx.doi.org/10.1371/journal.pcbi.1003496}
-	\end{itemize}
+      \item Bioinformatics: biology using computational and mathematical tools
+      \item A discipline within biology
+      \begin{itemize}
+        \item Loman \& Watson (2013) \url{http://dx.doi.org/10.1038/nbt.2740}
+        \item Welch \textit{et al.} (2014) \url{http://dx.doi.org/10.1371/journal.pcbi.1003496}
+        % http://bit.ly/1fS4iDJ links to http://biomickwatson.wordpress.com/2014/03/10/the-only-core-competency-youre-ever-going-to-need/}
+        \item \url{http://bit.ly/1fS4iDJ} ("The only core competency you need")
+      \end{itemize}
+    \end{itemize}
   \end{frame}
 
   \begin{frame}
     \frametitle{Introduction}
-    \framesubtitle{Uncomfortable truths}
+    \framesubtitle{Some uncomfortable truths}
     \begin{itemize}
       \item This one-day course will not make you a bioinformatician
       \item We will introduce some useful tools and concepts
       \item Most bioinformatics is problem-solving
       \item The best way to learn is to do ("I don't know how to do this yet, but I will find out.")
-      % Links to http://biomickwatson.wordpress.com/2013/08/06/bioinformatics-is-not-something-you-are-taught-its-a-way-of-life/
-      \item \url{http://bit.ly/Rq0D61}
+      % http://bit.ly/Rq0D61 links to http://biomickwatson.wordpress.com/2013/08/06/bioinformatics-is-not-something-you-are-taught-its-a-way-of-life/
+      \begin{itemize}
+        \item \url{http://bit.ly/Rq0D61} ("Bioinformatics is a way of life")
+      \end{itemize}
     \end{itemize}
   \end{frame}
 
@@ -71,7 +76,7 @@
     \frametitle{Introduction}
     \framesubtitle{What it takes to be a bioinformatician}
     \begin{columns}[t]
-	  \begin{column}{5cm}
+      \begin{column}{5cm}
         \begin{itemize}
           \item Patience (problem-solving)
           \item Suspicion (statistics)
@@ -81,23 +86,23 @@
 	  \end{column}
 	  \begin{column}{5cm}
 	    \begin{itemize}
-	      \item Self-confidence (challenge results)
+	      \item Self-confidence (challenge results and dogma)
 	      \item Core domain skills: biology, computer science, statistics
 	      \item Deliver results (qualified, honest)
 	      \item Lots of practice
-		\end{itemize}
+	    \end{itemize}
 	  \end{column}
 	\end{columns}
 	\begin{itemize}
-	  % Link goes to http://biomickwatson.wordpress.com/2013/03/18/the-alternative-what-it-takes-to-be-a-bioinformatician/
-	  \item \url{http://bit.ly/1jDuQsO}
-	  \item \url{http://science.slashdot.org/comments.pl?sid=3161217&cid=41542125}
+	  % http://bit.ly/1jDuQsO link goes to http://biomickwatson.wordpress.com/2013/03/18/the-alternative-what-it-takes-to-be-a-bioinformatician/
+	  \item \url{http://bit.ly/1jDuQsO} ("What it takes to be a bioinformatician")
+	  %\item \url{http://science.slashdot.org/comments.pl?sid=3161217&cid=41542125}
 	\end{itemize}
   \end{frame}
 
 
    \begin{frame}
-     \frametitle{Where to get more advice?}
+     \frametitle{More general advice?}
      \begin{itemize}
 	   \item Ask us (we do this a lot)
 	   \item BioStars (\url{https://www.biostars.org})
@@ -121,11 +126,14 @@
      \frametitle{Why Do It?}
      \begin{itemize}
 	   \item Doing bioinformatics is doing science: keep a lab book!
-	   \item Reproducibility is key! (e.g. Baggerly \& Coombes (2009) \url{http://arxiv.org/pdf/1010.1092.pdf})
-	   \item \textit{You won't remember} multiple files, analysis details, etc.
-	   \item See: Noble (2009) \url{http://dx.doi.org/10.1371/journal.pcbi.1000424}
+	   \item Reproducibility is key!
+	   \item You \emph{will not} remember multiple files, analysis details, etc. in a week
+	   \begin{itemize}
+	     \item Noble (2009) \url{http://dx.doi.org/10.1371/journal.pcbi.1000424}
+	     \item Baggerly \& Coombes (2009) \url{http://arxiv.org/pdf/1010.1092.pdf}
+	   \end{itemize}
 	\end{itemize}
-	\includegraphics[width=.7\textwidth]{images/noble_2009_head}
+	\includegraphics[width=.6\textwidth]{images/noble_2009_head}
    \end{frame}
    
    \begin{frame}
@@ -134,7 +142,8 @@
 	   \item There is no one correct way, but$\ldots$
 	   \item Think about data/docs/project structure \textit{before} you start
 	\end{itemize}
-    \includegraphics[width=.7\textwidth]{images/project_structure}
+    \includegraphics[width=.5\textwidth]{images/project_structure}
+    \includegraphics[width=.5\textwidth]{images/phd052810s}
    \end{frame}
 
    \begin{frame}
@@ -144,6 +153,7 @@
 	   \item Use version control
 	   \item Keep backups
 	   \item Different tools suit different purposes: code \textit{vs.} data \textit{vs.} analysis \textit{vs.} $\ldots$
+	   \item Find a way that works \emph{for you}.
 	\end{itemize}
    \end{frame}
    
@@ -155,33 +165,34 @@
      \begin{itemize}
        \item \texttt{README.txt}/\texttt{README.md} in each directory/folder
        \item Plain text is always human-readable
-       \item Markdown (\url{https://daringfireball.net/projects/markdown/basics})
-       \item RST (\url{http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html})
+       \begin{itemize}
+         \item Markdown (\url{https://daringfireball.net/projects/markdown/basics})
+         \item RST (\url{http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html})
+       \end{itemize}
      \end{itemize}
     \includegraphics[width=.4\textwidth]{images/markdown_before}
 	\includegraphics[width=.4\textwidth]{images/markdown_after}
    \end{frame}
    
    \begin{frame}
+     \frametitle{Galaxy workflows}
+     \begin{itemize}
+       \item Use through browser, graphical interface
+       \item Reproducible, sharable, documented, reusable analyses
+       \item Wraps standard bioinformatics tools
+       \item Local instance (\url{http://ppserver/galaxy}) uses JHI cluster       
+     \end{itemize}
+   \end{frame}      
+   
+   \begin{frame}
      \frametitle{\texttt{script}}
      \begin{itemize}
-       \item use \texttt{man script} at your terminal
        \item Writes your terminal activity to a plain text file
        \item Saves effort copy/pasting and typing commands into a lab book, as you go
        \item Easy to use with other tools 
+       \item use \texttt{man script} at your terminal to find out more
      \end{itemize}
    \end{frame}   
-   
-   \begin{frame}
-     \frametitle{\LaTeX}
-     \begin{itemize}
-       \item Powerful, versatile typesetting system
-       \item Similar to markup/markdown
-       \item Great for mathematical/computing work
-     \end{itemize}
-    \includegraphics[width=.35\textwidth]{images/latex_before}
-	\includegraphics[width=.35\textwidth]{images/latex_after}     
-   \end{frame}
    
    \begin{frame}
      \frametitle{MediaWiki}
@@ -203,6 +214,17 @@
     \includegraphics[width=.5\textwidth]{images/ipython_notebook}     
    \end{frame}
 
+   \begin{frame}
+     \frametitle{\LaTeX}
+     \begin{itemize}
+       \item Powerful, versatile typesetting system
+       \item Similar to markup/markdown
+       \item Pros: great for mathematical/computing work
+       \item Cons: not user-friendly
+     \end{itemize}
+    \includegraphics[width=.35\textwidth]{images/latex_before}
+    \includegraphics[width=.35\textwidth]{images/latex_after}     
+   \end{frame}
 
  %%%
  % SECTION: The Golden Rules of Bioinformatics
@@ -223,9 +245,8 @@
     \frametitle{Exercise 1}
     \framesubtitle{The biological question}
     \begin{itemize}
-      \item Your dataset \texttt{expn?.tab} describes (log) expression data
-      \item Two genes: \texttt{gene1} and \texttt{gene2}
-      \item Eleven time points (including control)
+      \item Your dataset \texttt{expn?.tab} describes (log) expression data for two genes: \texttt{gene1} and \texttt{gene2}
+      \item Expression measured at eleven time points (including control)
       \item Q: Are \texttt{gene1} and \texttt{gene2} genes coregulated?
       \item How do we answer this question?
     \end{itemize}
@@ -235,12 +256,12 @@
     \frametitle{Exercise 1}
     \framesubtitle{Reformulating the question}
     \begin{itemize}
-      \item Q: Are \texttt{gene1} and \texttt{gene2} genes coregulated?
-      \item A: We cannot determine this from expression data alone
-      \item Reformulate the question:
-      \item NewQ: Are \texttt{gene1} and \texttt{gene2} genes coexpressed? \\
+      \item<1-> Q: Are \texttt{gene1} and \texttt{gene2} genes coregulated?
+      \item<1-> A: We cannot determine this from expression data alone
+      \item<2-> Reformulate the question:
+      \item<2-> NewQ: Are \texttt{gene1} and \texttt{gene2} genes coexpressed? \\
             (are expressions \texttt{gene1} $\propto$ \texttt{gene2})
-      \item How do we answer this new question?
+      \item<2-> How do we answer this new question?
     \end{itemize}
   \end{frame}
 
@@ -253,6 +274,9 @@
   \begin{frame}
     \frametitle{Exercise 1}
     \framesubtitle{Starting the analysis}
+    \begin{itemize}
+      \item Change directory to where Exercise 1 data is located, and start R.
+    \end{itemize}
     \includegraphics[width=.5\textwidth]{images/ex1_screenshot_b}
   \end{frame}
 
