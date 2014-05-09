@@ -83,6 +83,7 @@
           \item Suspicion (statistics)
           \item Biological knowledge
           \item Social skills (no-one knows everything: ask!)
+	      \item Lots of practice          
 	    \end{itemize}
 	  \end{column}
 	  \begin{column}{5cm}
@@ -90,7 +91,6 @@
 	      \item Self-confidence (challenge results and dogma)
 	      \item Core domain skills: biology, computer science, statistics
 	      \item Deliver results (qualified, honest)
-	      \item Lots of practice
 	    \end{itemize}
 	  \end{column}
 	\end{columns}
@@ -112,7 +112,7 @@
 	\end{itemize}
 	\includegraphics[width=.2\textwidth]{images/gibas_book}
 	\includegraphics[width=.2\textwidth]{images/buffalo_book}
-	\includegraphics[width=.2\textwidth]{images/bassi_book}
+	\includegraphics[width=.18\textwidth]{images/bassi_book}
 	\includegraphics[width=.2\textwidth]{images/korf_book}
 	\includegraphics[width=.2\textwidth]{images/model_book}
    \end{frame}
@@ -128,7 +128,7 @@
      \begin{itemize}
 	   \item Doing bioinformatics is doing science: keep a lab book!
 	   \item Reproducibility is key!
-	   \item You \emph{will not} remember multiple files, analysis details, etc. in a week
+	   \item You \emph{will not} remember multiple files, analysis details, etc. in a week/month/six months/a year/three years
 	   \begin{itemize}
 	     \item Noble (2009) \url{http://dx.doi.org/10.1371/journal.pcbi.1000424}
 	     \item Baggerly \& Coombes (2009) \url{http://arxiv.org/pdf/1010.1092.pdf}
@@ -183,6 +183,9 @@
        \item Wraps standard bioinformatics tools
        \item Local instance (\url{http://ppserver/galaxy}) uses JHI cluster       
      \end{itemize}
+     \begin{center}
+       \includegraphics[width=.75\textwidth]{images/galaxy_screenshot}
+     \end{center}
    \end{frame}      
    
    \begin{frame}
@@ -274,8 +277,8 @@
       \item Change directory to where Exercise 1 data is located, and start R.
     \end{itemize}
     \begin{lstlisting}[language=bash]
-      $ cd ../../data/ex1_expression/
-      $ R
+$ cd ../../data/ex1_expression/
+$ R
     \end{lstlisting}
 \end{frame}
 
@@ -284,16 +287,16 @@
     \frametitle{Exercise 1}
     \framesubtitle{Load and inspect data in R}
     \begin{lstlisting}[language=R]
-      > data = read.table("expnA.tab", sep="\t", 
-                          header=TRUE)
-      > head(data)
-        gene1 gene2
-      1    10  8.04
-      2     8  6.95
-      3    13  7.58
-      4     9  8.81
-      5    11  8.33
-      6    14  9.96
+> data = read.table("expnA.tab", sep="\t", 
+                    header=TRUE)
+> head(data)
+  gene1 gene2
+1    10  8.04
+2     8  6.95
+3    13  7.58
+4     9  8.81
+5    11  8.33
+6    14  9.96
     \end{lstlisting}
     %\includegraphics[width=.5\textwidth]{images/ex1_screenshot_b}
 \end{frame}
@@ -303,18 +306,18 @@
     \frametitle{Exercise 1}
     \framesubtitle{Load and inspect data in R}
     \begin{lstlisting}[language=R]
-      > mean(data$gene1)
-      [1] 9
-      > mean(data$gene2)
-      [1] 7.500909
-      > sd(data$gene1)
-      [1] 3.316625
-      > sd(data$gene2)
-      [1] 2.031568
-      > cor(data)
-                gene1     gene2
-      gene1 1.0000000 0.8164205
-      gene2 0.8164205 1.0000000
+> mean(data$gene1)
+[1] 9
+> mean(data$gene2)
+[1] 7.500909
+> sd(data$gene1)
+[1] 3.316625
+> sd(data$gene2)
+[1] 2.031568
+> cor(data)
+          gene1     gene2
+gene1 1.0000000 0.8164205
+gene2 0.8164205 1.0000000
     \end{lstlisting}
     %\includegraphics[width=.5\textwidth]{images/ex1_screenshot_b}
 \end{frame}
@@ -361,7 +364,7 @@
     \framesubtitle{Plot the data in R}
     Should have done this, first! \\
     \begin{lstlisting}[language=R]
-      > plot(data)
+> plot(data)
     \end{lstlisting}
     \begin{center}
       \includegraphics[width=0.4\textwidth]{images/ex1_screenshot_d}        
@@ -395,10 +398,213 @@
   \subsection{Rule 2}
   \begin{frame}
     \frametitle{Exercise 2}
+    \framesubtitle{Instructions}    
     \begin{itemize}
       \item You are in group A, B, C or D - this decides your database\\
       \texttt{dbA}, \texttt{dbB}, \texttt{dbC}, \texttt{dbD}
       \item You will use \texttt{BLAST} at the command-line to analyse your data
+      \item You will use \texttt{script} at the command-line to record your work
+    \end{itemize}
+  \end{frame}
+
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
+    \frametitle{Exercise 2}
+    \framesubtitle{Starting \texttt{script}}    
+    \begin{itemize}
+      \item Start recording your actions by entering \texttt{script} at the command line      
+    \end{itemize}
+    \begin{lstlisting}[language=bash]
+$ script
+Script started, output file is typescript
+    \end{lstlisting}    
+\end{frame}
+
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
+    \frametitle{Exercise 2}
+    \framesubtitle{Running \texttt{BLAST}}
+    \begin{itemize}
+      \item Change directory to the \texttt{ex2\_blast} directory
+      \item Run \texttt{BLAST} with the appropriate database
+      \item Exit \texttt{script}
+    \end{itemize}
+    \begin{lstlisting}[language=bash]
+$ cd ../ex2_blast
+$ blastp -num_alignments 1 -num_descriptions 1 \
+    -query query.fasta -db dbA
+$ exit
+exit
+Script done, output file is typescript
+    \end{lstlisting}    
+\end{frame}
+
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
+    \frametitle{Exercise 2}
+    \framesubtitle{Viewing \texttt{script} output}
+    \begin{itemize}
+      \item You can view the \texttt{typescript} file with \texttt{cat}
+    \end{itemize}
+    \begin{lstlisting}[language=bash]
+$ cat typescript
+Script started on Fri May  9 10:45:12 2014
+lpritc@lpmacpro:$ cd ../ex2_blast
+[...]
+    \end{lstlisting}    
+\end{frame}
+
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
+    \frametitle{Exercise 2}
+    \framesubtitle{\texttt{BLAST} output}
+    \begin{tiny}
+    \begin{verbatim}
+Query= query protein sequence
+
+Length=400
+                                                                      Score
+Sequences producing significant alignments:                          (Bits)
+
+  PITG_08491T0 Phytophthora infestans T30-4 choline transporter-l...  34.3
+
+
+> PITG_08491T0 Phytophthora infestans T30-4 choline transporter-like 
+protein (441 aa)
+Length=486
+
+ Score = 34.3 bits (77), Method: Compositional matrix adjust.
+ Identities = 22/69 (32%), Positives = 38/69 (55%), Gaps = 4/69 (6%)
+
+Query  106  EVILPMMYQFALKPSFADVINDYKPYSKHTAGVSDQELKGEATTWMLADKNSRMKAFLSQ  165
+            E+++PM+Y   L   F   ++ Y P   HTA ++  EL+G   T ++A+  S +  F ++
+Sbjct  40   ELMVPMLYSLYLVVLFHLPVSAYYP---HTASMTAHELQGAVITILVAETPSIIIQF-AK  95
+
+Query  166  IKTKSNSSE  174
+              T SN S+
+Sbjct  96   CHTSSNISQ  104
+    \end{verbatim}   
+    \end{tiny} 
+\end{frame}
+
+  \begin{frame}
+    \frametitle{Exercise 2}
+    \framesubtitle{Results}
+    \begin{itemize}
+      \item What is a reasonable E-value threshold to call a 'match'?
+      \begin{itemize}
+        \item 1e-05, 0.001, 0.1, 10?
+      \end{itemize}
+    \end{itemize}
+    \begin{center}
+	\begin{tabular}{r|l|l|l|l}
+	   & dbA & dbB & dbC & dbD \\
+	  \hline
+	  \hline
+	  E-value &      &  &  & \\
+	\end{tabular}
+    \end{center}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Exercise 2}
+    \framesubtitle{Results}
+    \begin{itemize}
+      \item What is a reasonable E-value threshold to call a 'match'?
+      \begin{itemize}
+        \item 1e-05, 0.001, 0.1, 10?
+      \end{itemize}
+    \end{itemize}
+    \begin{center}
+	\begin{tabular}{r|l|l|l|l}
+	   & dbA & dbB & dbC & dbD \\
+	  \hline
+	  \hline
+	  E-value & 0.45 & 0.002 & 4e-06 & 0.019 \\
+	\end{tabular}
+    \end{center}
+    \begin{itemize}
+      \item Five orders of magnitude difference in E-value, depending on database choice - Why?
+    \end{itemize}    
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Exercise 2}
+    \framesubtitle{Results}
+    \begin{itemize}
+      \item E-values depend on database size
+      \item Bit score and alignment do not depend on database size
+    \end{itemize}
+    \begin{center}
+	\begin{tabular}{r|l|l|l|l}
+	   & dbA & dbB & dbC & dbD \\
+	  \hline
+	  \hline
+	  E-value & 0.45 & 0.002 & 4e-06 & 0.019 \\
+	  Bit score & 34.3 & 34.3 & 34.3 & 34.3 \\
+	  \hline
+	  Sequences & 100,001 & 501 & 1 & 5,001 \\
+	  Letters & 48,650,486 & 210,866 & 486 & 2,066,510 	  
+	\end{tabular}
+    \end{center}
+  \end{frame}
+
+  \subsection{Rule 2}
+  \begin{frame}
+    \frametitle{Exercise 2}
+    \framesubtitle{Results}    
+    \begin{itemize}
+      \item<1-> E-values differ, but the query matches a choline transporter-like 
+protein quite well
+      \item<2-> Doesn't it?
+    \end{itemize}
+  \end{frame}
+
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
+    \frametitle{Exercise 2}
+    \framesubtitle{\texttt{BLAST} output}
+    \begin{tiny}
+    \begin{verbatim}
+Query= query protein sequence
+
+Length=400
+                                                                      Score     E
+Sequences producing significant alignments:                          (Bits)  Value
+
+  PITG_08491T0 Phytophthora infestans T30-4 choline transporter-l...  34.3    4e-06
+
+
+> PITG_08491T0 Phytophthora infestans T30-4 choline transporter-like 
+protein (441 aa)
+Length=486
+
+ Score = 34.3 bits (77),  Expect = 4e-06, Method: Compositional matrix adjust.
+ Identities = 22/69 (32%), Positives = 38/69 (55%), Gaps = 4/69 (6%)
+
+Query  106  EVILPMMYQFALKPSFADVINDYKPYSKHTAGVSDQELKGEATTWMLADKNSRMKAFLSQ  165
+            E+++PM+Y   L   F   ++ Y P   HTA ++  EL+G   T ++A+  S +  F ++
+Sbjct  40   ELMVPMLYSLYLVVLFHLPVSAYYP---HTASMTAHELQGAVITILVAETPSIIIQF-AK  95
+
+Query  166  IKTKSNSSE  174
+              T SN S+
+Sbjct  96   CHTSSNISQ  104
+    \end{verbatim}   
+    \end{tiny} 
+\end{frame}
+
+  \begin{frame}
+    \frametitle{Exercise 2}
+    \framesubtitle{Remember Golden Rule 1?}    
+    \begin{itemize}
+      \item<1-> Sequence accessions (\texttt{PITG\_?????T0}) \emph{are} correct in the databases
+      \item<2-> Sequence functional descriptions are randomly shuffled: lengths do not match in \texttt{BLAST} output
+      \item<3-> \texttt{dbA} contains only three different sequences: two are repeated 50,000 times
+      \item<4-> \texttt{query.fasta} is random sequence, not a real protein
+      \begin{itemize}
+        \item<4-> Shuffled from all \textit{P. infestans} proteins
+        \item<4-> No \texttt{nr} or \texttt{PFam} matches        
+      \end{itemize}
     \end{itemize}
   \end{frame}
 
@@ -410,8 +616,12 @@
 	  \item You must understand the analysis/algorithm
 	  \item Always sanity test
 	  \item Test output for robustness to parameter choice
-	  \item Software has bugs
-	  \item Algorithms have assumptions, conditions, and applicable domains
+	  \item Remember:
+	  \begin{itemize}
+	    \item Software has bugs
+	    \item Algorithms have assumptions, conditions, and applicable domains
+	    \item Some problems are inherently hard, or even insoluble
+	  \end{itemize}
 	\end{itemize}
   \end{frame}
 
@@ -423,7 +633,7 @@
       \item Rule: If there is a vowel on one side of the card, there \textit{must} be an even number on the other side.
       \item Which cards \textit{must} be turned over to determine if the rule holds true? (How many, and which ones)
     \end{itemize}
-    \includegraphics[width=\textwidth]{images/wason}
+    \includegraphics[width=0.8\textwidth]{images/wason}
   \end{frame}
 
   \begin{frame}
