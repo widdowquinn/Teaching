@@ -72,8 +72,8 @@
      \end{itemize}
     \end{frame}  
   
-    % How BLAST works
-    \subsection{How BLAST works}
+    % Sequence Alignment
+    \subsection{Sequence Alignment}
     \begin{frame}
      \frametitle{Assumptions}
      You are familiar with
@@ -86,10 +86,6 @@
      - important for interpretation of BLAST output
     \end{frame}
     
-    \begin{frame}
-      \frametitle{High-level Overview}
-    \end{frame}
-
     \begin{frame}
      \frametitle{Global \textit{vs} Local Alignment}
      \begin{itemize}
@@ -161,7 +157,8 @@
          \item<1-> Global: Needleman-Wunsch (as in example)
          \item<1-> Local: Smith-Waterman (differs from example)
          \item<2-> NW/SW are \emph{guaranteed} to find the optimal match \emph{with respect to the scoring system begin used}.
-         \item<3-> BLAST doesn't use these algorithms, which is one reason why it's fast.
+         \item<2-> Alignment is an approximation: no scoring scheme encapsulates biological "truth"
+         \item<3-> Any pair of sequences can be aligned: finding meaning is up to you
        \end{itemize}
     \end{frame}   
 
@@ -172,7 +169,41 @@
          \item Simple gap penalty: all gaps score the same
          \item Affine gap penalty: opening and extending score differently
        \end{itemize}
-    \end{frame}  
+       \begin{center}
+         \includegraphics[width=0.3\textwidth]{images/gap_scores} 
+       \end{center}
+     \end{frame}  
+   
+    \begin{frame}
+     \frametitle{Dynamic Programming}
+     \framesubtitle{Banded Alignment}
+       \begin{itemize}
+         \item Given a maximum scoring alignment, restrict search to a "band" between endpoints
+         \item Width of this band = "bandwidth", needs to be optimised
+         \item Speeds up search, reduces memory use
+       \end{itemize}
+       \begin{center}
+         \includegraphics[width=0.3\textwidth]{images/banded} 
+       \end{center}
+     \end{frame}     
+
+    % The BLAST Algorithm
+    \subsection{The BLAST Algorithm}
+    \begin{frame}
+     \frametitle{Search Space}
+     Consider two biological sequences to be aligned$\ldots$
+     \begin{itemize}
+       \item One sequence on the \textit{x}-axis, the other on the \textit{y}-axis
+       \item Each point in space is a pairing of two letters
+       \item Ungapped alignments are diagonal lines in the search space, gapped alignments have short 'breaks'
+       \item There may be one or more optimal alignments
+     \end{itemize}
+     \begin{center}
+       \includegraphics[width=0.4\textwidth]{images/search_space} 
+     \end{center}
+   \end{frame}
+
+
    
   \section{Using BLAST}
     \subsection{Which BLAST tool should I use?}
