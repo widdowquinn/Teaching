@@ -177,6 +177,32 @@ chrA	stitching	contig	155036	241491	.	.	.	ID=contig00018;Name=contig00018
     \end{lstlisting}
 \end{frame}  
 
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
+    \frametitle{Download a Comparator Sequence}
+    You will use \texttt{wget}, a powerful command-line tool for downloading data from the web
+    \begin{lstlisting}[language=bash]
+$ wget ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Pectobacterium_atrosepticum_SCRI1043_uid57957/NC_004547.ffn
+--2014-05-20 19:11:24--  ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Pectobacterium_atrosepticum_SCRI1043_uid57957/NC_004547.ffn
+           => 'NC_004547.ffn'
+Resolving ftp.ncbi.nih.gov... 130.14.250.7, 2607:f220:41e:250::12
+Connecting to ftp.ncbi.nih.gov|130.14.250.7|:21... connected.
+Logging in as anonymous ... Logged in!
+==> SYST ... done.    ==> PWD ... done.
+==> TYPE I ... done.  ==> CWD (1) /genomes/Bacteria/Pectobacterium_atrosepticum_SCRI1043_uid57957 ... done.
+==> SIZE NC_004547.ffn ... 4913065
+==> PASV ... done.    ==> RETR NC_004547.ffn ... done.
+Length: 4913065 (4.7M) (unauthoritative)
+
+100%[====================>] 4,913,065    118KB/s   in 79s    
+
+2014-05-20 19:12:46 (60.9 KB/s) - 'NC_004547.ffn' saved [4913065]
+$ ls NC*
+NC_004547.ffn
+    \end{lstlisting}
+\end{frame}  
+
+
   % Artemis
   \subsection{Artemis}
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
@@ -233,7 +259,76 @@ $ art &
       \includegraphics[width=\textwidth]{images/artemis_stitch_tease} 
     \end{center}
 \end{frame}     
+
+  % Artemis
+  \subsection{BLAST comparisons}
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
+    \frametitle{Run a megaBLAST Comparison}
+    Make a new working directory, and BLAST your chromosome against the comparator sequence \\
+    Put results in \texttt{chrA\_megablast\_Pba.tab}
+    \begin{lstlisting}[language=bash]
+$ pwd
+[...]/Introduction_To_Bioinformatics
+$ mkdir workshop
+$ cd workshop
+$ blastn -query ../data/workshop/chromosomes/chrA.fasta -subject ../data/workshop/chromosomes/NC_004547.ffn -out chrA_megablast_Pba.tab -outfmt 6 
+$ head -n 3 chrA_megablast_Pba.tab 
+chrA	gi|50118965|ref|NC_004547.2|:10948-12453	80.34	1511	287	10	4579450	4580955	1506	1	0.0	1136
+chrA	gi|50118965|ref|NC_004547.2|:c33859-32447	82.04	1409	253	0	4563151	4564559	1	1409	0.0	1201
+chrA	gi|50118965|ref|NC_004547.2|:c34917-33868	82.48	1050	184	0	4562093	4563142	1	1050	0.0	 920
+    \end{lstlisting}
+\end{frame} 
     
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
+    \frametitle{Run a BLASTN Comparison}
+    Make a new working directory, and BLAST your chromosome against the comparator sequence \\
+    Put results in \texttt{chrA\_blastn\_Pba.tab}
+    \begin{lstlisting}[language=bash]
+$ pwd
+[...]/Introduction_To_Bioinformatics
+$ mkdir workshop
+$ cd workshop
+$ blastn -query ../data/workshop/chromosomes/chrA.fasta -subject ../data/workshop/chromosomes/NC_004547.ffn -out chrA_blastn_Pba.tab -outfmt 6 -task blastn
+$ head -n 3 chrA_blastn_Pba.tab 
+chrA	gi|50118965|ref|NC_004547.2|:5629-7497	79.68	1865	379	0	4584915	4586779	1865	1	0.0	1654
+chrA	gi|50118965|ref|NC_004547.2|:5629-7497	92.59	27	2	0	4479367	4479393	1254	1280	0.004	41.0
+chrA	gi|50118965|ref|NC_004547.2|:5629-7497	100.00	17	0	0	4613022	4613038	52	36	2.1	31.9
+    \end{lstlisting}
+\end{frame}     
+    
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
+    \frametitle{Do BLASTN and megaBLAST comparisons agree?}
+    Check the number of alignments returned with \texttt{wc}
+    \begin{lstlisting}[language=bash]
+$ wc chrA_megablast_Pba.tab 
+     536    6432   52969 chrA_megablast_Pba.tab
+$ wc chrA_blastn_Pba.tab 
+    4425   53100  429478 chrA_blastn_Pba.tab
+    \end{lstlisting}
+    What is this telling us? \\
+    Why do the results differ?
+\end{frame}         
+
+  \begin{frame}
+    \frametitle{BLASTN vs megaBLAST}
+    \begin{itemize}
+      \item<1-> BLASTN uses the BLAST algorithm, megaBLAST does not
+      \begin{itemize}
+        \item (though BLAST+ BLASTN now uses megaBLAST by default)
+      \end{itemize}      
+      \item<1-> megaBLAST uses a fast, greedy algorithm due to Zhang et al. (2000) \url{http://www.ncbi.nlm.nih.gov/pubmed/10890397}
+      \item<2-> megaBLAST is optimised for
+      \begin{itemize}
+        \item genome-level searches
+        \item queries on large sequence sets (automatic query packing)
+        \item long alignments of similar sequences, with SNPs/sequencing errors
+      \end{itemize}
+      \item<2-> A discontinuous mode (dc-megaBLAST) is recommended for more divergent sequences
+    \end{itemize}
+\end{frame}   
     
 % etc
 \end{document}
