@@ -1,0 +1,134 @@
+\documentclass[table]{beamer}
+\mode<presentation>
+\usetheme{Berlin}
+\usecolortheme{beaver}
+\usepackage{listings}
+\usepackage{multirow}
+
+%%%
+% TITLE PREAMBLE
+\title[Intro to Bioinformatics] % (optional, only for long titles)
+{An Introduction to Bioinformatics Tools}
+\subtitle{Part 3: Workshop}
+\author[Pritchard, Cock] % (optional, for multiple authors)
+{Leighton~Pritchard \and Peter~Cock}
+\institute[The James Hutton Institute] % (optional)
+{
+  Information and Computational Sciences\\
+  The James Hutton Institute
+}
+\date[May 2014] % (optional)
+{Bioinformatics Training, 29$^{th}$,30$^{th}$ May 2014}
+\subject{Bioinformatics}
+
+%%%
+% TOC
+% Show table of contents, with current section highlighted,
+% at the start of each section
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection,hideothersubsections]
+  \end{frame}
+}
+
+
+%%%
+% START DOCUMENT
+\begin{document}
+
+  \frame[plain]{\titlepage}
+  
+%%%
+% SECTION: Workshop Outline
+  \section{Outline}
+ 
+    % What you will be doing
+    \begin{frame}
+     \frametitle{What You Will Be Doing}
+     \begin{itemize}
+       \item Functional annotation of a draft bacterial genome
+       \begin{itemize}
+         \item Genome comparisons
+         \item Gene prediction/ORF detection
+         \item Gene functional annotation
+         \item Gene comparisons
+       \end{itemize}
+     \end{itemize}
+    \end{frame}
+    
+    \begin{frame}
+     \frametitle{Genome comparisons}
+     \begin{itemize}
+       \item Artemis
+       \item BLAST
+       \item MUMmer
+       \item MAUVE
+       \item ACT
+       \item Differences between genome aligners
+     \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+     \frametitle{Gene (coding sequence) Prediction}
+     \begin{itemize}
+       \item ORF detection
+       \item GeneMark
+       \item Glimmer
+       \item Prodigal
+       \item Benchmarking gene prediction
+     \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+     \frametitle{Functional Prediction}
+     \begin{itemize}
+       \item InterPro
+       \item RAST
+       \item KAAS
+       \item PFam
+       \item Artemis
+       \item Functional classification
+     \end{itemize}
+    \end{frame}
+    
+    \begin{frame}
+     \frametitle{Gene Comparisons}
+     \begin{itemize}
+       \item BLAST
+       \item HMMer
+       \item CLUSTAL
+       \item T-COFFEE
+       \item JalView
+       \item Differences between gene aligners
+     \end{itemize}
+    \end{frame}
+
+
+  % Getting started
+  \section{Setting Up}
+  \begin{frame}
+    \frametitle{Locate your data}
+    \begin{itemize}
+      \item You are in group A, B, C or D - this decides your chromosome sequence: \\
+      \texttt{chrA.fasta}, \texttt{chrB.fasta}, \texttt{chrC.fasta}, \texttt{chrD.fasta}
+      \item Each sequence represents a single stitched, ordered draft bacterial genome comprising a number of contigs.
+      \item You will use your sequence as the basis of the exercises in the workshop.
+    \end{itemize}
+  \end{frame}  
+  
+  \begin{frame}
+    \frametitle{Locate your data}
+    \begin{itemize}
+      \item You are in group A, B, C or D - this decides your dataset: \\
+      \texttt{chrA.fasta}, \texttt{chrB.fasta}, \texttt{chrC.fasta}, \texttt{chrD.fasta}
+      \item You also have a GFF file describing the location of assembled contains \\
+      \texttt{chrA\_contigs.gff}, \texttt{chrB\_contigs.gff}, \texttt{chrC\_contigs.gff}, \texttt{chrD\_contigs.gff}
+      \item Your data is in \texttt{data/workshop/chromosomes}
+    \end{itemize}
+  \end{frame}    
+  
+    
+% etc
+\end{document}
