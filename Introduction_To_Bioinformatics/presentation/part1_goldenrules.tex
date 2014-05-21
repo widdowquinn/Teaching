@@ -40,7 +40,7 @@
 % TITLE PREAMBLE
 \title[Intro to Bioinformatics] % (optional, only for long titles)
 {An Introduction to Bioinformatics Tools}
-\subtitle{Part 1: Basics of Robust and Repeatable Data Analysis}
+\subtitle{Part 1: Golden Rules of Bioinformatics}
 \author[Pritchard, Cock] % (optional, for multiple authors)
 {Leighton~Pritchard \and Peter~Cock}
 \institute[The James Hutton Institute] % (optional)
@@ -79,233 +79,22 @@
   \end{frame}
     
  %%%
- % SECTION: Introduction
-  \section{Introduction}
-  \subsection{So You Want To Be a Computational Biologist?}
-  \begin{frame}
-    \frametitle{What is this "bioinformatics" thing, anyway?}
-    \begin{itemize}
-      \item Bioinformatics: biology using computational and mathematical tools
-      \item A discipline within biology
-      \begin{itemize}
-        \item Loman \& Watson (2013) \url{http://dx.doi.org/10.1038/nbt.2740}
-        \item Welch \textit{et al.} (2014) \url{http://dx.doi.org/10.1371/journal.pcbi.1003496}
-        % http://bit.ly/1fS4iDJ links to http://biomickwatson.wordpress.com/2014/03/10/the-only-core-competency-youre-ever-going-to-need/}
-        \item \url{http://bit.ly/1fS4iDJ} ("The only core competency you need")
-      \end{itemize}
-    \end{itemize}
-  \end{frame}
-
-  \begin{frame}
-    \frametitle{Some uncomfortable truths}
-    \begin{itemize}
-      \item This one-day course will not make you a bioinformatician
-      \item The best way to learn is to do ("I don't know how to do this yet, but I will find out.")
-      % http://bit.ly/Rq0D61 links to http://biomickwatson.wordpress.com/2013/08/06/bioinformatics-is-not-something-you-are-taught-its-a-way-of-life/
-      \begin{itemize}
-        \item \url{http://bit.ly/Rq0D61} ("Bioinformatics is a way of life")
-      \end{itemize}
-      \item Most bioinformatics is problem-solving
-      \item We will introduce some useful tools and concepts
-    \end{itemize}
-  \end{frame}
-
-  \begin{frame}
-    \frametitle{What it takes to be a bioinformatician}
-    \begin{columns}[t]
-      \begin{column}{5cm}
-        \begin{itemize}
-          \item Patience (problem-solving)
-          \item Suspicion (statistics)
-          \item Biological knowledge
-          \item Social skills (no-one knows everything: ask!)
-	      \item Lots of practice          
-	    \end{itemize}
-	  \end{column}
-	  \begin{column}{5cm}
-	    \begin{itemize}
-	      \item Self-confidence (challenge results and dogma)
-	      \item Core domain skills: biology, computer science, statistics
-	      \item Deliver results (qualified, honest)
-	    \end{itemize}
-	  \end{column}
-	\end{columns}
-	\begin{itemize}
-	  % http://bit.ly/1jDuQsO link goes to http://biomickwatson.wordpress.com/2013/03/18/the-alternative-what-it-takes-to-be-a-bioinformatician/
-	  \item \url{http://bit.ly/1jDuQsO} ("What it takes to be a bioinformatician")
-	  %\item \url{http://science.slashdot.org/comments.pl?sid=3161217&cid=41542125}
-	\end{itemize}
-  \end{frame}
-
-
-   \begin{frame}
-     \frametitle{More general advice?}
-     \begin{itemize}
-	   \item Ask us (we do this a lot)
-	   \item BioStars (\url{https://www.biostars.org})
-	   \item SeqAnswers (\url{http://seqanswers.com/})
-	   \item \textit{PLoS Comp Biol} collections (\url{http://www.ploscollections.org/static/pcbiCollections})
-	\end{itemize}
-	\includegraphics[width=.2\textwidth]{images/gibas_book}
-	\includegraphics[width=.2\textwidth]{images/buffalo_book}
-	\includegraphics[width=.18\textwidth]{images/bassi_book}
-	\includegraphics[width=.2\textwidth]{images/korf_book}
-	\includegraphics[width=.2\textwidth]{images/model_book}
-   \end{frame}
-
- %%%
- % SECTION: Recording your work
-   \section{Recording Your Work}
-   
-   % SUBSECTION: justification
-   \subsection{Why and How?}
-   \begin{frame}
-     \frametitle{Why Do It?}
-     \begin{itemize}
-	   \item Doing bioinformatics is doing science: keep a lab book!
-	   \item You \emph{will not} remember multiple files, analysis details, etc. in a week/month/six months/a year/three years
-	   \begin{itemize}
-	     \item Noble (2009) \url{http://dx.doi.org/10.1371/journal.pcbi.1000424}
-	     \item Baggerly \& Coombes (2009) \url{http://arxiv.org/pdf/1010.1092.pdf}
-	   \end{itemize}
-	\end{itemize}
-	\includegraphics[width=.6\textwidth]{images/noble_2009_head}
-   \end{frame}
-   
-   \begin{frame}
-     \frametitle{How To Do It? I}
-     \begin{itemize}
-	   \item There is no one correct way, but$\ldots$
-	   \item Think about data/docs/project structure \textit{before} you start
-    \end{itemize}
-    \begin{center}
-      \includegraphics[width=.5\textwidth]{images/project_structure}
-      \includegraphics[width=.5\textwidth]{images/phd052810s}
-    \end{center}
-   \end{frame}
-
-   \begin{frame}
-     \frametitle{How To Do It? II}
-     \begin{itemize}
-	   \item Use plain text where possible
-	   \item Use version control
-	   \item Keep backups
-	   \item Different tools suit different purposes: code \textit{vs.} data \textit{vs.} analysis \textit{vs.} $\ldots$
-	   \item Find a way that works \emph{for you}.
-	\end{itemize}
-   \end{frame}
-
-   \begin{frame}
-     \frametitle{How To Do It? III}
-     \begin{itemize}
-	   \item Reproducibility is key!
-	   \item Scripts and pipelines are better for this than notes of what you did
-	   \begin{itemize}
-	     \item Also better for version control, and reuse
-	   \end{itemize}
-	   \item Avoid unnecessary duplication
-	   \begin{itemize}
-	     \item Someone else may have solved your problem
-	     \item One (backed up) read-only copy of raw data, keep analyses separate
-	   \end{itemize}
-	\end{itemize}
-   \end{frame}
-   
-   
-   % SUBSECTION: useful tools
-   \subsection{Useful Tools for Recording Your Work}
-   \begin{frame}
-     \frametitle{Plain Text Files}
-     \begin{itemize}
-       \item \texttt{README.txt}/\texttt{README.md} in each directory/folder
-       \item Plain text is always human-readable
-       \begin{itemize}
-         \item Markdown (\url{https://daringfireball.net/projects/markdown/basics})
-         \item RST (\url{http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html})
-       \end{itemize}
-     \end{itemize}
-     \begin{center}
-       \includegraphics[width=.4\textwidth]{images/markdown_before}
-       \includegraphics[width=.4\textwidth]{images/markdown_after}
-     \end{center}
-   \end{frame}
-   
-   \begin{frame}
-     \frametitle{Galaxy workflows}
-     \begin{itemize}
-       \item Use through browser, graphical interface
-       \item Reproducible, shareable, documented, reusable analyses
-       \item Wraps standard bioinformatics tools
-       \item Local instance (\url{http://ppserver/galaxy}) uses JHI cluster       
-     \end{itemize}
-     \begin{center}
-       \includegraphics[width=.75\textwidth]{images/galaxy_screenshot}
-     \end{center}
-   \end{frame}      
-   
-   \begin{frame}
-     \frametitle{\texttt{script}}
-     \begin{itemize}
-       \item Writes your terminal activity to a plain text file
-       \item Saves effort copy/pasting and typing commands into a lab book, as you go
-       \item Easy to use with other tools 
-       \item use \texttt{man script} at your terminal to find out more
-     \end{itemize}
-   \end{frame}   
-   
-   \begin{frame}
-     \frametitle{MediaWiki}
-     \begin{itemize}
-       \item Useful for shared projects/data
-       \item Automatic version control and attribution
-       \item Many local instances at JHI (ask around)
-     \end{itemize}
-     \begin{center}
-       \includegraphics[width=.4\textwidth]{images/mediawiki_after}
-       \includegraphics[width=.4\textwidth]{images/mediawiki_version_control}     
-     \end{center}
-   \end{frame}
-   
-   \begin{frame}
-     \frametitle{A language notebook}
-     \begin{itemize}
-       \item e.g. \texttt{iPython Notebook}, \texttt{Mathematica}, \texttt{MatLab} cells
-       \item Integrates live code and analysis with lab-book
-     \end{itemize}
-     \begin{center}
-       \includegraphics[width=.35\textwidth]{images/ipython_notebook}     
-     \end{center}
-   \end{frame}
-
-   \begin{frame}
-     \frametitle{\LaTeX}
-     \begin{itemize}
-       \item Powerful, versatile typesetting system
-       \item Similar to markup/markdown
-       \item Pros: great for mathematical/computing work
-       \item Cons: not user-friendly
-     \end{itemize}
-     \begin{center}
-        \includegraphics[width=.35\textwidth]{images/latex_before}
-        \includegraphics[width=.35\textwidth]{images/latex_after}     
-     \end{center}
-   \end{frame}
-
- %%%
  % SECTION: The Golden Rules of Bioinformatics
-  \section{Golden Rules of Bioinformatics}
+  \section{The Golden Rules of Bioinformatics}
 
   \subsection{Rule 0}
   \begin{frame}
     \frametitle{Zeroeth Golden Rule of Bioinformatics}
     \framesubtitle{Always communicate}
 	\begin{itemize}
-	  \item No-one knows everything about everything
-	  \item Keep learning
-	  \item There is no free lunch
-	  \item The worst errors are silent
-	  \item Share expertise
+	  \item No-one knows everything about everything - talk to people!
+	  \begin{itemize}
+	    \item local bioinformaticians, mailing lists, forums, Twitter, etc.
 	  \end{itemize}
+	  \item Keep learning - there are lots of resources
+	  \item There is no free lunch - no method works best on all data
+	  \item The worst errors are silent - share worries, problems, etc.
+	  \item Share expertise (see first item)
 	\end{itemize}
   \end{frame}
 
@@ -363,8 +152,7 @@ $ R
     \frametitle{Exercise 1}
     \framesubtitle{Load and inspect data in R}
     \begin{lstlisting}[language=R]
-> data = read.table("expnA.tab", sep="\t", 
-                    header=TRUE)
+> data = read.table("expnA.tab", sep="\t", header=TRUE)
 > head(data)
   gene1 gene2
 1    10  8.04
@@ -438,19 +226,25 @@ gene2 0.8164205 1.0000000
   \begin{frame}[fragile]
     \frametitle{Exercise 1}
     \framesubtitle{Plot the data in R}
-    Should have done this, first! \\
     \begin{lstlisting}[language=R]
 > plot(data)
     \end{lstlisting}
-    \begin{center}
       \includegraphics[width=0.4\textwidth]{images/ex1_screenshot_d}        
-    \end{center}
 \end{frame}
 
   \begin{frame}
     \frametitle{Exercise 1}
     \framesubtitle{Always plot the data}
     Which gene pairs are coexpressed?
+    \begin{center}
+      \includegraphics[width=0.9\textwidth]{images/ex1_rplot} \\
+    \end{center}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Exercise 1}
+    \framesubtitle{Always plot the data}
+    Is a matrix of correlation values potentially misleading?
     \begin{center}
       \includegraphics[width=0.9\textwidth]{images/ex1_rplot} \\
     \end{center}
@@ -629,8 +423,10 @@ Sbjct  96   CHTSSNISQ  104
     \framesubtitle{Results}    
     \begin{itemize}
       \item<1-> E-values differ, but the query matches a choline transporter-like 
-protein quite well
-      \item<2-> Doesn't it?
+protein quite well$\ldots$
+      \item<2-> \emph{Doesn't it?}
+      \item<1-> After all, a biological match is a biological match$\ldots$
+      \item<2-> \emph{Isn't it?}
     \end{itemize}
   \end{frame}
 
@@ -686,16 +482,16 @@ Sbjct  96   CHTSSNISQ  104
     \frametitle{Second Golden Rule of Bioinformatics}
     \framesubtitle{Do not trust the software}
 	\begin{itemize}
-	  \item Do not trust the software
-	  \item You must understand the analysis/algorithm
-	  \item Always sanity test
-	  \item Test output for robustness to parameter choice
-	  \item Remember:
+	  \item Do not trust the software: it is not an authority
 	  \begin{itemize}
+	    \item Software does not distinguish meaningful from meaningless data
 	    \item Software has bugs
 	    \item Algorithms have assumptions, conditions, and applicable domains
 	    \item Some problems are inherently hard, or even insoluble
 	  \end{itemize}
+	  \item You must understand the analysis/algorithm
+	  \item Always sanity test
+	  \item Test output for robustness to parameter (including data) choice
 	\end{itemize}
   \end{frame}
 
@@ -705,9 +501,52 @@ Sbjct  96   CHTSSNISQ  104
     \framesubtitle{Classification}
     \begin{itemize}
       \item Rule: If there is a vowel on one side of the card, there \textit{must} be an even number on the other side.
-      \item Which cards \textit{must} be turned over to determine if the rule holds true? (How many, and which ones)
+      \item Which cards \textit{must} be turned over to determine if this rule (if a card shows a vowel on one face, the opposite face is even) holds true?
     \end{itemize}
     \includegraphics[width=0.8\textwidth]{images/wason}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Exercise 3}
+    \framesubtitle{Classification}
+    This is the Wason Selection Task
+    \begin{itemize}
+      \item<1-> If you chose \emph{E} and \emph{4}
+      \begin{itemize}
+        \item<2-> You are in the typical majority group
+        \item<2-> You are not correct
+        \item<2-> You have been a victim of confirmation bias (System 1 thinking)
+      \end{itemize}
+      \item<3-> If you chose \emph{E} and \emph{7}
+      \begin{itemize}
+        \item<4-> Congratulations!
+        \item<4-> Your choice was capable of \textit{falsifying} the rule.
+      \end{itemize}
+    \end{itemize}
+  \end{frame}
+
+  \begin{frame}
+    \frametitle{Exercise 3}
+    \framesubtitle{Classification}
+    Only questions that necessarily \emph{test} the rule should be asked
+    \begin{center}
+	\begin{tabular}{c|c|c}
+	  Card & Outcome & Rule \\
+	  \hline
+	  \hline
+	    \multirow{2}{*}{E} & Even & Can be true even if rule false \\
+	                                & Odd & \emph{violated} \\
+	  \hline
+	    \multirow{2}{*}{K} & Even & na \\
+	                                & Odd & na \\	    
+	  \hline
+	    \multirow{2}{*}{4} & Vowel & Can be true even if rule false \\
+	                                & Consonant & na \\
+	  \hline
+	    \multirow{2}{*}{7} & Vowel & \emph{violated} \\
+	                                & Consonant & na \\	    
+	\end{tabular}
+    \end{center}
   \end{frame}
 
   \begin{frame}
@@ -719,46 +558,27 @@ Sbjct  96   CHTSSNISQ  104
     \end{itemize}
     \includegraphics[width=\textwidth]{images/wason_rxlr}
   \end{frame}
-
+  
   \begin{frame}
     \frametitle{Exercise 3}
     \framesubtitle{Classification}
     \begin{itemize}
-      \item<1-> If you chose \emph{E} and \emph{4}
+      \item Wason Selection Task
       \begin{itemize}
-        \item<2-> You are in the typical majority group
-        \item<3-> You are not correct
-        \item<4-> You have been a victim of confirmation bias (System 1 thinking)
+        \item An uninformative experiment is performed
+        \item \url{http://en.wikipedia.org/wiki/Wason_selection_task}
       \end{itemize}
-      \item<5-> If you chose \emph{E} and \emph{7}
+      \item Affirming the Consequent (a related formal fallacy)
+      \begin{enumerate}
+       \item If $P$, then $Q$
+       \item $Q$
+       \item Therefore, $P$
+      \end{enumerate}
       \begin{itemize}
-        \item<6-> Congratulations!
-        \item<6-> Your choice was capable of \textit{falsifying} the rule.
+        \item Experimental results are misinterpreted
+        \item \url{http://en.wikipedia.org/wiki/Affirming_the_consequent}
       \end{itemize}
     \end{itemize}
-  \end{frame}
-
-  \begin{frame}
-    \frametitle{Exercise 3}
-    \framesubtitle{Classification}
-    \begin{center}
-	\begin{tabular}{c|c|c}
-	  Card & Outcome & Rule \\
-	  \hline
-	  \hline
-	    \multirow{2}{*}{E} & Even & True \emph{for this card} \\
-	                                & Odd & \emph{violated} \\
-	  \hline
-	    \multirow{2}{*}{K} & Even & na \\
-	                                & Odd & na \\	    
-	  \hline
-	    \multirow{2}{*}{4} & Vowel & True \emph{for this card} \\
-	                                & Consonant & na \\
-	  \hline
-	    \multirow{2}{*}{7} & Vowel & \emph{violated} \\
-	                                & Consonant & na \\	    
-	\end{tabular}
-    \end{center}
   \end{frame}
 
   \begin{frame}
@@ -768,7 +588,7 @@ Sbjct  96   CHTSSNISQ  104
 	  \item Everyone has expectations of their data/experiment
 	    \begin{itemize}
 	      \item Beware cognitive errors, such as confirmation bias!
-	      \item System 1 vs. System 2 $\approx$ reason vs. intuition
+	      \item System 1 vs. System 2 $\approx$ intuition vs. reason
 	    \end{itemize}
 	  \item Think statistically! 
 	    \begin{itemize}
@@ -791,7 +611,7 @@ Sbjct  96   CHTSSNISQ  104
 	    \end{itemize}	  
 	  \item Don't trust the data
 	    \begin{itemize}
-	      \item formatting/validation errors
+	      \item formatting/validation/category errors
 	      \item suitability for scientific question
 	    \end{itemize}
 	  \item Don't trust the software
@@ -803,57 +623,58 @@ Sbjct  96   CHTSSNISQ  104
 	    \begin{itemize}
 	      \item beware cognitive errors
 	      \item think statistically
+	      \item biological "stories" can be constructed from nonsense
 	    \end{itemize}	  
 	\end{itemize}
   \end{frame}
 
-%%%
-% SECTION: 
-  \section{}
-
-  \begin{frame}
-    \frametitle{Third Golden Rule of Bioinformatics}
-    \framesubtitle{Keep raw data and analysis separate}
-	\begin{itemize}
-	  \item Keep raw data and analysis separate
-	  \item Avoid Excel! (off-by-one/copy errors/risk of changing data)
-	  \item Make raw data read-only, and back it up immediately
-	\end{itemize}
-  \end{frame}
-
-
-  \begin{frame}
-    \frametitle{Programming}
-   % \framesubtitle{Keep raw data and analysis separate}
-	\begin{itemize}
-	  \item Programming is like writing a book$\ldots$
-	  \item $\ldots$except that if you miss out a comma on p.126, the whole thing makes no damned sense!
-	\end{itemize}
-  \end{frame}
-
-  \begin{frame}
-    \frametitle{Assessing Performance}
-    \framesubtitle{Contingency Tables}
-    \begin{center}
-	\begin{tabular}{cc|c|c|}
-	  \cline{3-4}
-		& & \multicolumn{2}{|c|}{Condition (Gold standard)}\\
-	  \cline{3-4}
-		& & True & False \\
-	  \hline
-	  \multicolumn{1}{ |c| }{\multirow{2}{*}{Test outcome}}& 
-	  \multicolumn{1}{ |c| }{Positive} & True Positive \cellcolor{green} & 
-	    False Positive\cellcolor{red}\\
-	  \cline{2-4}
-	  \multicolumn{1}{ |c| }{} & \multicolumn{1}{ |c| }{Negative} & 
-	    False Negative\cellcolor{red} & True Negative \cellcolor{green}\\
-	  \hline
-	\end{tabular}
-	\end{center}
-  \end{frame}
-
-  \begin{frame}
-  \end{frame}
+%%%% SPARES
+%% SECTION: 
+%  \section{}
+%
+%  \begin{frame}
+%    \frametitle{Third Golden Rule of Bioinformatics}
+%    \framesubtitle{Keep raw data and analysis separate}
+%	\begin{itemize}
+%	  \item Keep raw data and analysis separate
+%	  \item Avoid Excel! (off-by-one/copy errors/risk of changing data)
+%	  \item Make raw data read-only, and back it up immediately
+%	\end{itemize}
+%  \end{frame}
+%
+%
+%  \begin{frame}
+%    \frametitle{Programming}
+%   % \framesubtitle{Keep raw data and analysis separate}
+%	\begin{itemize}
+%	  \item Programming is like writing a book$\ldots$
+%	  \item $\ldots$except that if you miss out a comma on p.126, the whole thing makes no damned sense!
+%	\end{itemize}
+%  \end{frame}
+%
+%  \begin{frame}
+%    \frametitle{Assessing Performance}
+%    \framesubtitle{Contingency Tables}
+%    \begin{center}
+%	\begin{tabular}{cc|c|c|}
+%	  \cline{3-4}
+%		& & \multicolumn{2}{|c|}{Condition (Gold standard)}\\
+%	  \cline{3-4}
+%		& & True & False \\
+%	  \hline
+%	  \multicolumn{1}{ |c| }{\multirow{2}{*}{Test outcome}}& 
+%	  \multicolumn{1}{ |c| }{Positive} & True Positive \cellcolor{green} & 
+%	    False Positive\cellcolor{red}\\
+%	  \cline{2-4}
+%	  \multicolumn{1}{ |c| }{} & \multicolumn{1}{ |c| }{Negative} & 
+%	    False Negative\cellcolor{red} & True Negative \cellcolor{green}\\
+%	  \hline
+%	\end{tabular}
+%	\end{center}
+%  \end{frame}
+%
+%  \begin{frame}
+%  \end{frame}
 
 % etc
 \end{document}
