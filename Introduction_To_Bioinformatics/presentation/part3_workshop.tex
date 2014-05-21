@@ -260,7 +260,38 @@ $ art &
     \end{center}
 \end{frame}     
 
-  % Artemis
+  % ORF Prediction
+  \subsection{Gene Prediction}
+    \begin{frame}
+     \frametitle{Methods for gene prediction}
+     \begin{itemize}
+       \item Homology search
+       \item \textit{de novo} prediction
+       \begin{itemize}
+         \item Unsupervised methods - not trained on a dataset
+         \item Supervised methods - trained on a dataset
+       \end{itemize}
+     \end{itemize}
+    \end{frame}  
+
+    \begin{frame}
+     \frametitle{ORF Prediction}
+     \begin{itemize}
+       \item Open Reading Frame = sequence between successive stop codons
+       \item A very naive method - unsupervised \textit{de novo} prediction
+       \item Sufficiently long ORFs are genes (or exons)
+       \item Many tools:
+       \begin{itemize}
+         \item Artemis
+         \item EMBOSS \texttt{getorf}
+       \end{itemize}
+     \end{itemize}
+    \end{frame}  
+
+
+
+
+  % BLAST comparisons
   \subsection{BLAST comparisons}
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
   \begin{frame}[fragile]
