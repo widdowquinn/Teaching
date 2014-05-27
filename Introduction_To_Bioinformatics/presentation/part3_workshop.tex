@@ -31,7 +31,7 @@
   showstringspaces=false,          % underline spaces within strings only
   showtabs=false,                  % show tabs within strings adding particular underscores
   stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
-  stringstyle=\color{mauve},     % string literal style
+  stringstyle=\color{violet},     % string literal style
   tabsize=4,                       % sets default tabsize to 2 spaces
   title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
 }
@@ -182,23 +182,21 @@ chrA	stitching	contig	155036	241491	.	.	.	ID=contig00018;Name=contig00018
     \frametitle{Download a Comparator Sequence}
     You will use \texttt{wget}, a powerful command-line tool for downloading data from the web
     \begin{lstlisting}[language=bash]
-$ wget ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Pectobacterium_atrosepticum_SCRI1043_uid57957/NC_004547.ffn
---2014-05-20 19:11:24--  ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Pectobacterium_atrosepticum_SCRI1043_uid57957/NC_004547.ffn
-           => 'NC_004547.ffn'
+$ wget ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Pectobacterium_atrosepticum_SCRI1043_uid57957/NC_004547.fna
+--2014-05-27 13:35:05--  ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Pectobacterium_atrosepticum_SCRI1043_uid57957/NC_004547.fna
+           => 'NC_004547.fna'
 Resolving ftp.ncbi.nih.gov... 130.14.250.7, 2607:f220:41e:250::12
 Connecting to ftp.ncbi.nih.gov|130.14.250.7|:21... connected.
 Logging in as anonymous ... Logged in!
 ==> SYST ... done.    ==> PWD ... done.
 ==> TYPE I ... done.  ==> CWD (1) /genomes/Bacteria/Pectobacterium_atrosepticum_SCRI1043_uid57957 ... done.
-==> SIZE NC_004547.ffn ... 4913065
-==> PASV ... done.    ==> RETR NC_004547.ffn ... done.
-Length: 4913065 (4.7M) (unauthoritative)
+==> SIZE NC_004547.fna ... 5136458
+==> PASV ... done.    ==> RETR NC_004547.fna ... done.
+Length: 5136458 (4.9M) (unauthoritative)
 
-100%[====================>] 4,913,065    118KB/s   in 79s    
-
-2014-05-20 19:12:46 (60.9 KB/s) - 'NC_004547.ffn' saved [4913065]
+100%[=====================>] 5,136,458    562KB/s   in 7.7s 
 $ ls NC*
-NC_004547.ffn
+NC_004547.fna
     \end{lstlisting}
 \end{frame}  
 
@@ -490,6 +488,7 @@ $ art &
     \frametitle{Using Glimmer}
     Supervised - we train on a related complete genome sequence, then run \texttt{glimmer3}
     \begin{lstlisting}[language=bash]
+$ wget ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Pectobacterium_atrosepticum_SCRI1043_uid57957/NC_004547.ffn    
 $ build-icm -r NC_004547.icm < NC_004547.ffn
 $ glimmer3 -o 50 -g 110 -t 30 chrA.fasta NC_004547.icm chrA_glimmer3
     \end{lstlisting}
@@ -695,9 +694,11 @@ chrA	Prodigal_v2.50	CDS	2676	3761	146.2	+	0	ID=1_3;partial=00;start_type=ATG;rbs
         \item Manual assessment and intervention is essential, and the longest part of the process
       \end{itemize}
     \end{frame} 
-
- % Whole genome comparisons
-  \section{Genome comparisons}
+    
+    
+% Whole genome comparisons
+\section{Genome comparisons}
+  \subsection{BLAST comparisons}
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
   \begin{frame}[fragile]
     \frametitle{Run a megaBLAST Comparison}
@@ -708,7 +709,7 @@ $ pwd
 [...]/Introduction_To_Bioinformatics
 $ mkdir workshop
 $ cd workshop
-$ blastn -query ../data/workshop/chromosomes/chrA.fasta -subject ../data/workshop/chromosomes/NC_004547.ffn -out chrA_megablast_Pba.tab -outfmt 6 
+$ blastn -query ../data/workshop/chromosomes/chrA.fasta -subject ../data/workshop/chromosomes/NC_004547.fna -out chrA_megablast_Pba.tab -outfmt 6 
 $ head -n 3 chrA_megablast_Pba.tab 
 chrA	gi|50118965|ref|NC_004547.2|:10948-12453	80.34	1511	287	10	4579450	4580955	1506	1	0.0	1136
 chrA	gi|50118965|ref|NC_004547.2|:c33859-32447	82.04	1409	253	0	4563151	4564559	1	1409	0.0	1201
@@ -726,7 +727,7 @@ $ pwd
 [...]/Introduction_To_Bioinformatics
 $ mkdir workshop
 $ cd workshop
-$ blastn -query ../data/workshop/chromosomes/chrA.fasta -subject ../data/workshop/chromosomes/NC_004547.ffn -out chrA_blastn_Pba.tab -outfmt 6 -task blastn
+$ blastn -query ../data/workshop/chromosomes/chrA.fasta -subject ../data/workshop/chromosomes/NC_004547.fna -out chrA_blastn_Pba.tab -outfmt 6 -task blastn
 $ head -n 3 chrA_blastn_Pba.tab 
 chrA	gi|50118965|ref|NC_004547.2|:5629-7497	79.68	1865	379	0	4584915	4586779	1865	1	0.0	1654
 chrA	gi|50118965|ref|NC_004547.2|:5629-7497	92.59	27	2	0	4479367	4479393	1254	1280	0.004	41.0
@@ -740,9 +741,9 @@ chrA	gi|50118965|ref|NC_004547.2|:5629-7497	100.00	17	0	0	4613022	4613038	52	36	
     Check the number of alignments returned with \texttt{wc}
     \begin{lstlisting}[language=bash]
 $ wc chrA_megablast_Pba.tab 
-     536    6432   52969 chrA_megablast_Pba.tab
-$ wc chrA_blastn_Pba.tab 
-    4425   53100  429478 chrA_blastn_Pba.tab
+    2675   32100  242539 chrA_megablast_Pba.tab
+$ wc chrA_blastn_Pba.tab
+   31792  381504 2850953 chrA_blastn_Pba.tab
     \end{lstlisting}
     What is this telling us? \\
     Why do the results differ?
@@ -765,6 +766,134 @@ $ wc chrA_blastn_Pba.tab
       \item<2-> A discontinuous mode (dc-megaBLAST) is recommended for more divergent sequences
     \end{itemize}
 \end{frame}
+
+    \begin{frame}
+      \frametitle{Viewing alignments in ACT}    
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/act_wgs1}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{Viewing alignments in ACT}    
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/act_wgs2}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{Viewing alignments in ACT}    
+      Use \texttt{more files ...} to increase the number of comparisons
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/act_wgs3}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{Viewing alignments in ACT}    
+      Select chromosome sequences
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/act_wgs4}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{Viewing alignments in ACT}    
+      Add BLAST/megaBLAST results
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/act_wgs5}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{Viewing alignments in ACT}    
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{images/act_wgs6}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{Viewing alignments in ACT}    
+      Use filter slider to remove weaker matches
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{images/act_wgs7}     
+      \end{center}
+    \end{frame} 
+
+
+  \begin{frame}
+    \frametitle{MUMmer}
+    \begin{itemize}
+      \item \texttt{MUMmer} is a suite of alignment programs and scripts
+      \begin{itemize}
+        \item \texttt{mummer}, \texttt{promer}, \texttt{nucmer}, etc.
+      \end{itemize}
+      \item Very different to BLAST (suffix tree alignment) - very fast
+      \item Extremely flexible
+      \item Used for genome comparisons, assemblies, scaffolding, repeat detection, etc.
+      \item Forms the basis for other aligners/assemblers
+    \end{itemize}
+\end{frame}
+
+  \subsection{MUMmer comparisons}
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
+    \frametitle{Run a MUMmer Comparison}
+    Create a new directory for MUMmer output, and run \texttt{nucmer} to create \texttt{chrA\_NC\_004547.delta} \\
+    Then filter this file to generate a coordinate table for visualisation
+    \begin{lstlisting}[language=bash]
+$ mkdir nucmer_out
+$ nucmer --prefix=nucmer_out/chrA_NC_004547 ../data/workshop/chromosomes/chrA.fasta ../data/workshop/chromosomes/NC_004547.fna
+$ delta-filter -q nucmer_out/chrA_NC_004547.delta > nucmer_out/chrA_NC_004547.filter
+$ show-coords -rcl nucmer_out/chrA_NC_004547.filter > nucmer_out/chrA_NC_004547_filtered.coords
+    \end{lstlisting}
+\end{frame}  
+
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
+    \frametitle{Run a MUMmer Comparison}
+    MUMmer output is very different from BLAST output
+    \begin{lstlisting}[language=bash]
+$ head nucmer_out/chrA_NC_004547_filtered.coords 
+
+    \end{lstlisting}
+\end{frame}  
+
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
+    \frametitle{Run a MUMmer Comparison}
+    Use a one-line shell command to convert to \texttt{ACT}-friendly format:
+    \begin{lstlisting}[language=bash]
+$ tail -n +6 nucmer_out/chrA_NC_004547_filtered.coords | awk '{print $7" "$10" "$1" "$2" "$12" "$4" "$5" "$13}' > chrA_mummer_NC_004547.crunch
+$ head chrA_mummer_NC_004547.crunch 
+2526 82.49 15 2540 4727782 4985117 4982588 5064019
+2944 82.29 2676 5619 4727782 4982544 4979600 5064019
+85 95.29 11092 11176 4727782 758690 758774 5064019
+1356 81.69 17446 18801 4727782 77639 78994 5064019
+    \end{lstlisting}
+\end{frame}  
+
+    \begin{frame}
+      \frametitle{Viewing alignments in ACT}    
+      Select your chromosome, and the megaBLAST/MUMmer output
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/act_wgs8}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{Viewing alignments in ACT}    
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{images/act_wgs9}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{Viewing alignments in ACT}    
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{images/act_wgs10}     
+      \end{center}
+    \end{frame} 
 
 
 % Gene/ORF finding
