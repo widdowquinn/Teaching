@@ -79,11 +79,12 @@
     % What you will be doing
     \begin{frame}
      \frametitle{What You Will Be Doing}
+     Illustrative example of concepts
      \begin{itemize}
        \item Functional annotation of a draft bacterial genome
        \begin{itemize}
-         \item Genome comparisons
          \item Gene prediction/ORF detection
+         \item Genome comparisons
          \item Gene functional annotation
          \item Gene comparisons
        \end{itemize}
@@ -94,21 +95,20 @@
      \frametitle{Gene (coding sequence) Prediction}
      \begin{itemize}
        \item ORF detection
-       \item GeneMark
        \item Glimmer
        \item Prodigal
        \item Benchmarking gene prediction
+       \item Artemis
      \end{itemize}
     \end{frame}
     
     \begin{frame}
      \frametitle{Genome comparisons}
      \begin{itemize}
-       \item Artemis
        \item BLAST
        \item MUMmer
-       \item MAUVE
        \item ACT
+       \item (Mauve)
        \item Differences between genome aligners
      \end{itemize}
     \end{frame}
@@ -118,7 +118,7 @@
      \begin{itemize}
        \item InterPro
        \item RAST
-       \item KAAS
+       \item (KAAS)
        \item PFam
        \item Artemis
        \item Functional classification
@@ -418,6 +418,7 @@ $ art &
       Biological insight: do we expect CDS to overlap like this?
     \end{frame} 
 
+\subsection{Recap}
 \begin{frame}
     \frametitle{Basic Gene Finding}
     \begin{itemize}
@@ -464,10 +465,8 @@ $ art &
      \end{itemize}
     \end{frame}  
 
-
-
     \begin{frame}
-     \frametitle{Two Prokaryotic Prediction Methods}
+     \frametitle{Two \textit{ab initio} Prokaryotic Prediction Methods}
      You will be using two tools
      \begin{itemize}
        \item Glimmer
@@ -697,7 +696,7 @@ chrA	Prodigal_v2.50	CDS	2676	3761	146.2	+	0	ID=1_3;partial=00;start_type=ATG;rbs
     
     
 % Whole genome comparisons
-\section{Genome comparisons}
+\section{Genome Alignments}
   \subsection{BLAST comparisons}
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
   \begin{frame}[fragile]
@@ -895,6 +894,266 @@ $ head chrA_mummer_NC_004547.crunch
       \end{center}
     \end{frame} 
 
+    \begin{frame}
+      \frametitle{Genome Alignments}   
+      \framesubtitle{Lessons learned}   
+      \begin{itemize}
+        \item Alignment result depends on algorithm, and parameter choices
+        \item Some algorithms/parameter sets more sensitive than others
+        \item Appropriate visualisation is essential
+      \end{itemize}
+    \end{frame} 
+
+
+  % Functional Prediction
+  \section{Functional Prediction}
+    \begin{frame}
+      \frametitle{Methods}   
+      Most involve annotation transfer by sequence homology. \\
+      Much is dependent on the quality of the alignment, and training set annotation.
+      \begin{itemize}
+        \item (Blast2GO \url{http://www.blast2go.com/b2ghome})
+        \item (KEGG Automatic Annotation Server \url{http://www.genome.jp/kegg/kaas/})
+        \item PFam \url{http://www.sanger.ac.uk/resources/databases/pfam.html}
+        \item InterProScan \url{http://www.ebi.ac.uk/interpro/interproscan.html}
+        \item RAST \url{http://rast.nmpdr.org/}
+      \end{itemize}
+    \end{frame}
+
+    % PFam
+    \subsection{PFam}
+    \begin{frame}
+      \frametitle{How PFam Works}   
+      \begin{itemize}
+        \item [PFam-A] Curators identify domains of interest (may or may not have known function)
+        \item [PFam-B] Sequence segments (from the ADDA domain sequence database) that don't match PFam-A are automatically grouped into families
+        \item A seed alignment is constructed from representative sequences
+      \end{itemize}
+      \begin{center}
+        \includegraphics[width=0.3\textwidth]{images/pfam1}     
+      \end{center}      
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{How PFam Works}   
+      \begin{itemize}
+        \item A profile HMM is built from the seed alignment, using HMMer
+        \item Profile HMMs can be represented as sequence logos
+      \end{itemize}
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/pfam2} 
+      \end{center}      
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{How PFam Works}   
+      \begin{itemize}
+        \item Profile HMM used to query several sequence databases, to generate full alignment
+        \item Curated thresholds are used to determine family membership
+      \end{itemize}
+      \begin{center}
+        \includegraphics[width=0.3\textwidth]{images/pfam3} 
+      \end{center}      
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{How PFam Works}  
+      Bit score is used, not E-value
+      \begin{itemize}
+        \item [GA] Gathering threshold: Manually-determined for each family, used to build full alignment. Set to exclude false positives 
+        \item [TC] Trusted cutoff: Lowest sequence score and domain score of match in the full alignment
+        \item [NC] Noise cutoff: Highest sequence score and domain score of match not in full alignment
+      \end{itemize}
+      \begin{center}
+        \includegraphics[width=0.5\textwidth]{images/pfam4} 
+      \end{center}      
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{PFam example}  
+      Choose a sequence from your annotated draft genome, in Artemis \\
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/pfam5} 
+      \end{center}      
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{PFam example}  
+      Copy the sequence to clipboard
+      \begin{center}
+        \includegraphics[width=0.5\textwidth]{images/pfam6} 
+      \end{center}      
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{PFam example}  
+      Open \url{http://pfam.xfam.org/} in your browser \\
+      Click on "SEQUENCE SEARCH"
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/pfam7} 
+      \end{center}      
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{PFam example}  
+      Paste your sequence and click "Go"
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/pfam8} 
+      \end{center}      
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{PFam example}  
+      Domain matches are returned \\
+      (but maybe not for your choice of CDS$\ldots$)
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/pfam9} 
+      \end{center}      
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{PFam example}  
+      Compare match bit scores to GA, TC, NC thresholds for each domain
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{images/pfam10} 
+      \end{center}      
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{How PFam Works}   
+      \begin{itemize}
+        \item At the command-line, PFam works by running HMMer against published PFam databases
+        \item Command-line use gives more control over HMMer settings, but less pretty output
+        \item At the command-line, care must be taken over using GA, TC, NC cutoffs
+      \end{itemize}
+    \end{frame}
+
+    % InterPro and RAST
+    \subsection{InterPro and RAST}
+    \begin{frame}
+      \frametitle{How InterPro Works}   
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{How RAST Works}   
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{Your InterPro and RAST annotation data}   
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{Visualisation of InterPro/RAST data in Artemis}   
+    \end{frame}
+
+  % Functional Prediction
+  \section{Gene Comparisons}
+    \begin{frame}
+      \frametitle{Methods}   
+      Most involve annotation transfer by sequence homology. \\
+      Much is dependent on the quality of the alignment, and training set annotation.
+      \begin{itemize}
+        \item (Blast2GO \url{http://www.blast2go.com/b2ghome})
+        \item (KEGG Automatic Annotation Server \url{http://www.genome.jp/kegg/kaas/})
+        \item PFam \url{http://www.sanger.ac.uk/resources/databases/pfam.html}
+        \item InterProScan \url{http://www.ebi.ac.uk/interpro/interproscan.html}
+        \item RAST \url{http://rast.nmpdr.org/}
+      \end{itemize}
+    \end{frame}
+
+    % BLAST/RBBH against known sequences to transfer function
+    \subsection{BLAST}
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
+    \frametitle{Download Reference Sequences}
+    Change directory to \texttt{chromosomes}, download reference sequence data, and return to workspace
+    \begin{lstlisting}[language=bash]
+$ cd ../data/workshop/chromosomes/
+$ wget ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Pectobacterium_atrosepticum_SCRI1043_uid57957/NC_004547.faa
+$ cd ../../../workshop
+    \end{lstlisting}
+\end{frame}  
+
+    \begin{frame}
+      \frametitle{Save CDS Annotation from Artemis}   
+      Select all \texttt{prodigal} predicted CDS
+      \begin{center}
+        \includegraphics[width=0.6\textwidth]{images/export1}     
+      \end{center}        
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{Save CDS Annotation from Artemis}   
+      Choose to write protein sequences
+      \begin{center}
+        \includegraphics[width=0.6\textwidth]{images/export2}     
+      \end{center}        
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{Save CDS Annotation from Artemis}   
+      Select an output filename
+      \begin{center}
+        \includegraphics[width=0.6\textwidth]{images/export3}     
+      \end{center}        
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{One-way BLAST vs RBBH}   
+      One-way BLAST includes many low-quality hits
+        \includegraphics[width=0.3\textwidth]{images/rbbh1}  
+        \includegraphics[width=0.3\textwidth]{images/rbbh2}  
+        \includegraphics[width=0.3\textwidth]{images/rbbh3}                        
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{One-way BLAST vs RBBH}   
+      Reciprocal best BLAST hits remove many low-quality matches
+        \includegraphics[width=0.3\textwidth]{images/rbbh4}  
+        \includegraphics[width=0.3\textwidth]{images/rbbh5}  
+        \includegraphics[width=0.3\textwidth]{images/rbbh6}                        
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{RBBH}   
+      RBBH of chromosome FASTA against reference FASTA in Galaxy?       
+    \end{frame} 
+
+   % HMMer
+   \subsection{HMMer}
+    \begin{frame}
+      \frametitle{Quick Outline of HMMer}   
+      HMMs are profile methods, differ from sequence alignment algorithms like BLAST
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{HMMer vs BLAST comparison}   
+      Example from chromosome vs reference \\
+      One BLASTP search \\
+      One PHMMER search
+    \end{frame} 
+
+   % Multiple Sequence Alignment
+   \subsection{Multiple Sequence Alignment}
+    \begin{frame}
+      \frametitle{Quick Outline of MSA}   
+      More difficult than pairwise alignment - no quick algorithm for optimal alignment
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{CLUSTAL Omega example}   
+      Example MSA, using sequence from chromosome as starting point, BLAST
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{T-COFFEE example}   
+      Example MSA with same example - note that M-COFFEE performs consensus MSA using several methods
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{JalView example}   
+      Visualisation of MSAs generated above, and discussion of differences between them in a general context
+    \end{frame} 
 
 % Gene/ORF finding
 %\section{Gene Prediction}
