@@ -906,7 +906,7 @@ $ head chrA_mummer_NC_004547.crunch
 
 
   % Functional Prediction
-  \section{Functional Prediction}
+  \section{Automated Functional Prediction}
     \begin{frame}
       \frametitle{Methods}   
       Most involve annotation transfer by sequence homology. \\
@@ -1031,22 +1031,78 @@ $ head chrA_mummer_NC_004547.crunch
     % InterPro and RAST
     \subsection{InterPro and RAST}
     \begin{frame}
+      \frametitle{InterPro}   
+      \begin{itemize}
+        \item Webserver for single sequences
+        \item Local installations for whole-genome annotations
+      \end{itemize}
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{images/interpro} 
+      \end{center}        
+    \end{frame}    
+    
+    \begin{frame}
       \frametitle{How InterPro Works}   
+      \begin{itemize}
+        \item InterPro \url{http://www.ebi.ac.uk/interpro/} classifies proteins into families and predicts domains using a large number of tools, including:
+        \begin{itemize}
+          \item PFam, PROSITE, PRINTS, PANTHER, CATH
+        \end{itemize}
+        \item Predictive models of these databases are called 'signatures'
+      \end{itemize}
     \end{frame}
+
+    \begin{frame}
+      \frametitle{RAST}   
+      \begin{itemize}
+        \item Webserver for prokaryotic whole-genome annotation
+      \end{itemize}
+      \begin{center}
+        \includegraphics[width=0.8\textwidth]{images/rast} 
+      \end{center}        
+    \end{frame}    
 
     \begin{frame}
       \frametitle{How RAST Works}   
+      \begin{itemize}
+        \item Based on two SEED databases
+        \begin{itemize}
+          \item [A-SEED] Annotator SEED - representative high-quality
+          \item [P-SEED] PATRIC-SEED - all prokaryotic genomes
+        \end{itemize}
+        \item SEEDs divided into FIGFams: families that are believed to implement the same function (isofunctional homologs)
+        \item $k$-mer profile signatures are used to assign query sequences to FIGFams
+      \end{itemize}
     \end{frame}
 
     \begin{frame}
-      \frametitle{Your InterPro and RAST annotation data}   
+      \frametitle{Your InterPro and RAST annotation data}
+      \begin{itemize}
+        \item InterPro raw output: \texttt{chr*_iprscan.raw}
+        \item RAST output: \texttt{chr*_RAST.gff}
+      \end{itemize}
     \end{frame}
 
     \begin{frame}
       \frametitle{Visualisation of InterPro/RAST data in Artemis}   
+      \begin{itemize}
+        \item InterPro raw output is not in a standard format, and must be processed.
+      \end{itemize}
+
     \end{frame}
 
-  % Functional Prediction
+    \begin{frame}
+      \frametitle{Automated Functional Prediction}   
+      \framesubtitle{Lessons learned}   
+      \begin{itemize}
+        \item Many algorithms and databases can be used 
+        \item There are integrated solutions available
+        \item Faster and larger-scale options are more approximate
+        \item Automated annotations are a starting point, not a destination
+      \end{itemize}
+    \end{frame} 
+
+  % Gene Comparisons
   \section{Gene Comparisons}
     \begin{frame}
       \frametitle{Methods}   
