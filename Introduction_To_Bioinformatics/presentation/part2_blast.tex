@@ -600,9 +600,64 @@
   % Using BLAST   
   \section{Using BLAST}
     \subsection{Which BLAST tool should I use?}
+
     \begin{frame}
-     \frametitle{}
+     \frametitle{Multiple BLAST \textit{tools}}
+     \begin{itemize}
+         \item BLASTN \textit{vs} MEGABLAST \textit{vs} TBLASTX \textit{vs} ...?
+         \item Korf \textit{et al.} (2003) BLAST is really good for theory part,
+     \includegraphics[width=.2\textwidth]{images/korf_book}
+         \item Sadly the practical examples are now dated...
+     \end{itemize}
     \end{frame}
+
+    \begin{frame}
+     \frametitle{Multiple flavours of BLAST}
+     \begin{itemize}
+       \item NCBI ``legacy'' BLAST
+       \begin{itemize}
+           \item Now obsolete and not being updated
+           \item Spawned offshoots including:
+           \begin{itemize}
+               \item WU-BLAST aka AB-BLAST (commerical)
+               \item MPI-BLAST for use on clusters
+               \item Versions to run on graphics cards
+           \end{itemize}
+       \end{itemize}
+       \item NCBI BLAST+
+       \begin{itemize}
+           \item Re-written in 2009 using C++ instead of C
+           \item Many improvements
+           \item Different commands to run it
+           \item Slightly different output
+       \end{itemize}
+     \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+     \frametitle{Multiple \textit{ways} to run BLAST}
+     \begin{itemize}
+       \item BLAST+ at the command line (today)
+       \item Via a script or programming language
+       \item Via a graphical tool like BioEdit, CLCbio, Blast2GO
+       \item Via the NCBI website
+       \item Via a genome consortium website
+       \item Via a Galaxy web server
+       \item etc
+       \item Offers flexibility \textit{but} different settings/options/versions
+     \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+     \frametitle{Multiple \textit{places} to run BLAST}
+     \begin{itemize}
+       \item On the NCBI servers, e.g. via website or tool
+       \item On 3rd party servers, e.g. via websites
+       \item On your own computer
+       \item On our Linux cluster
+     \end{itemize}
+    \end{frame}
+
 
     \subsection{Controlling BLAST output}
     \begin{frame}
