@@ -605,9 +605,9 @@
      \frametitle{Multiple BLAST \textit{tools}}
      \begin{itemize}
          \item BLASTN \textit{vs} MEGABLAST \textit{vs} TBLASTX \textit{vs} ...?
-         \item Korf \textit{et al.} (2003) BLAST is really good for theory part,
+         \item Korf \textit{et al.} (2003) BLAST is really good for theory part, \\
+         but practical examples dated due to changes with BLAST+
      \includegraphics[width=.2\textwidth]{images/korf_book}
-         \item Sadly the practical examples are now dated...
      \end{itemize}
     \end{frame}
 
@@ -628,8 +628,8 @@
        \begin{itemize}
            \item Re-written in 2009 using C++ instead of C
            \item Many improvements
-           \item Different commands to run it
            \item Slightly different output
+           \item Different commands used to run it
        \end{itemize}
      \end{itemize}
     \end{frame}
@@ -713,7 +713,7 @@ $ blastp -query my_input.fasta -db my_database -out my_output.txt
 \end{lstlisting}
 
 \begin{itemize}
-\item Replace \texttt{blastp} with the appropriate tool, e.g. \texttt{blast}
+\item Replace \texttt{blastp} with the appropriate tool, e.g. \texttt{blastn}
 \item Replace \texttt{my\_input.fasta} with your actual filename
 \item Replace \texttt{my\_database} with your actual database, e.g. \text{nr}
 \item Replace \texttt{my\_output.txt} with your desired output filename
@@ -723,10 +723,88 @@ $ blastp -query my_input.fasta -db my_database -out my_output.txt
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
 \end{frame}
 
-    \subsection{Controlling BLAST output}
-    \begin{frame}
-     \frametitle{}
-    \end{frame}
+\subsection{Controlling BLAST output}
+
+\begin{frame}[fragile]
+\frametitle{Setting the BLAST output format}
+
+\begin{lstlisting}[language=sh]
+$ blastp -help
+USAGE
+...
+
+ *** Formatting options
+ -outfmt <String>
+   alignment view options:
+     0 = pairwise,
+     1 = query-anchored showing identities,
+     2 = query-anchored no identities,
+     3 = flat query-anchored, show identities,
+     4 = flat query-anchored, no identities,
+     5 = XML Blast output,
+     6 = tabular,
+     7 = tabular with comment lines,
+     8 = Text ASN.1,
+     9 = Binary ASN.1,
+    10 = Comma-separated values,
+    11 = BLAST archive format (ASN.1)
+
+   ...
+   Default = `0'
+...
+\end{lstlisting}
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Setting the BLAST output format}
+
+Default is plain text pairwise alignments, for humans:
+
+\begin{lstlisting}[language=sh]
+$ blastp -query my_input.fasta -db my_database -out my_output.txt
+...
+\end{lstlisting}
+
+XML output can be useful (e.g. for BLAST2GO):
+
+\begin{lstlisting}[language=sh]
+$ blastp -query my_input.fasta -db my_database -out my_output.xml -outfmt 5
+...
+\end{lstlisting}
+
+Tabular output is easiest to filter, sort, etc:
+
+\begin{lstlisting}[language=sh]
+$ blastp -query my_input.fasta -db my_database -out my_output.tsv -outfmt 6
+...
+\end{lstlisting}
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Setting the e-value threshold}
+
+Check the built in help:
+\begin{lstlisting}[language=]
+$ blastp -help
+USAGE
+...
+
+ -evalue <Real>
+   Expectation value (E) threshold for saving hits
+   Default = `10'
+
+...
+\end{lstlisting}
+
+Example using $0.0001$ or $1 \times 10^{-5}$ in scientific notation (\texttt{1e-5})
+\begin{lstlisting}[language=sh]
+$ blastp -query my_input.fasta -db my_database -out my_output.txt -evalue 1e-5
+...
+\end{lstlisting}
+\end{frame}
      
     \subsection{Interpreting BLAST output}
     \begin{frame}
