@@ -99,7 +99,7 @@
        \item Results depend on:
        \begin{itemize}
          \item query sequence
-         \item BLAST program (and choice of BLAST/BLAST+, version No.)
+         \item BLAST program (including version and BLAST vs BLAST+)
          \item database
          \item parameters
        \end{itemize}
@@ -203,7 +203,7 @@
          \item<1-> Global: Needleman-Wunsch (as in example)
          \item<1-> Local: Smith-Waterman (differs from example)
          \item<2-> NW/SW are \emph{guaranteed} to find the optimal match \emph{with respect to the scoring system being used}
-         \item<2-> Alignment is an approximation: no scoring scheme encapsulates biological "truth"
+         \item<2-> Alignment is an approximation: no scoring scheme encapsulates biological ``truth''
          \item<2-> Any pair of sequences can be aligned: finding meaning is up to you
        \end{itemize}
     \end{frame}   
@@ -250,7 +250,7 @@
        \item<1-> BLAST is not guaranteed to give an optimal alignment (for chosen parameters)
        \item<2-> BLAST does not explore the complete search space
        \item<3-> BLAST uses heuristics (loosely-defined rules) to refine High-scoring Segment Pairs (HSPs)
-       \item<4-> BLAST reports only "statistically-significant" alignments (dependent on parameters)
+       \item<4-> BLAST reports only ``statistically-significant'' alignments (dependent on parameters)
      \end{itemize}
    \end{frame}
 
@@ -516,7 +516,7 @@
          \item \texttt{PAM30 PAM70 PAM250}
        \end{itemize}
        \item BLOSUM matrices empirically defined from multiple sequence alignments of $\geq n\%$ identity, for \texttt{BLOSUMn}
-       \item For nucleotides: 'matrix' defined by match/mismatch (reward/penalty) parameters
+       \item For nucleotides: `matrix' defined by match/mismatch (reward/penalty) parameters
      \end{itemize}
     \end{frame} 
   
@@ -600,9 +600,128 @@
   % Using BLAST   
   \section{Using BLAST}
     \subsection{Which BLAST tool should I use?}
+
     \begin{frame}
-     \frametitle{}
+     \frametitle{Multiple BLAST \textit{tools}}
+     \begin{itemize}
+         \item BLASTN \textit{vs} MEGABLAST \textit{vs} TBLASTX \textit{vs} ...?
+         \item Korf \textit{et al.} (2003) BLAST is really good for theory part,
+     \includegraphics[width=.2\textwidth]{images/korf_book}
+         \item Sadly the practical examples are now dated...
+     \end{itemize}
     \end{frame}
+
+    \begin{frame}
+     \frametitle{Multiple flavours of BLAST}
+     \begin{itemize}
+       \item NCBI ``legacy'' BLAST
+       \begin{itemize}
+           \item Now obsolete and not being updated
+           \item Spawned offshoots including:
+           \begin{itemize}
+               \item WU-BLAST aka AB-BLAST (commerical)
+               \item MPI-BLAST for use on clusters
+               \item Versions to run on graphics cards
+           \end{itemize}
+       \end{itemize}
+       \item NCBI BLAST+
+       \begin{itemize}
+           \item Re-written in 2009 using C++ instead of C
+           \item Many improvements
+           \item Different commands to run it
+           \item Slightly different output
+       \end{itemize}
+     \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+     \frametitle{Multiple \textit{ways} to run BLAST}
+     \begin{itemize}
+       \item BLAST+ at the command line (today)
+       \item Via a script or programming language
+       \item Via a graphical tool like BioEdit, CLCbio, Blast2GO
+       \item Via the NCBI website
+       \item Via a genome consortium website
+       \item Via a Galaxy web server
+       \item etc
+       \item Offers flexibility \textit{but} different settings/options/versions
+     \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+     \frametitle{Multiple \textit{places} to run BLAST}
+     \begin{itemize}
+       \item On the NCBI servers, e.g. via website or tool
+       \item On 3rd party servers, e.g. via websites
+       \item On your own computer
+       \item On our Linux cluster
+     \end{itemize}
+    \end{frame}
+
+    \begin{frame}
+     \frametitle{Core BLAST tools: Query sequences \textit{vs} Database}
+     \begin{itemize}
+       \item Nucleotide \textit{vs} Nucleotide:
+           \begin{itemize}\item \texttt{blastn} (covering blastn, megablast, dc-megablast) \end{itemize}
+       \item Translated nucleotide \textit{vs} Protein:
+           \begin{itemize}\item \texttt{blastx} \end{itemize}
+       \item Protein \textit{vs} Translated nucleotide:
+           \begin{itemize}\item \texttt{tblastn} \end{itemize}
+       \item Protein \textit{vs} Protein:
+           \begin{itemize}\item \texttt{blastp}, \texttt{psiblast}, \texttt{phiblast}, \texttt{deltablast} \end{itemize}
+     \end{itemize}
+     See \url{http://blast.ncbi.nlm.nih.gov/} for a reminder ;)
+    \end{frame}
+
+\subsection{Running BLAST+ at the command line}
+
+\begin{frame}[fragile]
+\frametitle{The BLAST tools have built in help}
+\begin{lstlisting}[language=sh]
+$ blastp -h
+USAGE
+  blastp [-h] [-help] [-import_search_strategy filename]
+    [-export_search_strategy filename] [-task task_name] [-db database_name]
+    [-dbsize num_letters] [-gilist filename] [-seqidlist filename]
+    [-negative_gilist filename] [-entrez_query entrez_query]
+    [-db_soft_mask filtering_algorithm] [-db_hard_mask filtering_algorithm]
+    [-subject subject_input_file] [-subject_loc range] [-query input_file]
+    [-out output_file] [-evalue evalue] [-word_size int_value]
+    [-gapopen open_penalty] [-gapextend extend_penalty]
+    [-xdrop_ungap float_value] [-xdrop_gap float_value]
+    [-xdrop_gap_final float_value] [-searchsp int_value] [-max_hsps int_value]
+    [-sum_statistics] [-seg SEG_options] [-soft_masking soft_masking]
+    [-matrix matrix_name] [-threshold float_value] [-culling_limit int_value]
+    ...
+    [-max_target_seqs num_sequences] [-num_threads int_value] [-ungapped]
+    [-remote] [-comp_based_stats compo] [-use_sw_tback] [-version]
+
+DESCRIPTION
+   Protein-Protein BLAST 2.2.29+
+
+Use '-help' to print detailed descriptions of command line arguments
+\end{lstlisting}
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+\end{frame}
+
+
+\begin{frame}[fragile]
+\frametitle{Minimal example of BLAST+ at the command line}
+
+\begin{lstlisting}[language=sh]
+$ blastp -query my_input.fasta -db my_database -out my_output.txt
+\end{lstlisting}
+
+\begin{itemize}
+\item Replace \texttt{blastp} with the appropriate tool, e.g. \texttt{blast}
+\item Replace \texttt{my\_input.fasta} with your actual filename
+\item Replace \texttt{my\_database} with your actual database, e.g. \text{nr}
+\item Replace \texttt{my\_output.txt} with your desired output filename
+\item Best to avoid spaces in your folder and filenames!
+\end{itemize}
+
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+\end{frame}
 
     \subsection{Controlling BLAST output}
     \begin{frame}
