@@ -139,7 +139,7 @@
 
 
   % Getting started
-  \section{Setting Up}
+  \section{Load Sequence Data}
   \begin{frame}
     \frametitle{Locate your data}
     \begin{itemize}
@@ -261,7 +261,7 @@ $ art &
 \end{frame}     
 
   % ORF Prediction
-  \subsection{Gene Prediction}
+  \section{Gene Prediction}
     \begin{frame}
      \frametitle{Methods for gene prediction}
      \begin{itemize}
@@ -274,6 +274,7 @@ $ art &
      \end{itemize}
     \end{frame}  
 
+    \subsection{ORF Prediction}
     \begin{frame}
      \frametitle{ORF Prediction}
      \begin{itemize}
@@ -288,11 +289,164 @@ $ art &
      \end{itemize}
     \end{frame}  
 
+    \begin{frame}
+      \frametitle{ORF Prediction in Artemis}    
+      \begin{center}
+        \includegraphics[width=0.3\textwidth]{images/artemis_orf0}     
+      \end{center}
+    \end{frame} 
 
+    \begin{frame}
+      \frametitle{ORF Prediction in Artemis}
+      Biological insight required: what size should the smallest ORF be?
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/artemis_orf1}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{ORF Prediction in Artemis}    
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/artemis_orf2}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{ORF Prediction in Artemis}    
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/artemis_orf3}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{ORF Prediction in Artemis} 
+      Is this good enough?
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/artemis_orf4}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{ORF Prediction in Artemis}    
+      \begin{center}
+        \includegraphics[width=0.7\textwidth]{images/artemis_orf5}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{ORF Prediction in Artemis}
+      Biological insight: CDS start with start codon.
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/artemis_orf6}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{ORF Prediction in Artemis}    
+      \begin{center}
+        \includegraphics[width=0.5\textwidth]{images/artemis_orf7}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{ORF Prediction in Artemis}    
+      \begin{center}
+        \includegraphics[width=0.6\textwidth]{images/artemis_orf8}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{ORF Prediction in Artemis}
+      What does this mean, in terms of biology?
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/artemis_orf9}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{ORF Prediction in Artemis}    
+      \begin{center}
+        \includegraphics[width=0.6\textwidth]{images/artemis_orf10}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{ORF Prediction in Artemis} 
+      5410 ORFs with no start codon - how good is ORF detection at finding CDS?
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/artemis_orf11}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{ORF Prediction in Artemis}
+      Where do gene names come from?
+      \begin{center}
+        \includegraphics[width=0.3\textwidth]{images/artemis_orf12}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{ORF Prediction in Artemis}    
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/artemis_orf13}     
+      \end{center}
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{ORF Prediction in Artemis}   
+      Is this good enough? 
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/artemis_orf14}     
+      \end{center}
+      Biological insight: do we expect CDS to overlap like this?
+    \end{frame} 
+
+    \begin{frame}
+      \frametitle{ORF Prediction in Artemis}   
+      \framesubtitle{Lessons learned}   
+      \begin{itemize}
+        \item ORF finding is very simple
+        \item But it still requires biological insight and parameter choices
+        \item It's not a very precise way to identify genes or CDS (especially in eukaryotes)
+        \item Even in prokaryotes, we only get a candidate set of CDS (many spurious)
+      \end{itemize}
+    \end{frame} 
+
+    \subsection{CDS Prediction}
+    \begin{frame}
+     \frametitle{Prokaryotic Prediction Methods}
+     \begin{itemize}
+       \item Prokaryotes "easier" than eukaryotes for gene prediction
+       \begin{itemize}
+         \item Very gene-dense (over 90\% of chromosome is coding sequence)
+         \item No intron-exon structure
+         \item Problem is essentially "which possible ORF contains the true gene, and which start site is correct?"
+         \item Still not a solved problem
+       \end{itemize}       
+     \end{itemize}
+    \end{frame}  
+
+    \begin{frame}
+     \frametitle{Two Prokaryotic Prediction Methods}
+     You will be using two tools
+     \begin{itemize}
+       \item Glimmer
+       \begin{itemize}
+         \item Interpolated Markov models
+         \item Can be trained on "gold standard" datasets
+       \end{itemize}
+       \item Prodigal
+       \begin{itemize}
+         \item Log-likelihood model based on GC frame plots, followed by dynamic programming
+         \item Can be trained on "gold standard" datasets
+       \end{itemize}
+     \end{itemize}
+    \end{frame}  
 
 
   % BLAST comparisons
-  \subsection{BLAST comparisons}
+  \section{Genome comparisons}
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
   \begin{frame}[fragile]
     \frametitle{Run a megaBLAST Comparison}
