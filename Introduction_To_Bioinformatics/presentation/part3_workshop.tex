@@ -61,7 +61,7 @@
 {
   \begin{frame}
     \frametitle{Table of Contents}
-    \tableofcontents[currentsection,hideothersubsections]
+    \tableofcontents[currentsection,hideallsubsections]
   \end{frame}
 }
 
@@ -854,7 +854,6 @@ $ show-coords -rcl nucmer_out/chrA_NC_004547.filter > nucmer_out/chrA_NC_004547_
     MUMmer output is very different from BLAST output
     \begin{lstlisting}[language=bash]
 $ head nucmer_out/chrA_NC_004547_filtered.coords 
-
     \end{lstlisting}
 \end{frame}  
 
@@ -906,7 +905,7 @@ $ head chrA_mummer_NC_004547.crunch
 
 
   % Functional Prediction
-  \section{Automated Functional Prediction}
+  \section{Functional Prediction}
     \begin{frame}
       \frametitle{Methods}   
       Most involve annotation transfer by sequence homology. \\
@@ -1056,6 +1055,7 @@ $ head chrA_mummer_NC_004547.crunch
       \frametitle{RAST}   
       \begin{itemize}
         \item Webserver for prokaryotic whole-genome annotation
+        \item RAST calls genes as well as annotates them, but will accept your gene calls
       \end{itemize}
       \begin{center}
         \includegraphics[width=0.8\textwidth]{images/rast} 
@@ -1064,8 +1064,8 @@ $ head chrA_mummer_NC_004547.crunch
 
     \begin{frame}
       \frametitle{How RAST Works}   
-      \begin{itemize}
-        \item Based on two SEED databases
+      \begin{itemize} 
+        \item Functional annotation is based on two SEED databases
         \begin{itemize}
           \item [A-SEED] Annotator SEED - representative high-quality
           \item [P-SEED] PATRIC-SEED - all prokaryotic genomes
@@ -1078,26 +1078,69 @@ $ head chrA_mummer_NC_004547.crunch
     \begin{frame}
       \frametitle{Your InterPro and RAST annotation data}
       \begin{itemize}
-        \item InterPro raw output: \texttt{chr*_iprscan.raw}
-        \item RAST output: \texttt{chr*_RAST.gff}
+        \item InterPro raw output: \texttt{chr*\_iprscan.raw}
+        \item RAST output: \texttt{chr*\_RAST.gff}
       \end{itemize}
     \end{frame}
+
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
+    \frametitle{Visualisation of InterPro/RAST data in Artemis}
+    InterPro raw output is not in a standard format
+    \begin{lstlisting}[language=bash]
+$ head chrA_iprscan.raw 
+chrA_04004	7A8F7B9C0479F48C	368	HMMPfam	PF06674	DUF1176	29	360	6.499999999999917E-49	T	23-Mar-2012	IPR009560	Protein of unknown function DUF1176	
+chrA_04005	128211B8B939DE6B	365	HMMPfam	PF06674	DUF1176	32	358	1.2000000000000004E-61	T	23-Mar-2012	IPR009560	Protein of unknown function DUF1176	
+chrA_04009	9E5C628D590CC7AE	1342	HMMPfam	PF04565	RNA_pol_Rpb2_3	513	582	1.4999999999999956E-29	T	23-Mar-2012	IPR007645	RNA polymerase Rpb2, domain 3	Molecular Function: DNA binding (GO:0003677), Molecular Function: DNA-directed RNA polymerase activity (GO:0003899), Biological Process: transcription, DNA-dependent (GO:0006351)
+    \end{lstlisting}
+    Need to use \texttt{converter.pl} - skipping this for time
+\end{frame}  
+
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+  \begin{frame}[fragile]
+    \frametitle{Visualisation of InterPro/RAST data in Artemis}
+    RAST will give us GFF, suitable for Artemis
+    \begin{lstlisting}[language=bash]
+$ head chrA_RAST.gff
+##gff-version 3
+chrA	Prodigal_v2.00	CDS	3	1430	187.7	+	0	ID=chrA_00001;Alias=fig|556.22.peg.1;Name=Chromosomal replication initiator protein DnaA
+chrA	Prodigal_v2.00	CDS	1435	2535	185.6	+	0	ID=chrA_00002;Alias=fig|556.22.peg.2;Name=DNA polymerase III beta subunit (EC 2.7.7.7);Ontology_term=KEGG_ENZYME:2.7.7.7
+chrA	Prodigal_v2.00	CDS	2676	3761	146.2	+	0	ID=chrA_00003;Alias=fig|556.22.peg.3;Name=DNA recombination and repair protein RecF
+    \end{lstlisting}
+\end{frame} 
 
     \begin{frame}
-      \frametitle{Visualisation of InterPro/RAST data in Artemis}   
-      \begin{itemize}
-        \item InterPro raw output is not in a standard format, and must be processed.
-      \end{itemize}
+      \frametitle{RAST}   
+      GFF can be imported in the usual way
+      \begin{center}
+        \includegraphics[width=0.4\textwidth]{images/rast0} 
+      \end{center}        
+    \end{frame}   
 
-    \end{frame}
+    \begin{frame}
+      \frametitle{RAST}   
+      CDS predictions can be stacked
+      \begin{center}
+        \includegraphics[width=0.4\textwidth]{images/rast1} 
+      \end{center}        
+    \end{frame}   
+
+    \begin{frame}
+      \frametitle{RAST}   
+      Predictions are in good agreement, and annotation visible
+      \begin{center}
+        \includegraphics[width=0.9\textwidth]{images/rast2} 
+      \end{center}        
+    \end{frame}   
 
     \begin{frame}
       \frametitle{Automated Functional Prediction}   
       \framesubtitle{Lessons learned}   
       \begin{itemize}
-        \item Many algorithms and databases can be used 
-        \item There are integrated solutions available
-        \item Faster and larger-scale options are more approximate
+        \item Many alternative algorithms and databases are available 
+        \item Integrated solutions (e.g. InterPro) are available
+        \item Faster and larger-scale options tend to be more approximate
+        \item How good is the agreement between alternatives?
         \item Automated annotations are a starting point, not a destination
       \end{itemize}
     \end{frame} 
