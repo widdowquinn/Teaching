@@ -725,8 +725,12 @@ $ blastp -query my_input.fasta -db my_database -out my_output.txt
 \subsection{Controlling BLAST output}
 
 \begin{frame}[fragile]
-\frametitle{Setting the BLAST output format}
-
+\frametitle{Setting the BLAST+ output format}
+%
+% Verbally note that the NCBI BLAST website lets you pick the
+% format at the end. Can do something similar with the special
+% BLAST archive format, but would be a distraction for this talk?
+%
 \begin{lstlisting}[language=sh]
 $ blastp -help
 USAGE
@@ -757,7 +761,7 @@ USAGE
 
 
 \begin{frame}[fragile]
-\frametitle{Setting the BLAST output format}
+\frametitle{Setting the BLAST+ output format}
 
 Default is plain text pairwise alignments, for humans:
 
@@ -805,10 +809,10 @@ $ blastp -query my_input.fasta -db my_database -out my_output.txt -evalue 1e-5
 \end{lstlisting}
 \end{frame}
      
-    \subsection{Interpreting BLAST output}
-    \begin{frame}
-     \frametitle{}
-    \end{frame}
+%    \subsection{Interpreting BLAST output}
+%    \begin{frame}
+%     \frametitle{}
+%    \end{frame}
     
 % etc
 \end{document}
