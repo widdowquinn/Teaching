@@ -74,8 +74,7 @@
   
 %%%
 % SECTION: Workshop Outline
-\section{Outline \& Setup}
-\subsection{Outline}
+\section{Outline}
 
     % What you will be doing
     \begin{frame}
@@ -90,6 +89,17 @@
        \end{itemize}
      \end{itemize}
     \end{frame}
+
+    \begin{frame}
+     \frametitle{Gene (coding sequence) Prediction}
+     \begin{itemize}
+       \item ORF detection
+       \item GeneMark
+       \item Glimmer
+       \item Prodigal
+       \item Benchmarking gene prediction
+     \end{itemize}
+    \end{frame}
     
     \begin{frame}
      \frametitle{Genome comparisons}
@@ -100,17 +110,6 @@
        \item MAUVE
        \item ACT
        \item Differences between genome aligners
-     \end{itemize}
-    \end{frame}
-
-    \begin{frame}
-     \frametitle{Gene (coding sequence) Prediction}
-     \begin{itemize}
-       \item ORF detection
-       \item GeneMark
-       \item Glimmer
-       \item Prodigal
-       \item Benchmarking gene prediction
      \end{itemize}
     \end{frame}
 
@@ -264,17 +263,35 @@ $ art &
   % ORF Prediction
   \section{Gene Prediction}
     \begin{frame}
-     \frametitle{Methods for gene prediction}
+     \frametitle{Lines of Evidence}
      \begin{itemize}
-       \item Homology search
-       \item \textit{de novo} prediction
+       \item \textit{ab initio} genecalling: 
        \begin{itemize}
          \item Unsupervised methods - not trained on a dataset
          \item Supervised methods - trained on a dataset
        \end{itemize}
+       \item homology matches
+       \begin{itemize}
+         \item alignment to genes from related organisms (annotation transfer)
+         \item from known gene products (e.g. proteins, ncRNA)
+         \item from transcripts/other intermediates (e.g. ESTs, cDNA, RNAseq)
+       \end{itemize}
      \end{itemize}
-    \end{frame}  
-
+    \end{frame}    
+    
+    \begin{frame}
+     \frametitle{Consensus Methods}
+     \begin{itemize}
+       \item Combine weighted evidence from multiple sources, using linear combination or graph theoretical methods
+       \item For eukaryotes:
+       \begin{itemize}
+         \item EVM \url{http://evidencemodeler.sourceforge.net/}
+         \item Jigsaw \url{http://www.cbcb.umd.edu/software/jigsaw/}
+         \item GLEAN \url{http://sourceforge.net/projects/glean-gene/}
+       \end{itemize}
+     \end{itemize}
+    \end{frame}      
+  
     \subsection{ORF Prediction}
     \begin{frame}
      \frametitle{ORF Prediction}
@@ -449,6 +466,8 @@ $ art &
      \end{itemize}
     \end{frame}  
 
+
+
     \begin{frame}
      \frametitle{Two Prokaryotic Prediction Methods}
      You will be using two tools
@@ -573,14 +592,111 @@ chrA	Prodigal_v2.50	CDS	2676	3761	146.2	+	0	ID=1_3;partial=00;start_type=ATG;rbs
     \subsection{Assessing Prediction Methods}
     \begin{frame}
      \frametitle{Using a "Gold Standard"}
+     A general approach for \emph{all} predictive methods
      \begin{itemize}
-       \item 
+       \item Define a known, "correct" set of true/false, positive/negative etc. examples - the "gold standard"
+       \item Evaluate your predictive method against that set for
+       \begin{itemize}
+         \item sensitivity, specificity, accuracy, precision, etc.
+       \end{itemize}
      \end{itemize}
+     Many methods available, coverage beyond the scope of this introduction
+   \end{frame} 
+
+  \begin{frame}
+    \frametitle{Contingency Tables}
+    \begin{center}
+	\begin{tabular}{cc|c|c|}
+	  \cline{3-4}
+		& & \multicolumn{2}{|c|}{Condition (Gold standard)}\\
+	  \cline{3-4}
+		& & True & False \\
+	  \hline
+	  \multicolumn{1}{ |c| }{\multirow{2}{*}{Test outcome}}& 
+	  \multicolumn{1}{ |c| }{Positive} & True Positive \cellcolor{green} & 
+	    False Positive\cellcolor{red}\\
+	  \cline{2-4}
+	  \multicolumn{1}{ |c| }{} & \multicolumn{1}{ |c| }{Negative} & 
+	    False Negative\cellcolor{red} & True Negative \cellcolor{green}\\
+	  \hline
+	\end{tabular}
+	\end{center}
+	Sensitivity = TPR = $TP/(TP + FN)$ \\
+	Specificity = TNR = $TN/(FP + TN)$ \\
+	FPR = $1-\text{Specificity} = FP/(FP + TN)$ \\
+	If you don't have this information, you can't interpret predictive results properly.
+\end{frame}
+
+    \begin{frame}
+     \frametitle{"Gold Standard" results}
+     \begin{itemize}
+       \item Tested \texttt{glimmer} and \texttt{prodigal} on two "gold standards"
+       \begin{itemize}
+         \item Manually annotated ($>$3 expert person years) close relative
+         \item Community-annotated close relative
+       \end{itemize}
+       \item Both methods trained directly on the annotated genes in each organism!
+     \end{itemize} 
+   \end{frame} 
+
+    \begin{frame}
+     \frametitle{"Gold Standard" results}
+     \framesubtitle{Manually annotated: 4550 CDS}
+    \begin{center}
+	\begin{tabular}{r|l|l}
+	  genecaller & \texttt{glimmer} & \texttt{prodigal}  \\
+	  \hline
+	  predicted & 4752    & 4287  \\
+	  missed & 284 (6\%)   & 407 (9\%)  \\
+	  \hline
+	  \emph{Exact Prediction} & & \\
+  	  sensitivity   & 62\%   & 71\%  \\
+  	  FDR   & 41\%   & 25\%  \\  
+	  PPV   & 59\% & 75\%  \\  
+	  \hline
+	  \emph{Correct ORF} & & \\
+  	  sensitivity   & 94\%   & 91\% \\
+  	  FDR   & 10\%  & 3\% \\  
+	  PPV   & 90\% & 97\%  \\  
+	\end{tabular}
+	\end{center}     
+   \end{frame} 
+
+    \begin{frame}
+     \frametitle{"Gold Standard" results}
+     \framesubtitle{Community annotated: 4475 CDS}
+    \begin{center}
+	\begin{tabular}{r|l|l}
+	  genecaller & \texttt{glimmer} & \texttt{prodigal}  \\
+	  \hline
+	  predicted & 4679    & 4467  \\
+	  missed & 112 (3\%)   & 156 (3\%)  \\
+	  \hline
+	  \emph{Exact Prediction} & & \\
+  	  sensitivity   & 62\%   & 86\%  \\
+  	  FDR   & 31\%   & 14\%  \\  
+	  PPV   & 69\% & 86\%  \\  
+	  \hline
+	  \emph{Correct ORF} & & \\
+  	  sensitivity   & 97\%   & 97\% \\
+  	  FDR   & 7\%  & 3\% \\  
+	  PPV   & 93\% & 97\%  \\  
+	\end{tabular}
+	\end{center}     
+   \end{frame} 
+
+    \begin{frame}
+      \frametitle{Gene/CDS Prediction}   
+      \framesubtitle{Lessons learned}   
+      \begin{itemize}
+        \item Many alternative methods, all perform differently (not necessarily concordant)
+        \item To assess/choose methods, performance metrics are required
+        \item Even on (relatively simple) prokaryotes, current best methods imperfect
+        \item Manual assessment and intervention is essential, and the longest part of the process
+      \end{itemize}
     \end{frame} 
 
-\section{Genome Comparisons}
-
-  % BLAST comparisons
+ % Whole genome comparisons
   \section{Genome comparisons}
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
   \begin{frame}[fragile]
