@@ -403,14 +403,35 @@ $ art &
       Biological insight: do we expect CDS to overlap like this?
     \end{frame} 
 
+\begin{frame}
+    \frametitle{Basic Gene Finding}
+    \begin{itemize}
+      \item We just used Artemis to identify the longest coding region in each ORF, lots of manual steps
+      \item This is the most basic gene finding, and can easily be automated, e.g. EMBOSS \texttt{getorf}
+      \item Dedicated gene finders usually more appropriate...
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Finding Open Reading Frames (ORFs) within Artemis}
+    \begin{itemize}
+      \item<1-> ORF finding is naive, does not consider:
+      \begin{itemize}
+        \item Start codon
+        \item Splicing
+        \item Promoter/RBS motifs
+        \item Wider context (e.g. overlapping genes)
+      \end{itemize}
+    \end{itemize}
+\end{frame}
+
     \begin{frame}
       \frametitle{ORF Prediction in Artemis}   
       \framesubtitle{Lessons learned}   
       \begin{itemize}
-        \item ORF finding is very simple
-        \item But it still requires biological insight and parameter choices
+        \item ORF finding is very simple, but still requires biological insight and parameter choices
         \item It's not a very precise way to identify genes or CDS (especially in eukaryotes)
-        \item Even in prokaryotes, we only get a candidate set of CDS (many spurious)
+        \item Even in prokaryotes, we only get a candidate set of CDS (many spurious) requiring manual refinement
       \end{itemize}
     \end{frame} 
 
@@ -631,72 +652,50 @@ $ wc chrA_blastn_Pba.tab
 
 
 % Gene/ORF finding
-\section{Gene Prediction}
-\subsection{Finding Open Reading Frames (ORFs) within Artemis}
+%\section{Gene Prediction}
+%\subsection{Finding Open Reading Frames (ORFs) within Artemis}
+%
+%\begin{frame}
+%    \frametitle{Finding Open Reading Frames (ORFs) within Artemis}
+%    \begin{itemize}
+%      \item<1-> Set genetic code
+%      \begin{itemize}
+%        \item Main window menu, ``Options'',
+%        \item ``11. Bacterial and plant plastid''
+%      \end{itemize}
+%      \item<2-> Top menu, ``Create'', ``Mark empty ORFs ...''
+%      \item<2-> Set minimum open reading frame size, e.g. 100 aa
+%      \item<2-> CDS features created, defaulting to pale blue.
+%    \end{itemize}
+%\end{frame}
+%
+%\begin{frame}
+%    \frametitle{Adjusting start of CDS features en mass}
+%    \begin{itemize}
+%      \item<1-> Top menu, ``Select all CDS Features'',
+%      \item<1-> Top menu, ``Trim Selected Features'', ``To Any'' \\
+%           (or ``To Met'' if you prefer the canonical start codon)
+%      \item<2-> Un-trimmable features now selected...
+%      \item<2-> Press delete to remove them (!) \\
+%           (can we assume these are all not real genes?)
+%    \end{itemize}
+%\end{frame}
+%
+%\begin{frame}
+%    \frametitle{Artemis Feature Selector}
+%    \begin{itemize}
+%	  \item<1-> After editing, check for any short CDS entries
+%	  \item<1-> Top menu, ``Select'', ``Feature Selector...''
+%	  \item<1-> Use up to length 300bp, click ``View''
+%	  \item<1-> Use up to length 300bp, click ``Select'', delete them?
+%    \end{itemize}
+%\end{frame}
 
-\begin{frame}
-    \frametitle{Finding Open Reading Frames (ORFs) within Artemis}
-    \begin{itemize}
-      \item<1-> Set genetic code
-      \begin{itemize}
-        \item Main window menu, ``Options'',
-        \item ``11. Bacterial and plant plastid''
-      \end{itemize}
-      \item<2-> Top menu, ``Create'', ``Mark empty ORFs ...''
-      \item<2-> Set minimum open reading frame size, e.g. 100 aa
-      \item<2-> CDS features created, defaulting to pale blue.
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Finding Open Reading Frames (ORFs) within Artemis}
-    \begin{itemize}
-      \item<1-> ORF finding is naive, does not consider:
-      \begin{itemize}
-        \item Start codon
-        \item Splicing
-        \item Promoter
-        \item Wider context (e.g. overlapping genes)
-      \end{itemize}
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Adjusting start of CDS features en mass}
-    \begin{itemize}
-      \item<1-> Top menu, ``Select all CDS Features'',
-      \item<1-> Top menu, ``Trim Selected Features'', ``To Any'' \\
-           (or ``To Met'' if you prefer the canonical start codon)
-      \item<2-> Un-trimmable features now selected...
-      \item<2-> Press delete to remove them (!) \\
-           (can we assume these are all not real genes?)
-    \end{itemize}
-\end{frame}
-
-\begin{frame}
-    \frametitle{Artemis Feature Selector}
-    \begin{itemize}
-	  \item<1-> After editing, check for any short CDS entries
-	  \item<1-> Top menu, ``Select'', ``Feature Selector...''
-	  \item<1-> Use up to length 300bp, click ``View''
-	  \item<1-> Use up to length 300bp, click ``Select'', delete them?
-    \end{itemize}
-\end{frame}
-
-\subsection{Basic Gene Finding}
-
-\begin{frame}
-    \frametitle{Basic Gene Finding}
-    \begin{itemize}
-      \item<1-> We just used Artemis to identify the longest coding region in each ORF, lots of manual steps
-      \item<2-> This is the most basic gene finding, and can easily be automated, e.g. EMBOSS \texttt{getorf}
-      \item<3-> Dedicated gene finders usually more appropriate...
-    \end{itemize}
-\end{frame}
-
-\section{Functional Prediction}
-
-\section{Gene Comparison}
+%\subsection{Basic Gene Finding}
+%
+%\section{Functional Prediction}
+%
+%\section{Gene Comparison}
 
 % etc
 \end{document}
