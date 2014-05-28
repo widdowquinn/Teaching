@@ -148,7 +148,7 @@
       \item Each sequence represents a single stitched, ordered draft bacterial genome comprising a number of contigs.
       \item You will use your sequence as the basis of the exercises in the workshop.
     \end{itemize}
-  \end{frame}  
+  \end{frame}
   
   \begin{frame}
     \frametitle{Locate your data}
@@ -159,7 +159,7 @@
       \texttt{chrA\_contigs.gff}, \texttt{chrB\_contigs.gff}, \texttt{chrC\_contigs.gff}, \texttt{chrD\_contigs.gff}
       \item Your data is in \texttt{data/workshop/chromosomes}
     \end{itemize}
-  \end{frame}    
+  \end{frame}
   
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
 \begin{frame}[fragile]
@@ -175,7 +175,7 @@ $ head -n 3 chrA_contigs.gff
 chrA	stitching	contig	1	154993	.	.	.	ID=contig00005_b;Name=contig00005_b
 chrA	stitching	contig	155036	241491	.	.	.	ID=contig00018;Name=contig00018
 \end{lstlisting}
-\end{frame}  
+\end{frame}
 
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
 \begin{frame}[fragile]
@@ -198,7 +198,7 @@ Length: 5136458 (4.9M) (unauthoritative)
 $ ls NC*
 NC_004547.fna
 \end{lstlisting}
-\end{frame}  
+\end{frame}
 
 
   % Artemis
@@ -207,48 +207,48 @@ NC_004547.fna
   \begin{frame}[fragile]
     \frametitle{Inspect the data}
     Starting \texttt{Artemis}
-    \begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash]
 $ art &
-    \end{lstlisting}
+\end{lstlisting}
     \begin{center}
       \includegraphics[width=0.6\textwidth]{images/artemis_splash} 
     \end{center}
-\end{frame} 
+\end{frame}
     
   \begin{frame}
     \frametitle{Load the chromosome sequence}
     \begin{center}
       \includegraphics[width=0.75\textwidth]{images/artemis_files} 
     \end{center}
-\end{frame}     
+\end{frame}
     
   \begin{frame}
     \frametitle{Load the chromosome sequence}
     \begin{center}
       \includegraphics[width=0.8\textwidth]{images/artemis_loaded_seq} 
     \end{center}
-\end{frame}     
+\end{frame}
 
   \begin{frame}
     \frametitle{Load the contig GFF}
     \begin{center}
       \includegraphics[width=0.3\textwidth]{images/artemis_read_entry} 
     \end{center}
-\end{frame}     
+\end{frame}
 
   \begin{frame}
     \frametitle{Load the contig GFF}
     \begin{center}
       \includegraphics[width=0.75\textwidth]{images/artemis_select_contig_gff} 
     \end{center}
-\end{frame}     
+\end{frame}
 
   \begin{frame}
     \frametitle{Load the contig GFF}
     \begin{center}
       \includegraphics[width=0.9\textwidth]{images/artemis_loaded_contigs} 
     \end{center}
-\end{frame}     
+\end{frame}
 
   \begin{frame}
     \frametitle{Find the stitching sequence}
@@ -256,7 +256,7 @@ $ art &
     \begin{center}
       \includegraphics[width=\textwidth]{images/artemis_stitch_tease} 
     \end{center}
-\end{frame}     
+\end{frame}
 
   % ORF Prediction
   \section{Gene Prediction}
@@ -275,7 +275,7 @@ $ art &
          \item from transcripts/other intermediates (e.g. ESTs, cDNA, RNAseq)
        \end{itemize}
      \end{itemize}
-    \end{frame}    
+    \end{frame}
     
     \begin{frame}
      \frametitle{Consensus Methods}
@@ -288,7 +288,7 @@ $ art &
          \item GLEAN \url{http://sourceforge.net/projects/glean-gene/}
        \end{itemize}
      \end{itemize}
-    \end{frame}      
+    \end{frame}
   
     \subsection{ORF Prediction}
     \begin{frame}
@@ -303,14 +303,14 @@ $ art &
          \item EMBOSS \texttt{getorf}
        \end{itemize}
      \end{itemize}
-    \end{frame}  
+    \end{frame}
 
     \begin{frame}
       \frametitle{ORF Prediction in Artemis}    
       \begin{center}
         \includegraphics[width=0.3\textwidth]{images/artemis_orf0}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{ORF Prediction in Artemis}
@@ -318,21 +318,21 @@ $ art &
       \begin{center}
         \includegraphics[width=0.9\textwidth]{images/artemis_orf1}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{ORF Prediction in Artemis}    
       \begin{center}
         \includegraphics[width=0.9\textwidth]{images/artemis_orf2}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{ORF Prediction in Artemis}    
       \begin{center}
         \includegraphics[width=0.9\textwidth]{images/artemis_orf3}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{ORF Prediction in Artemis} 
@@ -340,14 +340,14 @@ $ art &
       \begin{center}
         \includegraphics[width=0.9\textwidth]{images/artemis_orf4}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{ORF Prediction in Artemis}    
       \begin{center}
         \includegraphics[width=0.7\textwidth]{images/artemis_orf5}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{ORF Prediction in Artemis}
@@ -355,21 +355,21 @@ $ art &
       \begin{center}
         \includegraphics[width=0.9\textwidth]{images/artemis_orf6}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{ORF Prediction in Artemis}    
       \begin{center}
         \includegraphics[width=0.5\textwidth]{images/artemis_orf7}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{ORF Prediction in Artemis}    
       \begin{center}
         \includegraphics[width=0.6\textwidth]{images/artemis_orf8}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{ORF Prediction in Artemis}
@@ -377,14 +377,14 @@ $ art &
       \begin{center}
         \includegraphics[width=0.9\textwidth]{images/artemis_orf9}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{ORF Prediction in Artemis}    
       \begin{center}
         \includegraphics[width=0.6\textwidth]{images/artemis_orf10}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{ORF Prediction in Artemis} 
@@ -392,7 +392,7 @@ $ art &
       \begin{center}
         \includegraphics[width=0.9\textwidth]{images/artemis_orf11}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{ORF Prediction in Artemis}
@@ -400,14 +400,14 @@ $ art &
       \begin{center}
         \includegraphics[width=0.3\textwidth]{images/artemis_orf12}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{ORF Prediction in Artemis}    
       \begin{center}
         \includegraphics[width=0.9\textwidth]{images/artemis_orf13}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{ORF Prediction in Artemis}   
@@ -416,7 +416,7 @@ $ art &
         \includegraphics[width=0.9\textwidth]{images/artemis_orf14}     
       \end{center}
       Biological insight: do we expect CDS to overlap like this?
-    \end{frame} 
+    \end{frame}
 
 \subsection{Recap}
 \begin{frame}
@@ -449,7 +449,7 @@ $ art &
         \item It's not a very precise way to identify genes or CDS (especially in eukaryotes)
         \item Even in prokaryotes, we only get a candidate set of CDS (many spurious) requiring manual refinement
       \end{itemize}
-    \end{frame} 
+    \end{frame}
 
     \subsection{CDS Prediction}
     \begin{frame}
@@ -463,7 +463,7 @@ $ art &
          \item Still not a solved problem
        \end{itemize}       
      \end{itemize}
-    \end{frame}  
+    \end{frame}
 
     \begin{frame}
      \frametitle{Two \textit{ab initio} Prokaryotic Prediction Methods}
@@ -480,7 +480,7 @@ $ art &
          \item Can be trained on ``gold standard'' datasets
        \end{itemize}
      \end{itemize}
-    \end{frame}  
+    \end{frame}
 
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
 \begin{frame}[fragile]
@@ -496,7 +496,7 @@ $ glimmer3 -o 50 -g 110 -t 30 chrA.fasta NC_004547.icm chrA_glimmer3
       \item \texttt{-g 110}: min gene length
       \item \texttt{-t 30}:  threshold score
     \end{itemize}
-\end{frame}  
+\end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Using Glimmer}
@@ -512,7 +512,7 @@ We could Google for help, or use provided conversion script:
 \begin{lstlisting}[language=bash]
 $ python glimmer_to_gff.py chrA_glimmer3.predict
 \end{lstlisting}    
-\end{frame}  
+\end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Using Glimmer}
@@ -523,7 +523,7 @@ chrA	Glimmer	CDS	36	1430	8.81	+	0	ID=orf00001;Name=orf00001
 chrA	Glimmer	CDS	1435	2535	11.51	+	0	ID=orf00002;Name=orf00002
 chrA	Glimmer	CDS	2676	3761	8.63	+	0	ID=orf00005;Name=orf00005
 \end{lstlisting}
-\end{frame}  
+\end{frame}
 
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
 \begin{frame}[fragile]
@@ -532,7 +532,7 @@ Unsupervised (i.e. untrained) mode
 \begin{lstlisting}[language=bash]
 $ prodigal -f gff -o chrA_prodigal.gff -i chrA.fasta
 \end{lstlisting}
-\end{frame}  
+\end{frame}
 
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
 \begin{frame}[fragile]
@@ -554,29 +554,30 @@ chrA	Prodigal_v2.50	CDS	2676	3761	146.2	+	0	ID=1_3;partial=00;start_type=ATG;rbs
       \begin{center}
         \includegraphics[width=0.3\textwidth]{images/artemis_cdspred0}     
       \end{center}
-    \end{frame}  
+    \end{frame}
 
     \begin{frame}
      \frametitle{Comparing predictions in Artemis}
       \begin{center}
         \includegraphics[width=0.9\textwidth]{images/artemis_cdspred1}     
       \end{center}
-    \end{frame}  
+    \end{frame}
 
     \begin{frame}
      \frametitle{Comparing predictions in Artemis}
       \begin{center}
         \includegraphics[width=0.4\textwidth]{images/artemis_cdspred2}     
       \end{center}
-    \end{frame}  
+    \end{frame}
 
     \begin{frame}
      \frametitle{Comparing predictions in Artemis}
+     %TODO - How to set the colours for each set of predictions?
      Do ORF(orange)/CDS(green,blue) prediction methods agree?
       \begin{center}
         \includegraphics[width=0.9\textwidth]{images/artemis_cdspred3}     
       \end{center}
-    \end{frame}  
+    \end{frame}
 
     \begin{frame}
      \frametitle{Comparing predictions in Artemis}
@@ -585,21 +586,21 @@ chrA	Prodigal_v2.50	CDS	2676	3761	146.2	+	0	ID=1_3;partial=00;start_type=ATG;rbs
         \includegraphics[width=0.9\textwidth]{images/artemis_cdspred4}     
       \end{center}
       How do we know which is best?
-    \end{frame}  
+    \end{frame}
 
     \subsection{Assessing Prediction Methods}
     \begin{frame}
-     \frametitle{Using a "Gold Standard"}
+     \frametitle{Using a ``Gold Standard''}
      A general approach for \emph{all} predictive methods
      \begin{itemize}
-       \item Define a known, "correct" set of true/false, positive/negative etc. examples - the "gold standard"
+       \item Define a known, ``correct'' set of true/false, positive/negative etc. examples - the ``gold standard''
        \item Evaluate your predictive method against that set for
        \begin{itemize}
          \item sensitivity, specificity, accuracy, precision, etc.
        \end{itemize}
      \end{itemize}
      Many methods available, coverage beyond the scope of this introduction
-   \end{frame} 
+   \end{frame}
 
   \begin{frame}
     \frametitle{Contingency Tables}
@@ -626,7 +627,7 @@ chrA	Prodigal_v2.50	CDS	2676	3761	146.2	+	0	ID=1_3;partial=00;start_type=ATG;rbs
 \end{frame}
 
     \begin{frame}
-     \frametitle{"Gold Standard" results}
+     \frametitle{``Gold Standard'' results}
      \begin{itemize}
        \item Tested \texttt{glimmer} and \texttt{prodigal} on two "gold standards"
        \begin{itemize}
@@ -635,10 +636,10 @@ chrA	Prodigal_v2.50	CDS	2676	3761	146.2	+	0	ID=1_3;partial=00;start_type=ATG;rbs
        \end{itemize}
        \item Both methods trained directly on the annotated genes in each organism!
      \end{itemize} 
-   \end{frame} 
+   \end{frame}
 
     \begin{frame}
-     \frametitle{"Gold Standard" results}
+     \frametitle{``Gold Standard'' results}
      \framesubtitle{Manually annotated: 4550 CDS}
     \begin{center}
 	\begin{tabular}{r|l|l}
@@ -658,10 +659,10 @@ chrA	Prodigal_v2.50	CDS	2676	3761	146.2	+	0	ID=1_3;partial=00;start_type=ATG;rbs
 	  PPV   & 90\% & 97\%  \\  
 	\end{tabular}
 	\end{center}     
-   \end{frame} 
+   \end{frame}
 
     \begin{frame}
-     \frametitle{"Gold Standard" results}
+     \frametitle{``Gold Standard'' results}
      \framesubtitle{Community annotated: 4475 CDS}
     \begin{center}
 	\begin{tabular}{r|l|l}
@@ -681,7 +682,7 @@ chrA	Prodigal_v2.50	CDS	2676	3761	146.2	+	0	ID=1_3;partial=00;start_type=ATG;rbs
 	  PPV   & 93\% & 97\%  \\  
 	\end{tabular}
 	\end{center}     
-   \end{frame} 
+   \end{frame}
 
     \begin{frame}
       \frametitle{Gene/CDS Prediction}   
@@ -692,7 +693,7 @@ chrA	Prodigal_v2.50	CDS	2676	3761	146.2	+	0	ID=1_3;partial=00;start_type=ATG;rbs
         \item Even on (relatively simple) prokaryotes, current best methods imperfect
         \item Manual assessment and intervention is essential, and the longest part of the process
       \end{itemize}
-    \end{frame} 
+    \end{frame}
     
     
 % Whole genome comparisons
@@ -703,7 +704,7 @@ chrA	Prodigal_v2.50	CDS	2676	3761	146.2	+	0	ID=1_3;partial=00;start_type=ATG;rbs
     \frametitle{Run a megaBLAST Comparison}
     Make a new working directory, and BLAST your chromosome against the comparator sequence \\
     Put results in \texttt{chrA\_megablast\_Pba.tab}
-    \begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash]
 $ pwd
 [...]/Introduction_To_Bioinformatics
 $ mkdir workshop
@@ -713,15 +714,15 @@ $ head -n 3 chrA_megablast_Pba.tab
 chrA	gi|50118965|ref|NC_004547.2|:10948-12453	80.34	1511	287	10	4579450	4580955	1506	1	0.0	1136
 chrA	gi|50118965|ref|NC_004547.2|:c33859-32447	82.04	1409	253	0	4563151	4564559	1	1409	0.0	1201
 chrA	gi|50118965|ref|NC_004547.2|:c34917-33868	82.48	1050	184	0	4562093	4563142	1	1050	0.0	 920
-    \end{lstlisting}
-\end{frame} 
+\end{lstlisting}
+\end{frame}
     
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
   \begin{frame}[fragile]
     \frametitle{Run a BLASTN Comparison}
     Make a new working directory, and BLAST your chromosome against the comparator sequence \\
     Put results in \texttt{chrA\_blastn\_Pba.tab}
-    \begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash]
 $ pwd
 [...]/Introduction_To_Bioinformatics
 $ mkdir workshop
@@ -731,22 +732,22 @@ $ head -n 3 chrA_blastn_Pba.tab
 chrA	gi|50118965|ref|NC_004547.2|:5629-7497	79.68	1865	379	0	4584915	4586779	1865	1	0.0	1654
 chrA	gi|50118965|ref|NC_004547.2|:5629-7497	92.59	27	2	0	4479367	4479393	1254	1280	0.004	41.0
 chrA	gi|50118965|ref|NC_004547.2|:5629-7497	100.00	17	0	0	4613022	4613038	52	36	2.1	31.9
-    \end{lstlisting}
-\end{frame}     
+\end{lstlisting}
+\end{frame}
     
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
   \begin{frame}[fragile]
     \frametitle{Do BLASTN and megaBLAST comparisons agree?}
     Check the number of alignments returned with \texttt{wc}
-    \begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash]
 $ wc chrA_megablast_Pba.tab 
     2675   32100  242539 chrA_megablast_Pba.tab
 $ wc chrA_blastn_Pba.tab
    31792  381504 2850953 chrA_blastn_Pba.tab
-    \end{lstlisting}
+\end{lstlisting}
     What is this telling us? \\
     Why do the results differ?
-\end{frame}         
+\end{frame}
 
   \begin{frame}
     \frametitle{BLASTN vs megaBLAST}
@@ -771,14 +772,14 @@ $ wc chrA_blastn_Pba.tab
       \begin{center}
         \includegraphics[width=0.9\textwidth]{images/act_wgs1}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{Viewing alignments in ACT}    
       \begin{center}
         \includegraphics[width=0.9\textwidth]{images/act_wgs2}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{Viewing alignments in ACT}    
@@ -786,7 +787,7 @@ $ wc chrA_blastn_Pba.tab
       \begin{center}
         \includegraphics[width=0.9\textwidth]{images/act_wgs3}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{Viewing alignments in ACT}    
@@ -794,7 +795,7 @@ $ wc chrA_blastn_Pba.tab
       \begin{center}
         \includegraphics[width=0.9\textwidth]{images/act_wgs4}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{Viewing alignments in ACT}    
@@ -802,14 +803,14 @@ $ wc chrA_blastn_Pba.tab
       \begin{center}
         \includegraphics[width=0.9\textwidth]{images/act_wgs5}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{Viewing alignments in ACT}    
       \begin{center}
         \includegraphics[width=0.8\textwidth]{images/act_wgs6}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{Viewing alignments in ACT}    
@@ -817,7 +818,7 @@ $ wc chrA_blastn_Pba.tab
       \begin{center}
         \includegraphics[width=0.8\textwidth]{images/act_wgs7}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
 
   \begin{frame}
@@ -840,36 +841,36 @@ $ wc chrA_blastn_Pba.tab
     \frametitle{Run a MUMmer Comparison}
     Create a new directory for MUMmer output, and run \texttt{nucmer} to create \texttt{chrA\_NC\_004547.delta} \\
     Then filter this file to generate a coordinate table for visualisation
-    \begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash]
 $ mkdir nucmer_out
 $ nucmer --prefix=nucmer_out/chrA_NC_004547 ../data/workshop/chromosomes/chrA.fasta ../data/workshop/chromosomes/NC_004547.fna
 $ delta-filter -q nucmer_out/chrA_NC_004547.delta > nucmer_out/chrA_NC_004547.filter
 $ show-coords -rcl nucmer_out/chrA_NC_004547.filter > nucmer_out/chrA_NC_004547_filtered.coords
-    \end{lstlisting}
-\end{frame}  
+\end{lstlisting}
+\end{frame}
 
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
   \begin{frame}[fragile]
     \frametitle{Run a MUMmer Comparison}
     MUMmer output is very different from BLAST output
-    \begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash]
 $ head nucmer_out/chrA_NC_004547_filtered.coords 
-    \end{lstlisting}
-\end{frame}  
+\end{lstlisting}
+\end{frame}
 
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
   \begin{frame}[fragile]
     \frametitle{Run a MUMmer Comparison}
     Use a one-line shell command to convert to \texttt{ACT}-friendly format:
-    \begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash]
 $ tail -n +6 nucmer_out/chrA_NC_004547_filtered.coords | awk '{print $7" "$10" "$1" "$2" "$12" "$4" "$5" "$13}' > chrA_mummer_NC_004547.crunch
 $ head chrA_mummer_NC_004547.crunch 
 2526 82.49 15 2540 4727782 4985117 4982588 5064019
 2944 82.29 2676 5619 4727782 4982544 4979600 5064019
 85 95.29 11092 11176 4727782 758690 758774 5064019
 1356 81.69 17446 18801 4727782 77639 78994 5064019
-    \end{lstlisting}
-\end{frame}  
+\end{lstlisting}
+\end{frame}
 
     \begin{frame}
       \frametitle{Viewing alignments in ACT}    
@@ -877,21 +878,21 @@ $ head chrA_mummer_NC_004547.crunch
       \begin{center}
         \includegraphics[width=0.9\textwidth]{images/act_wgs8}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{Viewing alignments in ACT}    
       \begin{center}
         \includegraphics[width=0.8\textwidth]{images/act_wgs9}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{Viewing alignments in ACT}    
       \begin{center}
         \includegraphics[width=0.8\textwidth]{images/act_wgs10}     
       \end{center}
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{Genome Alignments}   
@@ -901,7 +902,7 @@ $ head chrA_mummer_NC_004547.crunch
         \item Some algorithms/parameter sets more sensitive than others
         \item Appropriate visualisation is essential
       \end{itemize}
-    \end{frame} 
+    \end{frame}
 
 
   % Functional Prediction
@@ -1038,7 +1039,7 @@ $ head chrA_mummer_NC_004547.crunch
       \begin{center}
         \includegraphics[width=0.8\textwidth]{images/interpro} 
       \end{center}        
-    \end{frame}    
+    \end{frame}
     
     \begin{frame}
       \frametitle{How InterPro Works}   
@@ -1060,7 +1061,7 @@ $ head chrA_mummer_NC_004547.crunch
       \begin{center}
         \includegraphics[width=0.8\textwidth]{images/rast} 
       \end{center}        
-    \end{frame}    
+    \end{frame}
 
     \begin{frame}
       \frametitle{How RAST Works}   
@@ -1087,27 +1088,27 @@ $ head chrA_mummer_NC_004547.crunch
   \begin{frame}[fragile]
     \frametitle{Visualisation of InterPro/RAST data in Artemis}
     InterPro raw output is not in a standard format
-    \begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash]
 $ head chrA_iprscan.raw 
 chrA_04004	7A8F7B9C0479F48C	368	HMMPfam	PF06674	DUF1176	29	360	6.499999999999917E-49	T	23-Mar-2012	IPR009560	Protein of unknown function DUF1176	
 chrA_04005	128211B8B939DE6B	365	HMMPfam	PF06674	DUF1176	32	358	1.2000000000000004E-61	T	23-Mar-2012	IPR009560	Protein of unknown function DUF1176	
 chrA_04009	9E5C628D590CC7AE	1342	HMMPfam	PF04565	RNA_pol_Rpb2_3	513	582	1.4999999999999956E-29	T	23-Mar-2012	IPR007645	RNA polymerase Rpb2, domain 3	Molecular Function: DNA binding (GO:0003677), Molecular Function: DNA-directed RNA polymerase activity (GO:0003899), Biological Process: transcription, DNA-dependent (GO:0006351)
-    \end{lstlisting}
+\end{lstlisting}
     Need to use \texttt{converter.pl} - skipping this for time
-\end{frame}  
+\end{frame}
 
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
   \begin{frame}[fragile]
     \frametitle{Visualisation of InterPro/RAST data in Artemis}
     RAST will give us GFF, suitable for Artemis
-    \begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash]
 $ head chrA_RAST.gff
 ##gff-version 3
 chrA	Prodigal_v2.00	CDS	3	1430	187.7	+	0	ID=chrA_00001;Alias=fig|556.22.peg.1;Name=Chromosomal replication initiator protein DnaA
 chrA	Prodigal_v2.00	CDS	1435	2535	185.6	+	0	ID=chrA_00002;Alias=fig|556.22.peg.2;Name=DNA polymerase III beta subunit (EC 2.7.7.7);Ontology_term=KEGG_ENZYME:2.7.7.7
 chrA	Prodigal_v2.00	CDS	2676	3761	146.2	+	0	ID=chrA_00003;Alias=fig|556.22.peg.3;Name=DNA recombination and repair protein RecF
-    \end{lstlisting}
-\end{frame} 
+\end{lstlisting}
+\end{frame}
 
     \begin{frame}
       \frametitle{RAST}   
@@ -1115,7 +1116,7 @@ chrA	Prodigal_v2.00	CDS	2676	3761	146.2	+	0	ID=chrA_00003;Alias=fig|556.22.peg.3
       \begin{center}
         \includegraphics[width=0.3\textwidth]{images/rast0} 
       \end{center}        
-    \end{frame}   
+    \end{frame}
 
     \begin{frame}
       \frametitle{RAST}   
@@ -1123,7 +1124,7 @@ chrA	Prodigal_v2.00	CDS	2676	3761	146.2	+	0	ID=chrA_00003;Alias=fig|556.22.peg.3
       \begin{center}
         \includegraphics[width=0.4\textwidth]{images/rast1} 
       \end{center}        
-    \end{frame}   
+    \end{frame}
 
     \begin{frame}
       \frametitle{RAST}   
@@ -1131,7 +1132,7 @@ chrA	Prodigal_v2.00	CDS	2676	3761	146.2	+	0	ID=chrA_00003;Alias=fig|556.22.peg.3
       \begin{center}
         \includegraphics[width=0.9\textwidth]{images/rast2} 
       \end{center}        
-    \end{frame}   
+    \end{frame}
 
     \begin{frame}
       \frametitle{Automated Functional Prediction}   
@@ -1143,7 +1144,7 @@ chrA	Prodigal_v2.00	CDS	2676	3761	146.2	+	0	ID=chrA_00003;Alias=fig|556.22.peg.3
         \item How good is the agreement between alternatives?
         \item Automated annotations are a starting point, not a destination
       \end{itemize}
-    \end{frame} 
+    \end{frame}
 
   % Gene Comparisons
   \section{Gene Comparisons}
@@ -1166,12 +1167,12 @@ chrA	Prodigal_v2.00	CDS	2676	3761	146.2	+	0	ID=chrA_00003;Alias=fig|556.22.peg.3
   \begin{frame}[fragile]
     \frametitle{Download Reference Sequences}
     Change directory to \texttt{chromosomes}, download reference sequence data, and return to workspace
-    \begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash]
 $ cd ../data/workshop/chromosomes/
 $ wget ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Pectobacterium_atrosepticum_SCRI1043_uid57957/NC_004547.faa
 $ cd ../../../workshop
-    \end{lstlisting}
-\end{frame}  
+\end{lstlisting}
+\end{frame}
 
     \begin{frame}
       \frametitle{Save CDS Annotation from Artemis}   
@@ -1179,7 +1180,7 @@ $ cd ../../../workshop
       \begin{center}
         \includegraphics[width=0.6\textwidth]{images/export1}     
       \end{center}        
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{Save CDS Annotation from Artemis}   
@@ -1187,7 +1188,7 @@ $ cd ../../../workshop
       \begin{center}
         \includegraphics[width=0.6\textwidth]{images/export2}     
       \end{center}        
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{Save CDS Annotation from Artemis}   
@@ -1195,7 +1196,7 @@ $ cd ../../../workshop
       \begin{center}
         \includegraphics[width=0.6\textwidth]{images/export3}     
       \end{center}        
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{One-way BLAST vs RBBH}   
@@ -1203,7 +1204,7 @@ $ cd ../../../workshop
         \includegraphics[width=0.3\textwidth]{images/rbbh1}  
         \includegraphics[width=0.3\textwidth]{images/rbbh2}  
         \includegraphics[width=0.3\textwidth]{images/rbbh3}                        
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{One-way BLAST vs RBBH}   
@@ -1211,48 +1212,48 @@ $ cd ../../../workshop
         \includegraphics[width=0.3\textwidth]{images/rbbh4}  
         \includegraphics[width=0.3\textwidth]{images/rbbh5}  
         \includegraphics[width=0.3\textwidth]{images/rbbh6}                        
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{RBBH}   
       RBBH of chromosome FASTA against reference FASTA in Galaxy?       
-    \end{frame} 
+    \end{frame}
 
    % HMMer
    \subsection{HMMer}
     \begin{frame}
       \frametitle{Quick Outline of HMMer}   
       HMMs are profile methods, differ from sequence alignment algorithms like BLAST
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{HMMer vs BLAST comparison}   
       Example from chromosome vs reference \\
       One BLASTP search \\
       One PHMMER search
-    \end{frame} 
+    \end{frame}
 
    % Multiple Sequence Alignment
    \subsection{Multiple Sequence Alignment}
     \begin{frame}
       \frametitle{Quick Outline of MSA}   
       More difficult than pairwise alignment - no quick algorithm for optimal alignment
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{CLUSTAL Omega example}   
       Example MSA, using sequence from chromosome as starting point, BLAST
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{T-COFFEE example}   
       Example MSA with same example - note that M-COFFEE performs consensus MSA using several methods
-    \end{frame} 
+    \end{frame}
 
     \begin{frame}
       \frametitle{JalView example}   
       Visualisation of MSAs generated above, and discussion of differences between them in a general context
-    \end{frame} 
+    \end{frame}
 
 % Gene/ORF finding
 %\section{Gene Prediction}
