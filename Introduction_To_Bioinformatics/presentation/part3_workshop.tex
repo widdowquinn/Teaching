@@ -1227,6 +1227,17 @@ $ cd ../../../workshop
     \begin{frame}
       \frametitle{RBBH}   
       RBBH of chromosome FASTA against reference FASTA in Galaxy?       
+
+% Test data generated locally using FASTA protein files made with Artemis,
+% and the underlying Python script for my Galaxy BLAST RBH tool available
+% from https://github.com/peterjc/galaxy_blast/tree/master/tools/blast_rbh
+% Here I *DID NOT* import minimum coverage or identity thresholds!
+%
+% /mnt/galaxy/galaxy_blast/tools/blast_rbh/blast_rbh.py NC_004547.faa chrA_prodigal.fasta -o rbbh_ref_vs_chrA_prodigal.tab -t blastp -a prot
+% /mnt/galaxy/galaxy_blast/tools/blast_rbh/blast_rbh.py NC_004547.faa chrB_prodigal.fasta -o rbbh_ref_vs_chrB_prodigal.tab -t blastp -a prot
+% /mnt/galaxy/galaxy_blast/tools/blast_rbh/blast_rbh.py NC_004547.faa chrC_prodigal.fasta -o rbbh_ref_vs_chrC_prodigal.tab -t blastp -a prot
+% /mnt/galaxy/galaxy_blast/tools/blast_rbh/blast_rbh.py NC_004547.faa chrD_prodigal.fasta -o rbbh_ref_vs_chrD_prodigal.tab -t blastp -a prot
+
     \end{frame}
 
    % HMMer
@@ -1245,25 +1256,54 @@ $ cd ../../../workshop
 
    % Multiple Sequence Alignment
    \subsection{Multiple Sequence Alignment}
-    \begin{frame}
-      \frametitle{Quick Outline of MSA}   
-      More difficult than pairwise alignment - no quick algorithm for optimal alignment
-    \end{frame}
 
-    \begin{frame}
-      \frametitle{CLUSTAL Omega example}   
-      Example MSA, using sequence from chromosome as starting point, BLAST
-    \end{frame}
+\begin{frame}
+\frametitle{Quick Outline of MSA}
+More difficult than pairwise alignment - no quick algorithm for optimal alignment
+\end{frame}
 
-    \begin{frame}
-      \frametitle{T-COFFEE example}   
-      Example MSA with same example - note that M-COFFEE performs consensus MSA using several methods
-    \end{frame}
+\begin{frame}[fragile]
+\frametitle{Clustal Omega MSA example}
+Using example FASTA file of sequences:
+\begin{lstlisting}[language=bash]
+$ clustalo -i glucanase.fasta -o glucanase_clustalo.aln --outfmt=clustal
+\end{lstlisting}
+\end{frame}
 
-    \begin{frame}
-      \frametitle{JalView example}   
-      Visualisation of MSAs generated above, and discussion of differences between them in a general context
-    \end{frame}
+\begin{frame}[fragile]
+\frametitle{T-COFFEE MSA example}
+Using same FASTA file of sequences:
+%note that M-COFFEE performs consensus MSA using several methods
+%but will they all be installed?
+\begin{lstlisting}[language=bash]
+$ t_coffee -infile glucanase.fasta -outfile glucanase_tcoffee.aln
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{JalView example}
+Visualisation of the two MSAs generated above with JavView:
+\begin{lstlisting}[language=bash]
+$ Jalview &
+\end{lstlisting}
+\begin{itemize}
+\item Menu ``File'', ``Input Alignment'', ``from File''.
+\item Select ``Clustal (.aln)'' for the file type
+\item Select your generated alignment file.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Clustal Omega \& T-COFFEE alignments in JalView}
+\begin{center}
+%TODO - Crop
+Clustal Omega: \\
+\includegraphics[width=\textwidth]{images/glucanase_clustalo.png} \\
+T-COFFEE: \\
+\includegraphics[width=\textwidth]{images/glucanase_tcoffee.png}
+\end{center}
+\end{frame}
+
 
 % Gene/ORF finding
 %\section{Gene Prediction}
