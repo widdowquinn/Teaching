@@ -2,6 +2,7 @@
 \mode<presentation>
 \usetheme{Berlin}
 \usecolortheme{beaver}
+\usepackage{upquote} % Protect single quotes in code listings
 \usepackage{listings}
 \usepackage{multirow}
 \usepackage{xcolor}
@@ -870,8 +871,6 @@ $ head nucmer_out/chrA_NC_004547_filtered.coords
   \begin{frame}[fragile]
     \frametitle{Run a MUMmer Comparison}
     Use a one-line shell command to convert to \texttt{ACT}-friendly format:
-%TODO - how to stop lstlisting rendering the single quotes as right quotes?
-%This breaks copy and paste of the command...
 \begin{lstlisting}[language=bash]
 $ tail -n +6 nucmer_out/chrA_NC_004547_filtered.coords | awk '{print $7" "$10" "$1" "$2" "$12" "$4" "$5" "$13}' > chrA_mummer_NC_004547.crunch
 $ head chrA_mummer_NC_004547.crunch 
