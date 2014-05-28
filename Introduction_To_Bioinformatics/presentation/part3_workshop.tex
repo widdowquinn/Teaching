@@ -1240,22 +1240,8 @@ $ cd ../../../workshop
 
     \end{frame}
 
-   % HMMer
-   \subsection{HMMer}
-    \begin{frame}
-      \frametitle{Quick Outline of HMMer}   
-      HMMs are profile methods, differ from sequence alignment algorithms like BLAST
-    \end{frame}
-
-    \begin{frame}
-      \frametitle{HMMer vs BLAST comparison}   
-      Example from chromosome vs reference \\
-      One BLASTP search \\
-      One PHMMER search
-    \end{frame}
-
-   % Multiple Sequence Alignment
-   \subsection{Multiple Sequence Alignment}
+% Multiple Sequence Alignment
+\subsection{Multiple Sequence Alignment}
 
 \begin{frame}
 \frametitle{Quick Outline of MSA}
@@ -1304,6 +1290,41 @@ T-COFFEE: \\
 \end{center}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Clustal Omega \& T-COFFEE alignments in JalView}
+\begin{center}
+\begin{itemize}
+\item Clustal Omega \& T-COFFEE gave different alignments
+    \begin{itemize}
+    \item e.g. region in red, and many more cropped on right
+    \end{itemize}
+\item The residues are coloured using the BLOSUM62 score
+\item The proteins from draft chromosomes A, B, C and D are...
+    \begin{itemize}
+    \item Very similar to each other
+    \item Only $30$ -- $35\%$ identical to the reference protein
+    \item Probably \textit{not} orthologues of the reference protein
+    \item Include minimum identity and coverage thresholds for RBBH!
+    \end{itemize}
+\end{itemize}
+\end{center}
+\end{frame}
+
+
+% HMMer
+\subsection{HMMer}
+
+    \begin{frame}
+      \frametitle{Quick Outline of HMMer}   
+      HMMs are profile methods, differ from sequence alignment algorithms like BLAST
+    \end{frame}
+
+    \begin{frame}
+      \frametitle{HMMer vs BLAST comparison}   
+      Example from chromosome vs reference \\
+      One BLASTP search \\
+      One PHMMER search
+    \end{frame}
 
 % Gene/ORF finding
 %\section{Gene Prediction}
