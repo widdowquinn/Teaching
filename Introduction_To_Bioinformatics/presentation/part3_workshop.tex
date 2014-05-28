@@ -1279,6 +1279,17 @@ $ cd ../../../workshop
       \end{center}        
     \end{frame}
 
+
+\begin{frame}
+\frametitle{Reciprocal Best BLAST Hits (RBBH)}
+\begin{itemize}
+\item To compare our proteins to \texttt{NC\_004547.faa} reference set...
+\item BLAST reference proteins against our proteins
+\item BLAST our proteins against reference proteins
+\item Pairs with each other as Best BLAST Hit are called an RBBH
+\end{itemize}
+\end{frame}
+
     \begin{frame}
       \frametitle{One-way BLAST vs RBBH}   
       One-way BLAST includes many low-quality hits
@@ -1295,9 +1306,15 @@ $ cd ../../../workshop
         \includegraphics[width=0.3\textwidth]{images/rbbh6}                        
     \end{frame}
 
-    \begin{frame}
-      \frametitle{RBBH}   
-      RBBH of chromosome FASTA against reference FASTA in Galaxy?       
+\begin{frame}
+\frametitle{Reciprocal Best BLAST Hits (RBBH)}
+\begin{itemize}
+\item Pairs with each other as Best BLAST Hit are called an RBBH
+\item Usually filter on percentage identity and alignment length
+\item RBBH pairs are candidate orthologoues
+\end{itemize}
+(We have a tool for this on our in-house Galaxy server)
+\end{frame}
 
 % Test data generated locally using FASTA protein files made with Artemis,
 % and the underlying Python script for my Galaxy BLAST RBH tool available
@@ -1309,14 +1326,25 @@ $ cd ../../../workshop
 % /mnt/galaxy/galaxy_blast/tools/blast_rbh/blast_rbh.py NC_004547.faa chrC_prodigal.fasta -o rbbh_ref_vs_chrC_prodigal.tab -t blastp -a prot
 % /mnt/galaxy/galaxy_blast/tools/blast_rbh/blast_rbh.py NC_004547.faa chrD_prodigal.fasta -o rbbh_ref_vs_chrD_prodigal.tab -t blastp -a prot
 
-    \end{frame}
-
 % Multiple Sequence Alignment
 \subsection{Multiple Sequence Alignment}
 
 \begin{frame}
 \frametitle{Quick Outline of MSA}
 More difficult than pairwise alignment - no quick algorithm for optimal alignment
+\end{frame}
+
+\begin{frame}
+\frametitle{Example protein set MSA}
+The example file \texttt{glucanase.fasta} contains:
+\begin{itemize}
+\item Reference protein \texttt{YP\_052458.1}, an endo-1,4-D-glucanase
+\item Its RBBH from the prodigal gene predictions on \texttt{chrA.fasta}
+\item Its RBBH from the prodigal gene predictions on \texttt{chrB.fasta}
+\item Its RBBH from the prodigal gene predictions on \texttt{chrC.fasta}
+\item Its RBBH from the prodigal gene predictions on \texttt{chrD.fasta}
+\end{itemize}
+If these are all orthologues, they should align nicely.
 \end{frame}
 
 \begin{frame}[fragile]
