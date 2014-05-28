@@ -820,6 +820,7 @@ $ act &
       \end{center}
     \end{frame}
 
+\subsection{MUMmer comparisons}
 
   \begin{frame}
     \frametitle{MUMmer}
@@ -835,15 +836,21 @@ $ act &
     \end{itemize}
 \end{frame}
 
-  \subsection{MUMmer comparisons}
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
   \begin{frame}[fragile]
     \frametitle{Run a MUMmer Comparison}
-    Create a new directory for MUMmer output, and run \texttt{nucmer} to create \texttt{chrA\_NC\_004547.delta} \\
+    Create a new sub-directory for MUMmer output.
+\begin{lstlisting}[language=bash]
+$ pwd
+.../data/workshop/chromosomes
+$ mkdir nucmer_out
+\end{lstlisting}
+    Run \texttt{nucmer} to create \texttt{chrA\_NC\_004547.delta} \\
+\begin{lstlisting}[language=bash]
+$ nucmer --prefix=nucmer_out/chrA_NC_004547 chrA.fasta NC_004547.fna
+\end{lstlisting}
     Then filter this file to generate a coordinate table for visualisation
 \begin{lstlisting}[language=bash]
-$ mkdir nucmer_out
-$ nucmer --prefix=nucmer_out/chrA_NC_004547 ../data/workshop/chromosomes/chrA.fasta ../data/workshop/chromosomes/NC_004547.fna
 $ delta-filter -q nucmer_out/chrA_NC_004547.delta > nucmer_out/chrA_NC_004547.filter
 $ show-coords -rcl nucmer_out/chrA_NC_004547.filter > nucmer_out/chrA_NC_004547_filtered.coords
 \end{lstlisting}
@@ -854,7 +861,8 @@ $ show-coords -rcl nucmer_out/chrA_NC_004547.filter > nucmer_out/chrA_NC_004547_
     \frametitle{Run a MUMmer Comparison}
     MUMmer output is very different from BLAST output
 \begin{lstlisting}[language=bash]
-$ head nucmer_out/chrA_NC_004547_filtered.coords 
+$ head nucmer_out/chrA_NC_004547_filtered.coords
+...
 \end{lstlisting}
 \end{frame}
 
@@ -862,6 +870,8 @@ $ head nucmer_out/chrA_NC_004547_filtered.coords
   \begin{frame}[fragile]
     \frametitle{Run a MUMmer Comparison}
     Use a one-line shell command to convert to \texttt{ACT}-friendly format:
+%TODO - how to stop lstlisting rendering the single quotes as right quotes?
+%This breaks copy and paste of the command...
 \begin{lstlisting}[language=bash]
 $ tail -n +6 nucmer_out/chrA_NC_004547_filtered.coords | awk '{print $7" "$10" "$1" "$2" "$12" "$4" "$5" "$13}' > chrA_mummer_NC_004547.crunch
 $ head chrA_mummer_NC_004547.crunch 
@@ -1048,7 +1058,7 @@ $ head chrA_mummer_NC_004547.crunch
         \begin{itemize}
           \item PFam, PROSITE, PRINTS, PANTHER, CATH
         \end{itemize}
-        \item Predictive models of these databases are called 'signatures'
+        \item Predictive models of these databases are called `signatures'
       \end{itemize}
     \end{frame}
 
@@ -1078,6 +1088,7 @@ $ head chrA_mummer_NC_004547.crunch
 
     \begin{frame}
       \frametitle{Your InterPro and RAST annotation data}
+      We've already prepared these files for you:
       \begin{itemize}
         \item InterPro raw output: \texttt{chr*\_iprscan.raw}
         \item RAST output: \texttt{chr*\_RAST.gff}
@@ -1166,7 +1177,7 @@ chrA	Prodigal_v2.00	CDS	2676	3761	146.2	+	0	ID=chrA_00003;Alias=fig|556.22.peg.3
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
   \begin{frame}[fragile]
     \frametitle{Download Reference Sequences}
-    Change directory to \texttt{chromosomes}, download reference sequence data, and return to workspace
+    Change directory to \texttt{chromosomes}, download reference protein data, and return to workspace
 \begin{lstlisting}[language=bash]
 $ cd ../data/workshop/chromosomes/
 $ wget ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Pectobacterium_atrosepticum_SCRI1043_uid57957/NC_004547.faa
@@ -1192,7 +1203,7 @@ $ cd ../../../workshop
 
     \begin{frame}
       \frametitle{Save CDS Annotation from Artemis}   
-      Select an output filename
+      Select an output filename, e.g. \texttt{chrA\_prodigal.fasta}
       \begin{center}
         \includegraphics[width=0.6\textwidth]{images/export3}     
       \end{center}        
