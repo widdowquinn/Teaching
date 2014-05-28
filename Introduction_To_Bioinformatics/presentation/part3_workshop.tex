@@ -162,9 +162,9 @@
   \end{frame}    
   
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
-  \begin{frame}[fragile]
-    \frametitle{Inspect the data}
-    \begin{lstlisting}[language=bash]
+\begin{frame}[fragile]
+\frametitle{Inspect the data}
+\begin{lstlisting}[language=]
 $ cd ../../data/workshop/chromosomes
 $ head -n 3 chrA.fasta 
 >chrA
@@ -174,14 +174,14 @@ $ head -n 3 chrA_contigs.gff
 ##gff-version 3
 chrA	stitching	contig	1	154993	.	.	.	ID=contig00005_b;Name=contig00005_b
 chrA	stitching	contig	155036	241491	.	.	.	ID=contig00018;Name=contig00018
-    \end{lstlisting}
+\end{lstlisting}
 \end{frame}  
 
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
-  \begin{frame}[fragile]
-    \frametitle{Download a Comparator Sequence}
-    You will use \texttt{wget}, a powerful command-line tool for downloading data from the web
-    \begin{lstlisting}[language=bash]
+\begin{frame}[fragile]
+\frametitle{Download a Comparator Sequence}
+\texttt{wget} is a powerful command-line tool for downloading data
+\begin{lstlisting}[language=]
 $ wget ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Pectobacterium_atrosepticum_SCRI1043_uid57957/NC_004547.fna
 --2014-05-27 13:35:05--  ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Pectobacterium_atrosepticum_SCRI1043_uid57957/NC_004547.fna
            => 'NC_004547.fna'
@@ -197,7 +197,7 @@ Length: 5136458 (4.9M) (unauthoritative)
 100%[=====================>] 5,136,458    562KB/s   in 7.7s 
 $ ls NC*
 NC_004547.fna
-    \end{lstlisting}
+\end{lstlisting}
 \end{frame}  
 
 
