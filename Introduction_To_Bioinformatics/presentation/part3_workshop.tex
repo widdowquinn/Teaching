@@ -702,37 +702,31 @@ chrA	Prodigal_v2.50	CDS	2676	3761	146.2	+	0	ID=1_3;partial=00;start_type=ATG;rbs
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
   \begin{frame}[fragile]
     \frametitle{Run a megaBLAST Comparison}
-    Make a new working directory, and BLAST your chromosome against the comparator sequence \\
+    BLAST your chromosome against the comparator sequence. \\
     Put results in \texttt{chrA\_megablast\_Pba.tab}
 \begin{lstlisting}[language=bash]
-$ pwd
-[...]/Introduction_To_Bioinformatics
-$ mkdir workshop
-$ cd workshop
-$ blastn -query ../data/workshop/chromosomes/chrA.fasta -subject ../data/workshop/chromosomes/NC_004547.fna -out chrA_megablast_Pba.tab -outfmt 6 
+$ blastn -query chrA.fasta -subject NC_004547.fna -out chrA_megablast_Pba.tab -outfmt 6 
 $ head -n 3 chrA_megablast_Pba.tab 
 chrA	gi|50118965|ref|NC_004547.2|:10948-12453	80.34	1511	287	10	4579450	4580955	1506	1	0.0	1136
 chrA	gi|50118965|ref|NC_004547.2|:c33859-32447	82.04	1409	253	0	4563151	4564559	1	1409	0.0	1201
 chrA	gi|50118965|ref|NC_004547.2|:c34917-33868	82.48	1050	184	0	4562093	4563142	1	1050	0.0	 920
 \end{lstlisting}
+Note this defaults to using MEGABLAST...
 \end{frame}
     
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
   \begin{frame}[fragile]
     \frametitle{Run a BLASTN Comparison}
-    Make a new working directory, and BLAST your chromosome against the comparator sequence \\
+    BLAST your chromosome against the comparator sequence \\
     Put results in \texttt{chrA\_blastn\_Pba.tab}
 \begin{lstlisting}[language=bash]
-$ pwd
-[...]/Introduction_To_Bioinformatics
-$ mkdir workshop
-$ cd workshop
-$ blastn -query ../data/workshop/chromosomes/chrA.fasta -subject ../data/workshop/chromosomes/NC_004547.fna -out chrA_blastn_Pba.tab -outfmt 6 -task blastn
+$ blastn -query chrA.fasta -subject NC_004547.fna -out chrA_blastn_Pba.tab -outfmt 6 -task blastn
 $ head -n 3 chrA_blastn_Pba.tab 
 chrA	gi|50118965|ref|NC_004547.2|:5629-7497	79.68	1865	379	0	4584915	4586779	1865	1	0.0	1654
 chrA	gi|50118965|ref|NC_004547.2|:5629-7497	92.59	27	2	0	4479367	4479393	1254	1280	0.004	41.0
 chrA	gi|50118965|ref|NC_004547.2|:5629-7497	100.00	17	0	0	4613022	4613038	52	36	2.1	31.9
 \end{lstlisting}
+Note note we added \texttt{-task blastn}
 \end{frame}
     
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
