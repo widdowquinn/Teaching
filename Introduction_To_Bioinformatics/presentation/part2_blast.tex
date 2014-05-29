@@ -730,6 +730,12 @@ $ blastp -query my_input.fasta -db my_database -out my_output.txt
 \item Best to avoid spaces in your folder and filenames!
 \end{itemize}
 
+e.g.
+
+\begin{lstlisting}[language=sh]
+$ blastp -query query.fasta -db dbA -out my_output.txt
+\end{lstlisting}
+
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
 \end{frame}
 
@@ -777,21 +783,21 @@ USAGE
 Default is plain text pairwise alignments, for humans:
 
 \begin{lstlisting}[language=sh]
-$ blastp -query my_input.fasta -db my_database -out my_output.txt
+$ blastp -query query.fasta -db dbA -out my_output.txt
 ...
 \end{lstlisting}
 
 XML output can be useful (e.g. for BLAST2GO):
 
 \begin{lstlisting}[language=sh]
-$ blastp -query my_input.fasta -db my_database -out my_output.xml -outfmt 5
+$ blastp -query query.fasta -db dbA -out my_output.xml -outfmt 5
 ...
 \end{lstlisting}
 
 Tabular output is easiest to filter, sort, etc:
 
 \begin{lstlisting}[language=sh]
-$ blastp -query my_input.fasta -db my_database -out my_output.tab -outfmt 6
+$ blastp -query query.fasta -db dbA -out my_output.tab -outfmt 6
 ...
 \end{lstlisting}
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
@@ -815,7 +821,7 @@ USAGE
 
 Example using $0.0001$ or $1 \times 10^{-5}$ in scientific notation (\texttt{1e-5})
 \begin{lstlisting}[language=sh]
-$ blastp -query my_input.fasta -db my_database -out my_output.txt -evalue 1e-5
+$ blastp -query query.fasta -db abA -out my_output.txt -evalue 1e-5
 ...
 \end{lstlisting}
 \end{frame}
