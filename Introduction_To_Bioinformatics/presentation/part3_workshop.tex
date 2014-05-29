@@ -72,6 +72,21 @@
 \begin{document}
 
   \frame[plain]{\titlepage}
+ 
+    \begin{frame}
+     \frametitle{Learning Outcomes}
+     \begin{itemize}
+       \item Workshop example: bacterial genome annotation
+       \begin{itemize}
+         \item The role of biological insight in a bioinformatics workflow
+         \item Getting data from remote sources
+         \item Visual interaction with sequence data
+         \item Using alternative tools
+         \item Comparison of tools and outputs
+         \item Online tools for automated function prediction
+       \end{itemize}
+     \end{itemize}
+    \end{frame} 
   
 %%%
 % SECTION: Workshop Outline
@@ -217,8 +232,9 @@ $ art &
     
   \begin{frame}
     \frametitle{Load the chromosome sequence}
+    Select the sequence for your group
     \begin{center}
-      \includegraphics[width=0.75\textwidth]{images/artemis_files} 
+      \includegraphics[width=0.7\textwidth]{images/artemis_files} 
     \end{center}
 \end{frame}
     
@@ -238,8 +254,9 @@ $ art &
 
   \begin{frame}
     \frametitle{Load the contig GFF}
+    Select the file for your group
     \begin{center}
-      \includegraphics[width=0.75\textwidth]{images/artemis_select_contig_gff} 
+      \includegraphics[width=0.7\textwidth]{images/artemis_select_contig_gff} 
     \end{center}
 \end{frame}
 
@@ -302,6 +319,7 @@ $ art &
        \begin{itemize}
          \item Artemis
          \item EMBOSS \texttt{getorf}
+         \item hundreds of ``in-house'' scripts$\ldots$
        \end{itemize}
      \end{itemize}
     \end{frame}
@@ -1306,9 +1324,12 @@ $ wget ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Pectobacterium_atrosepticum_SCRI1
 \begin{frame}
 \frametitle{Reciprocal Best BLAST Hits (RBBH)}
 \begin{itemize}
-\item Pairs with each other as Best BLAST Hit are called an RBBH
-\item Usually filter on percentage identity and alignment length
-\item RBBH pairs are candidate orthologoues
+\item Pairs with each other as best BLAST hit are called an RBBH
+\item Should filter on percentage identity and alignment length
+\item RBBH pairs are candidate orthologues
+\begin{itemize}
+  \item (most orthologues will be RBBH, but the relationship is complicated)
+\end{itemize}
 \end{itemize}
 (We have a tool for this on our in-house Galaxy server)
 \end{frame}
@@ -1328,7 +1349,16 @@ $ wget ftp://ftp.ncbi.nih.gov/genomes/Bacteria/Pectobacterium_atrosepticum_SCRI1
 
 \begin{frame}
 \frametitle{Quick Outline of MSA}
-More difficult than pairwise alignment - no quick algorithm for optimal alignment
+\begin{itemize}
+  \item More difficult than pairwise alignment - no quick algorithm for optimal alignment
+  \item Many methods progressive:
+  \begin{enumerate}
+    \item Build rough tree
+    \item Conduct pairwise alignments from leaves to root
+  \end{enumerate}
+  \item Tree-based progressive methods highly dependent on initial tree$\ldots$
+  \item Alignments can be compared directly (M-COFFEE)
+\end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -1364,7 +1394,7 @@ $ t_coffee -infile glucanase.fasta -outfile glucanase_tcoffee.aln
 
 \begin{frame}[fragile]
 \frametitle{JalView example}
-Visualisation of the two MSAs generated above with JavView:
+Visualisation of the two MSAs generated above with JalView:
 \begin{lstlisting}[language=bash]
 $ Jalview &
 \end{lstlisting}
@@ -1402,6 +1432,23 @@ T-COFFEE: \\
     \item Probably \textit{not} orthologues of the reference protein
     \item Include minimum identity and coverage thresholds for RBBH!
     \end{itemize}
+\end{itemize}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{In Conclusion}
+\begin{center}
+\begin{itemize}
+\item The tools you use will be task-dependent, but some things are universal$\ldots$
+\begin{itemize}
+  \item Good experimental design (including BLAST searches, etc.)
+  \item Keeping accurate records for reproduction/replication
+  \item Validation/sanity checking of results
+  \item Comparison and benchmarking of methods
+  \item (Cross-)validation of predictive methods
+  \item Everything gets easier with practice
+\end{itemize}
 \end{itemize}
 \end{center}
 \end{frame}

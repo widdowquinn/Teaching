@@ -75,6 +75,16 @@
 % SECTION: BLAST Essentials
   \section{BLAST Essentials}
   
+    \begin{frame}
+     \frametitle{Learning Outcomes}
+     \begin{itemize}
+       \item How BLAST searches work
+       \item How the way BLAST searches work affects your results
+       \item Why search parameters matter
+       \item Setting search parameters
+     \end{itemize}
+    \end{frame}    
+  
     % What is BLAST
     \subsection{What is BLAST?}
     \begin{frame}
@@ -95,6 +105,7 @@
     \begin{frame}
      \frametitle{What A BLAST Search Is}
      \begin{itemize}
+       \item Every BLAST search is an \textit{in silico} experiment
        \item BLAST search = identification of similar sequences in a database
        \item Results depend on:
        \begin{itemize}
@@ -808,6 +819,17 @@ $ blastp -query my_input.fasta -db my_database -out my_output.txt -evalue 1e-5
 ...
 \end{lstlisting}
 \end{frame}
+     
+    \begin{frame}
+     \frametitle{In Conclusion}
+     \begin{itemize}
+       \item Every BLAST search is an experiment
+       \item Badly-designed searches can give you bad results
+       \item Knowing how BLAST works helps improve search design
+       \item BLAST results still require inspection and interpretation
+     \end{itemize}
+     See \url{http://blast.ncbi.nlm.nih.gov/} for a reminder ;)
+    \end{frame}     
      
 %    \subsection{Interpreting BLAST output}
 %    \begin{frame}
