@@ -2,7 +2,7 @@
 #
 # Ad hoc script that converts the default Glimmer output to a GFF format file
 #
-# L.Pritchard 2011
+# L.Pritchard 2011,2014
 
 import sys
 import os
@@ -11,8 +11,10 @@ import os
 # on the input filename
 
 filename = sys.argv[-1]
+print "Reading from %s" % filename
 
 data = [l.strip().split() for l in open(filename, 'rU').readlines()]
+print "%s contains %d lines of data" % (filename, len(data))
 
 # The first line is a header, from which we obtain the seqid, by removing the right
 # angled bracket (>)
@@ -25,6 +27,7 @@ seqid = data[0][0][1:]
 
 outfilename = os.path.splitext(filename)[0] + '.gff'
 outfh = open(outfilename, 'w')
+print "Writing GFF to %s" % outfilename
 
 for line in data[1:]:
     start, end = int(line[1]), int(line[2])
