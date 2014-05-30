@@ -1007,6 +1007,7 @@ $ head chrA_mummer_NC_004547.crunch
         \item Some algorithms/parameter sets more sensitive than others
         \item Appropriate visualisation is essential
       \end{itemize}
+      Much more detail at \url{http://www.slideshare.net/leightonp/comparative-genomics-and-visualisation-part-1}
     \end{frame}
 
 
@@ -1308,10 +1309,10 @@ $ head chrA_mummer_NC_004547.crunch
 \begin{frame}
 \frametitle{Reciprocal Best BLAST Hits (RBBH)}
 \begin{itemize}
-\item To compare our proteins to \texttt{NC\_004547.faa} reference set...
+\item To compare our genecall proteins to \texttt{NC\_004547.faa} reference set...
 \item BLAST reference proteins against our proteins
 \item BLAST our proteins against reference proteins
-\item Pairs with each other as Best BLAST Hit are called an RBBH
+\item Pairs with each other as best BLAST Hit are called RBBH
 \end{itemize}
 \end{frame}
 
@@ -1334,12 +1335,14 @@ $ head chrA_mummer_NC_004547.crunch
 \begin{frame}
 \frametitle{Reciprocal Best BLAST Hits (RBBH)}
 \begin{itemize}
-\item Pairs with each other as best BLAST hit are called an RBBH
+\item Pairs with each other as best BLAST hit are called RBBH
 \item Should filter on percentage identity and alignment length
 \item RBBH pairs are candidate orthologues
 \begin{itemize}
   \item (most orthologues will be RBBH, but the relationship is complicated)
-  \item Outperforms OrthoMCL, etc. (beyond scope of course why and how$\ldots$)
+  \item Outperforms OrthoMCL, etc. (beyond scope of course why and how$\ldots$) \\
+           \url{http://dx.doi.org/10.1093/gbe/evs100} \\
+           \url{http://dx.doi.org/10.1371/journal.pone.0018755}
 \end{itemize}
 \end{itemize}
 (We have a tool for this on our in-house Galaxy server)
@@ -1449,20 +1452,18 @@ $ head chrA_mummer_NC_004547.crunch
 %\end{frame}
 
 \begin{frame}[fragile]
-\frametitle{In Conclusion}
-\begin{center}
-\begin{itemize}
-\item The tools you use will be task-dependent, but some things are universal$\ldots$
-\begin{itemize}
-  \item Good experimental design (including BLAST searches, etc.)
-  \item Keeping accurate records for reproduction/replication
-  \item Validation/sanity checking of results
-  \item Comparison and benchmarking of methods
-  \item (Cross-)validation of predictive methods
-  \item Everything gets easier with practice
-\end{itemize}
-\end{itemize}
-\end{center}
+  \frametitle{In Conclusion}
+  \begin{itemize}
+    \item The tools you will need to use will be task-dependent, but some things are universal$\ldots$
+    \begin{itemize}
+      \item Good experimental design (including BLAST searches, etc.)
+      \item Keeping accurate records for reproduction/replication
+      \item Validation/sanity checking of results
+      \item Comparison and benchmarking of methods
+      \item (Cross-)validation of predictive methods
+    \end{itemize}
+     Remember: everything gets easier with practice, so practice lots!   
+  \end{itemize}
 \end{frame}
 
 
