@@ -47,17 +47,17 @@
   \begin{itemize}
     \item Change directory to where Exercise 1 data is located, and start R.
   \end{itemize}
-  \begin{lstlisting}[language=bash]
+\begin{lstlisting}[language=bash]
 $ cd ../../data/ex1_expression/
 $ R
-    \end{lstlisting}
+\end{lstlisting}
 \end{frame}
 
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
 \begin{frame}[fragile]
   \frametitle{Exercise 1}
   \framesubtitle{Load and inspect data in R}
-  \begin{lstlisting}[language=R]
+\begin{lstlisting}[language=R]
 > data = read.table("expnA.tab", sep="\t", header=TRUE)
 > head(data)
   gene1 gene2
@@ -67,7 +67,7 @@ $ R
 4     9  8.81
 5    11  8.33
 6    14  9.96
-  \end{lstlisting}
+\end{lstlisting}
   %\includegraphics[width=.5\textwidth]{images/ex1_screenshot_b}
 \end{frame}
 
@@ -75,7 +75,7 @@ $ R
 \begin{frame}[fragile]
   \frametitle{Exercise 1}
   \framesubtitle{Load and inspect data in R}
-  \begin{lstlisting}[language=R]
+\begin{lstlisting}[language=R]
 > mean(data$gene1)
 [1] 9
 > mean(data$gene2)
@@ -88,7 +88,7 @@ $ R
           gene1     gene2
 gene1 1.0000000 0.8164205
 gene2 0.8164205 1.0000000
-  \end{lstlisting}
+\end{lstlisting}
   %\includegraphics[width=.5\textwidth]{images/ex1_screenshot_b}
 \end{frame}
 
@@ -132,9 +132,9 @@ gene2 0.8164205 1.0000000
 \begin{frame}[fragile]
   \frametitle{Exercise 1}
   \framesubtitle{Plot the data in R}
-  \begin{lstlisting}[language=R]
+\begin{lstlisting}[language=R]
 > plot(data)
-  \end{lstlisting}
+\end{lstlisting}
   \includegraphics[width=0.4\textwidth]{images/ex1_screenshot_d}        
 \end{frame}
 
