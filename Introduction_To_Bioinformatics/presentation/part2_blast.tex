@@ -1,46 +1,11 @@
 %% UNCOMMENT FOR SLIDES
-\documentclass[table]{beamer}
-\mode<presentation>
+\input{sections/preamble_slides}
 %% UNCOMMENT FOR HANDOUTS
-%\documentclass[handout]{beamer}
-%\usepackage{handoutWithNotes}
-%\pgfpagesuselayout{4 on 1 with notes}[a4paper,border shrink=5mm]
-%% GENERIC BELOW
-\usetheme{Berlin}
-\usecolortheme{beaver}
-\usepackage{listings}
-\usepackage{multirow}
-\usepackage{xcolor}
-
-%%%
+%\input{sections/preamble_handouts}
+%% GENERIC STYLE SETTINGS BELOW
+\input{sections/preamble_style}
 % LISTINGS SETTING
-\lstset{ %
-  backgroundcolor=\color{yellow},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
-  basicstyle=\tiny\ttfamily,        % the size of the fonts that are used for the code
-  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
-  breaklines=true,                 % sets automatic line breaking
-  captionpos=b,                    % sets the caption-position to bottom
-  commentstyle=\color{red},    % comment style
-  deletekeywords={...},            % if you want to delete keywords from the given language
-  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
-  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
-  frame=single,                    % adds a frame around the code
-  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
-  keywordstyle=\color{blue},       % keyword style
-%  language=Octave,                 % the language of the code
-  morekeywords={*,...},            % if you want to add more keywords to the set
-  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
-  numbersep=5pt,                   % how far the line-numbers are from the code
-  numberstyle=\tiny\color{gray}, % the style that is used for the line-numbers
-  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
-  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
-  showstringspaces=false,          % underline spaces within strings only
-  showtabs=false,                  % show tabs within strings adding particular underscores
-  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
-  stringstyle=\color{mauve},     % string literal style
-  tabsize=4,                       % sets default tabsize to 2 spaces
-  title=\lstname                   % show the filename of files included with \lstinputlisting; also try caption instead of title
-}
+\input{sections/preamble_codelistings}
 
 %%%
 % TITLE PREAMBLE
@@ -60,207 +25,42 @@
 
 %%%
 % TOC
-% Show table of contents, with current section highlighted,
-% at the start of each section
-\AtBeginSection[]
-{
-  \begin{frame}
-    \frametitle{Table of Contents}
-    \tableofcontents[currentsection,hideothersubsections]
-  \end{frame}
-}
-
+\input{sections/preamble_toc}
 
 %%%
 % START DOCUMENT
 \begin{document}
 
-  \frame[plain]{\titlepage}
+\frame[plain]{\titlepage}
+
+% Learning Outcomes
+\begin{frame}
+  \frametitle{Learning Outcomes}
+  \begin{itemize}
+    \item How BLAST searches work
+    \item How the way BLAST searches work affects your results
+    \item Why search parameters matter
+    \item Setting search parameters
+ \end{itemize}
+\end{frame}    
   
-    \begin{frame}
-     \frametitle{Learning Outcomes}
-     \begin{itemize}
-       \item How BLAST searches work
-       \item How the way BLAST searches work affects your results
-       \item Why search parameters matter
-       \item Setting search parameters
-     \end{itemize}
-    \end{frame}    
-  
-    \begin{frame}
-     \frametitle{About Bioinformatics Tools?}
-     \begin{center}
-      \includegraphics[width=0.5\textwidth]{images/racquet} 
-      \includegraphics[width=0.5\textwidth]{images/drill}       
-     \end{center}
-    \end{frame}      
+\begin{frame}
+  \frametitle{About Bioinformatics Tools?}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{images/racquet} 
+    \includegraphics[width=0.5\textwidth]{images/drill}       
+  \end{center}
+\end{frame}      
   
 %%%
 % SECTION: BLAST Essentials
-  \section{BLAST Essentials} 
-    % What is BLAST
-    \subsection{What is BLAST?}
-    \begin{frame}
-     \frametitle{What BLAST Is}
-     \begin{itemize}
-       \item<1-> BLAST:
-       \begin{itemize}
-         \item<1-> Basic (it's actually sophisticated)
-         \item<1-> Local Alignment (what it does: local sequence alignment)
-         \item<1-> Search Tool (what it does: search against a database)
-       \end{itemize}
-       \item<2-> The most important software package in bioinformatics?
-       \item<2-> Fast, robust, sequence similarity search tool
-       \item<2-> Not foolproof.
-     \end{itemize}
-    \end{frame}
-  
-    \begin{frame}
-     \frametitle{What A BLAST Search Is}
-     \begin{itemize}
-       \item Every BLAST search is an \textit{in silico} experiment
-       \item BLAST search = identification of similar sequences in a database
-       \item Results depend on:
-       \begin{itemize}
-         \item query sequence
-         \item BLAST program (including version and BLAST vs BLAST+)
-         \item database
-         \item parameters
-       \end{itemize}
-     \end{itemize}
-    \end{frame}  
-  
-    % Sequence Alignment
-    \subsection{Sequence Alignment}
-%    \begin{frame}
-%     \frametitle{Assumptions}
-%     You are familiar with
-%     \begin{itemize}
-%       \item biological sequences (RNA, DNA, protein)
-%       \item mutation, drift, molecular clocks
-%       \item gene and genome structure (including repeats, pseudogenes etc.)
-%       \item homology, paralogy, orthology, etc.
-%     \end{itemize}
-%     - all important for interpretation of BLAST output
-%    \end{frame}
+\section{BLAST Essentials} 
+\include{sections/subsection_whatisblast}
+\include{sections/subsection_sequencealignment}
+\include{sections/subsection_dynamicprogramming}
+% Advanced dynamic programming information too much for introduction
+%\include{sections/subsection_dynamicprogramming_advanced}
 
-    \begin{frame}
-     \frametitle{Alignment Search Space}
-     Consider two biological sequences to be aligned$\ldots$
-     \begin{itemize}
-       \item One sequence on the \textit{x}-axis, the other on the \textit{y}-axis
-       \item Each point in space is a pairing of two letters
-       \item Ungapped alignments are diagonal lines in the search space, gapped alignments have short 'breaks'
-       \item There may be one or more "optimal" alignments
-     \end{itemize}
-     \begin{center}
-       \includegraphics[width=0.4\textwidth]{images/search_space} 
-     \end{center}
-   \end{frame}
-    
-    \begin{frame}
-     \frametitle{Global \textit{vs} Local Alignment}
-     \begin{itemize}
-       \item<1-> Global alignment: sequences are aligned along their entire lengths
-       \item<1-> Local alignment: the best subsequence alignment is found
-       \item<2-> Consider an alignment of the same gene from two distantly-related eukaryotes, where:
-         \begin{itemize}
-           \item<2-> Exons are conserved and small in relation to gene locus size
-           \item<2-> Introns are not well-conserved but large in relation to gene locus size
-         \end{itemize}
-       \item<2-> Local alignment will align the conserved exon regions
-       \item<2-> Global alignment will align the whole (mostly unrelated) locus
-     \end{itemize}
-    \end{frame}
-
-    % dynamic programming
-	\subsection{Dynamic Programming}
-    \begin{frame}
-     \frametitle{Our Goal}
-     \begin{itemize}
-       \item<1-> We aim to align the words
-       \begin{itemize}
-         \item<1-> \texttt{COELACANTH}
-         \item<1-> \texttt{PELICAN}
-       \end{itemize}
-       \item<2-> Each identical letter (match) scores +1
-       \item<2-> Each different letter (mismatch) scores -1
-       \item<2-> Each gap scores -1
-       \item<3-> \emph{Alignment is maximisation of the alignment score}
-     \end{itemize}
-    \end{frame}   
-   
-    \begin{frame}
-     \frametitle{Initialise the matrix}
-       \begin{center}
-         \includegraphics[width=0.65\textwidth]{images/initialise}
-       \end{center}
-    \end{frame}   
-   
-    \begin{frame}
-     \frametitle{Fill the cells}
-       \begin{center}
-         \includegraphics[width=0.65\textwidth]{images/fill_start} \\
-         \includegraphics[width=0.3\textwidth]{images/fill_start_letters}
-       \end{center}
-    \end{frame}     
-
-    \begin{frame}
-     \frametitle{Fill the matrix -- represents all possible alignments \& scores}
-       \begin{center}
-         \includegraphics[width=0.65\textwidth]{images/full_matrix}
-       \end{center}
-    \end{frame}  
-   
-    \begin{frame}
-     \frametitle{Traceback}
-       \begin{center}
-         \includegraphics[width=0.65\textwidth]{images/traceback} \\
-         \includegraphics[width=0.3\textwidth]{images/traceback_sequence}         
-       \end{center}
-    \end{frame}     
-
-    \begin{frame}
-     \frametitle{Algorithms}
-       \begin{itemize}
-         \item<1-> Global: Needleman-Wunsch (as in example)
-         \item<1-> Local: Smith-Waterman (differs from example)
-         \item<2-> NW/SW are \emph{guaranteed} to find the optimal match \emph{with respect to the scoring system being used}
-         \item<2-> Alignment is an approximation: no scoring scheme encapsulates biological ``truth''
-         \item<2-> Any pair of sequences can be aligned: finding meaning is up to you
-       \end{itemize}
-    \end{frame}   
-
-%    \begin{frame}
-%     \frametitle{Dynamic Programming}
-%     \framesubtitle{Gap Scoring}
-%       \begin{itemize}
-%         \item Simple gap penalty: all gaps score the same
-%         \begin{itemize}
-%           \item \emph{one} parameter in the alignment model
-%         \end{itemize}
-%         \item Affine gap penalty: opening and extending score differently
-%         \begin{itemize}
-%           \item \emph{two} parameters in the alignment model
-%         \end{itemize}
-%       \end{itemize}
-%       \begin{center}
-%         \includegraphics[width=0.3\textwidth]{images/gap_scores} 
-%       \end{center}
-%     \end{frame}  
-   
-%    \begin{frame}
-%     \frametitle{Dynamic Programming}
-%     \framesubtitle{Banded Alignment}
-%       \begin{itemize}
-%         \item Given a maximum scoring alignment, restrict search to a "band" between endpoints
-%         \item Width of this band = "bandwidth", another parameter in the model (may be floating)
-%         \item Speeds up search, reduces memory use
-%       \end{itemize}
-%       \begin{center}
-%         \includegraphics[width=0.3\textwidth]{images/banded} 
-%       \end{center}
-%     \end{frame}     
 
 
     % The BLAST Algorithm
