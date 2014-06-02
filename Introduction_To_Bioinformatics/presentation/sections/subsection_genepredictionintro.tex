@@ -1,0 +1,34 @@
+% Introduction to Gene Prediction
+%
+% Very simple overview of available method classes
+
+\subsection{Introduction to Gene Prediction}
+\begin{frame}
+  \frametitle{Lines of Evidence}
+  \begin{itemize}
+    \item \textit{ab initio} genecalling: 
+    \begin{itemize}
+      \item Unsupervised methods - not trained on a dataset
+      \item Supervised methods - trained on a dataset
+    \end{itemize}
+    \item homology matches
+    \begin{itemize}
+      \item alignment to genes from related organisms (annotation transfer)
+      \item from known gene products (e.g. proteins, ncRNA)
+      \item from transcripts/other intermediates (e.g. ESTs, cDNA, RNAseq)
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Consensus Methods}
+  \begin{itemize}
+    \item Combine weighted evidence from multiple sources, using linear combination or graph theoretical methods
+    \item For eukaryotes:
+    \begin{itemize}
+      \item EVM \url{http://evidencemodeler.sourceforge.net/}
+      \item Jigsaw \url{http://www.cbcb.umd.edu/software/jigsaw/}
+      \item GLEAN \url{http://sourceforge.net/projects/glean-gene/}
+    \end{itemize}
+  \end{itemize}
+ \end{frame}

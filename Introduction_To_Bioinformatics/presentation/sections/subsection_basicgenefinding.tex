@@ -1,0 +1,26 @@
+% Basic Gene Finding
+%
+% A replacement for the overlong ORF prediction subsection
+
+\subsection{Basic Gene Finding}
+\begin{frame}
+    \frametitle{Basic Gene Finding}
+    \begin{itemize}
+      \item We could use Artemis to identify the longest coding region in each ORF, lots of manual steps
+      \item This is the most basic gene finding, and can easily be automated, e.g. EMBOSS \texttt{getorf}
+      \item Dedicated gene finders usually more appropriate...
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Finding Open Reading Frames}
+    \begin{itemize}
+      \item<1-> ORF finding is naive, does not consider:
+      \begin{itemize}
+        \item Start codon
+        \item Splicing
+        \item Promoter/RBS motifs
+        \item Wider context (e.g. overlapping genes)
+      \end{itemize}
+    \end{itemize}
+\end{frame}

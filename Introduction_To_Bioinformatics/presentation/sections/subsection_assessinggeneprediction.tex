@@ -1,0 +1,179 @@
+% Assessing Prediction Methods
+%
+% Introduction to assessing and evaluating gene prediction
+
+\subsection{Assessing Prediction Methods}
+\begin{frame}
+  \frametitle{Using a ``Gold Standard''}
+  A general approach for \emph{all} predictive methods
+  \begin{itemize}
+    \item Define a known, ``correct'' set of true/false, positive/negative etc. examples - the ``gold standard''
+    \item Evaluate your predictive method against that set for
+    \begin{itemize}
+      \item sensitivity, specificity, accuracy, precision, etc.
+    \end{itemize}
+  \end{itemize}
+  Many methods available, coverage beyond the scope of this introduction
+\end{frame}
+
+\begin{frame}
+  \frametitle{Contingency Tables}
+  \begin{center}
+     \begin{tabular}{cc|c|c|}
+	  \cline{3-4}
+		& & \multicolumn{2}{|c|}{Condition (Gold standard)}\\
+	  \cline{3-4}
+		& & True & False \\
+	  \hline
+	  \multicolumn{1}{ |c| }{\multirow{2}{*}{Test outcome}}& 
+	  \multicolumn{1}{ |c| }{Positive} & True Positive \cellcolor{green} & 
+	    False Positive\cellcolor{red}\\
+	  \cline{2-4}
+	  \multicolumn{1}{ |c| }{} & \multicolumn{1}{ |c| }{Negative} & 
+	    False Negative\cellcolor{red} & True Negative \cellcolor{green}\\
+	  \hline
+    \end{tabular}
+  \end{center}
+  Sensitivity = TPR = $TP/(TP + FN)$ \\
+  Specificity = TNR = $TN/(FP + TN)$ \\
+  FPR = $1-\text{Specificity} = FP/(FP + TN)$ \\
+  If you don't have this information, you can't interpret predictive results properly.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Why Performance Metrics Matter}
+  \begin{itemize}
+    \item<1-> You go for a checkup, and are tested for disease $X$
+    \item<1-> The test has $\text{sensitivity}=0.95$ (predicts disease where there is disease)
+    \item<1-> The test has $\text{FPR}=0.01$ (predicts disease where there is no disease)
+    \item<2-> Your test is \emph{positive}
+    \item<2-> What is the probability that you have disease $X$?
+    \begin{itemize}
+      \item 0.01, 0.05, 0.50, 0.95, 0.99?
+    \end{itemize}
+  \end{itemize} 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Why Performance Metrics Matter}
+  \begin{itemize}
+    \item<1-> What is the probability that you have disease $X$?
+    \item<1-> Unless you know the \emph{baseline occurrence} of disease $X$, you cannot know.
+    \item<2-> Baseline occurrence: $f_X$
+    \begin{itemize}
+      \item $f_X = 0.01 \implies P(\text{disease}|\text{+ve}) = 0.490 \approx 0.5$
+      \item $f_X = 0.8 \implies P(\text{disease}|\text{+ve}) = 0.997 \approx 1.0$         
+    \end{itemize}
+  \end{itemize} 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Why Performance Metrics Matter}
+  \begin{itemize}
+    \item<1-> Imagine a predictor for protein functional class
+    \item<1-> Predictor has has $\text{sensitivity}=0.95$, $\text{FPR}=0.01$
+    \item<1-> You run the predictor on 20,000 proteins in an organism
+    \item<2-> We estimate $\approx$ 200 members in protein complement, so $f_X=0.01$
+    \begin{itemize}
+      \item $f_X = 0.01 \implies P(\text{disease}|\text{+ve}) = 0.490 \approx 0.5$
+    \end{itemize}
+  \end{itemize} 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Bayes' Theorem}
+  \begin{itemize}
+    \item May seem counter-intuitive: 95\% sensitivity, 99\% specificity $\implies$ 50\% chance of any prediction being incorrect
+    \item Probability given by Bayes' Theorem
+    \begin{itemize}
+      \item $P(X|+) =  \frac{P(+|X) P(X)}{P(+|X) P(X) + P(+|\bar{X}) P(\bar{X})}$
+    \end{itemize}
+    \item This is commonly overlooked in the literature (confirmation bias?)
+    \item e.g. in paper describing novel TTSS predictor: \\
+      ``The surprisingly high number of (false) positives in genomes without TTSS exceeds the expected false positive rate"
+  \end{itemize} 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Interpreting Performance Metrics}
+  \begin{itemize}
+    \item<1-> Use Bayes' Theorem!
+    \item<1-> Predictions apply to groups, not individual members of the group. e.g.
+    \begin{itemize}
+      \item Test for airport smugglers has $P(\text{smuggler}|+) = 0.9$
+      \item Test gives 100 positives
+    \end{itemize}
+    \item<1-> Which specific individuals are truly smugglers?
+    \item<2-> The test \emph{does not} allow you to determine this - you need more evidence for each individual
+    \item<2->  Same principle applies to all other tests, (including protein functional class prediction) - you should not `cherry-pick' for publication without other evidence
+  \end{itemize} 
+\end{frame}
+
+\begin{frame}
+  \frametitle{``Gold Standard'' results}
+  \begin{itemize}
+    \item Tested \texttt{glimmer} and \texttt{prodigal} on two "gold standards"
+    \begin{itemize}
+      \item Manually annotated ($>$3 expert person years) close relative
+      \item Community-annotated close relative
+    \end{itemize}
+    \item Both methods trained directly on the annotated genes in each organism!
+  \end{itemize} 
+\end{frame}
+
+\begin{frame}
+  \frametitle{``Gold Standard'' results}
+  \framesubtitle{Manually annotated: 4550 CDS}
+  \begin{center}
+    \begin{tabular}{r|l|l}
+	  genecaller & \texttt{glimmer} & \texttt{prodigal}  \\
+	  \hline
+	  predicted & 4752    & 4287  \\
+	  missed & 284 (6\%)   & 407 (9\%)  \\
+	  \hline
+	  \emph{Exact Prediction} & & \\
+  	  sensitivity   & 62\%   & 71\%  \\
+  	  FDR   & 41\%   & 25\%  \\  
+	  PPV   & 59\% & 75\%  \\  
+	  \hline
+	  \emph{Correct ORF} & & \\
+  	  sensitivity   & 94\%   & 91\% \\
+  	  FDR   & 10\%  & 3\% \\  
+	  PPV   & 90\% & 97\%  \\  
+    \end{tabular}
+  \end{center}     
+\end{frame}
+
+\begin{frame}
+  \frametitle{``Gold Standard'' results}
+  \framesubtitle{Community annotated: 4475 CDS}
+  \begin{center}
+	\begin{tabular}{r|l|l}
+	  genecaller & \texttt{glimmer} & \texttt{prodigal}  \\
+	  \hline
+	  predicted & 4679    & 4467  \\
+	  missed & 112 (3\%)   & 156 (3\%)  \\
+	  \hline
+	  \emph{Exact Prediction} & & \\
+  	  sensitivity   & 62\%   & 86\%  \\
+  	  FDR   & 31\%   & 14\%  \\  
+	  PPV   & 69\% & 86\%  \\  
+	  \hline
+	  \emph{Correct ORF} & & \\
+  	  sensitivity   & 97\%   & 97\% \\
+  	  FDR   & 7\%  & 3\% \\  
+	  PPV   & 93\% & 97\%  \\  
+	\end{tabular}
+  \end{center}     
+\end{frame}
+
+\begin{frame}
+   \frametitle{Gene/CDS Prediction}   
+   \framesubtitle{Lessons learned}   
+   \begin{itemize}
+     \item Many alternative methods, all perform differently
+     \item To assess/choose methods, performance metrics are required
+     \item Even on (relatively simple) prokaryotes, current best methods imperfect
+     \item Manual assessment and intervention is essential, and usually the longest part of the process
+   \end{itemize}
+\end{frame}

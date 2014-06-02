@@ -1,0 +1,39 @@
+% Locate Workshop Data
+%
+% Locating and inspecting Part 3 workshop data
+
+\subsection{Locate Workshop Data}
+\begin{frame}
+  \frametitle{Locate your data}
+  \begin{itemize}
+    \item You are in group A, B, C or D - this decides your chromosome sequence: \\
+    \texttt{chrA.fasta}, \texttt{chrB.fasta}, \texttt{chrC.fasta}, \texttt{chrD.fasta}
+    \item Each sequence represents a single stitched, ordered draft bacterial genome comprising a number of contigs.
+    \item You will use your sequence as the basis of the exercises in the workshop.
+  \end{itemize}
+\end{frame}
+  
+\begin{frame}
+  \frametitle{Locate your data}
+  \begin{itemize}
+    \item You are in group A, B, C or D - this decides your dataset: \\
+    \texttt{chrA.fasta}, \texttt{chrB.fasta}, \texttt{chrC.fasta}, \texttt{chrD.fasta}
+    \item You also have a GFF file describing the location of assembled contigs \\
+    \texttt{chrA\_contigs.gff}, \texttt{chrB\_contigs.gff}, \texttt{chrC\_contigs.gff}, \texttt{chrD\_contigs.gff}
+  \end{itemize}
+\end{frame}
+  
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+\begin{frame}[fragile]
+  \frametitle{Inspect the data}
+\begin{lstlisting}[language=]
+$ head -n 3 chrA.fasta 
+>chrA
+ttttcttgattgaccttgttcgagtggagtccgccgtgtcactttcgctttggcagcagt
+gtcttgcccgtttgcaggatgagttacctgccacagaattcagtatgtggatacgcccgt
+$ head -n 3 chrA_contigs.gff 
+##gff-version 3
+chrA	stitching	contig	1	154993	.	.	.	ID=contig00005_b;Name=contig00005_b
+chrA	stitching	contig	155036	241491	.	.	.	ID=contig00018;Name=contig00018
+\end{lstlisting}
+\end{frame}
