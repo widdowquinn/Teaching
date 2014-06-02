@@ -1,0 +1,53 @@
+% Information Theory
+%
+% Brief introduction to the bits of information theory essential for understanding BLAST
+
+\subsection{Information Theory}
+\begin{frame}
+  \frametitle{Bits of Information}
+  \begin{itemize}
+    \item<1-> The amount of information in a thing (e.g. a message, or picture) can be measured in \emph{bits}, and represented as $H$ (entropy)
+    \item<1-> One bit = one "yes/no" or "1/0" answer
+    \item<2-> The information associated with a probability $p$ can be represented in bits: \\
+              $H(p) = -\text{log}_2(p)$
+    \item<2-> For a series of $n$ probabilities $\{p_i,$\ldots$, p_n\}$ we have: \\
+              $H = -\sum^{n}_{i} p_i \text{log}_2 (p_i)$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Information in Random Alphabets}
+  \begin{itemize}
+    \item DNA and protein alphabets have multiple symbols, so have different entropies (are not equally informative)
+    \item Assuming random sequences (no symbol bias):
+    \begin{itemize}
+      \item For a coin, $p(H) = p(T) = 0.5 \implies H(coin) = 1\text{bit}$
+      \item For DNA, $p(A) = p(C) = p(G) = p(T) = 0.25 \implies H(\text{DNA}) = 2\text{bits}$       
+      \item For protein, $p(A) = p(C) = $\ldots$ = 0.05 \implies H(\text{protein}) = 4.32\text{bits}$
+    \end{itemize}
+    \item Twice as much information in protein than DNA alphabet
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Information in Biased Alphabets}
+  \begin{itemize}
+    \item Deviation from random sequence reduces entropy
+    \begin{itemize}
+      \item For DNA, $p(A) = p(C) = p(G) = p(T) = 0.25 \implies H(\text{DNA}) = 2\text{bits}$       
+      \item For DNA: $p(A) = 0.4; p(C) = 0.3; p(G) = 0.2; p(T) = 0.1 \implies H(\text{DNA}) = 1.85\text{bits}$       
+    \end{itemize}
+    \item Biological sequences/databases deviate from randomness
+  \end{itemize}
+\end{frame}
+  
+\begin{frame}
+  \frametitle{Log-odds Scores}
+  \begin{itemize}
+    \item<1-> How often does a symbol substitution occur, compared to random expectation?
+    \item<1-> If $p(\text{Met}) = 0.01$, $p(\text{Leu}) = 0.1$, we would expect a Met-Leu substitution with frequency $p(\text{Met})p(\text{Leu}) = 0.001$
+    \item<2-> Observe Met-Leu substitution with frequency $q(\text{Met-Leu}) = 0.002$
+    \item<2-> Odds ratio is $\frac{q(\text{Met-Leu})}{p(\text{Met})p(\text{Leu})} = 2$
+    \item<3-> Log odds ratio is $\text{log}_2(\frac{q(\text{Met-Leu})}{p(\text{Met})p(\text{Leu})}) = 1\text{bit}$
+  \end{itemize}
+\end{frame}  

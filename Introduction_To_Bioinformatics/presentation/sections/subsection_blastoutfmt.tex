@@ -1,0 +1,55 @@
+% Controlling BLAST output format
+
+\subsection{Controlling BLAST output}
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+\begin{frame}[fragile]
+  % Verbally note that the NCBI BLAST website lets you pick the
+  % format at the end. Can do something similar with the special
+  % BLAST archive format, but would be a distraction?
+  \frametitle{Setting the BLAST+ output format}
+\begin{lstlisting}[language=sh]
+$ blastp -help
+USAGE
+...
+
+ *** Formatting options
+ -outfmt <String>
+   alignment view options:
+     0 = pairwise,
+     1 = query-anchored showing identities,
+     2 = query-anchored no identities,
+     3 = flat query-anchored, show identities,
+     4 = flat query-anchored, no identities,
+     5 = XML Blast output,
+     6 = tabular,
+     7 = tabular with comment lines,
+     8 = Text ASN.1,
+     9 = Binary ASN.1,
+    10 = Comma-separated values,
+    11 = BLAST archive format (ASN.1)
+
+   ...
+   Default = `0'
+...
+\end{lstlisting}
+\end{frame}
+
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+\begin{frame}[fragile]
+  \frametitle{Setting the BLAST+ output format}
+  Default is plain text pairwise alignments, for humans:
+\begin{lstlisting}[language=sh]
+$ blastp -query query.fasta -db dbA -out my_output.txt
+...
+\end{lstlisting}
+  XML output can be useful (e.g. for BLAST2GO):
+\begin{lstlisting}[language=sh]
+$ blastp -query query.fasta -db dbA -out my_output.xml -outfmt 5
+...
+\end{lstlisting}
+  Tabular output is easiest to filter, sort, etc:
+\begin{lstlisting}[language=sh]
+$ blastp -query query.fasta -db dbA -out my_output.tab -outfmt 6
+...
+\end{lstlisting}
+\end{frame}

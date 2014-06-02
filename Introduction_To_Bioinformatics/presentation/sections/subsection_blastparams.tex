@@ -1,0 +1,22 @@
+% Setting BLAST parameters
+%
+% Basic introduction to setting common BLAST parameters
+
+\begin{frame}[fragile]
+  \frametitle{Setting the e-value threshold}
+  Check the built in help:
+\begin{lstlisting}[language=]
+$ blastp -help
+USAGE
+...
+ -evalue <Real>
+   Expectation value (E) threshold for saving hits
+   Default = `10'
+...
+\end{lstlisting}
+  Example using $0.0001$ or $1 \times 10^{-5}$ in scientific notation (\texttt{1e-5})
+\begin{lstlisting}[language=sh]
+$ blastp -query query.fasta -db dbA -out my_output.txt -evalue 1e-5
+...
+\end{lstlisting}
+\end{frame}

@@ -1,0 +1,52 @@
+% BLAST at the command-line
+%
+% Basic examples of BLAST at the command line
+
+\subsection{Running BLAST+ at the command line}
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+\begin{frame}[fragile]
+  \frametitle{The BLAST tools have built in help}
+\begin{lstlisting}[language=sh]
+$ blastp -h
+USAGE
+  blastp [-h] [-help] [-import_search_strategy filename]
+    [-export_search_strategy filename] [-task task_name] [-db database_name]
+    [-dbsize num_letters] [-gilist filename] [-seqidlist filename]
+    [-negative_gilist filename] [-entrez_query entrez_query]
+    [-db_soft_mask filtering_algorithm] [-db_hard_mask filtering_algorithm]
+    [-subject subject_input_file] [-subject_loc range] [-query input_file]
+    [-out output_file] [-evalue evalue] [-word_size int_value]
+    [-gapopen open_penalty] [-gapextend extend_penalty]
+    [-xdrop_ungap float_value] [-xdrop_gap float_value]
+    [-xdrop_gap_final float_value] [-searchsp int_value] [-max_hsps int_value]
+    [-sum_statistics] [-seg SEG_options] [-soft_masking soft_masking]
+    [-matrix matrix_name] [-threshold float_value] [-culling_limit int_value]
+    ...
+    [-max_target_seqs num_sequences] [-num_threads int_value] [-ungapped]
+    [-remote] [-comp_based_stats compo] [-use_sw_tback] [-version]
+
+DESCRIPTION
+   Protein-Protein BLAST 2.2.29+
+
+Use '-help' to print detailed descriptions of command line arguments
+\end{lstlisting}
+\end{frame}
+
+% [fragile] frames must end with \end{frame} directly following a newline, or they break!
+\begin{frame}[fragile]
+  \frametitle{Minimal example of BLAST+ at the command line}
+\begin{lstlisting}[language=sh]
+$ blastp -query my_input.fasta -db my_database -out my_output.txt
+\end{lstlisting}
+  \begin{itemize}
+    \item Replace \texttt{blastp} with the appropriate tool, e.g. \texttt{blastn}
+    \item Replace \texttt{my\_input.fasta} with your actual filename
+    \item Replace \texttt{my\_database} with your actual database, e.g. \text{nr}
+    \item Replace \texttt{my\_output.txt} with your desired output filename
+    \item Best to avoid spaces in your folder and filenames!
+  \end{itemize}
+  e.g.
+\begin{lstlisting}[language=sh]
+$ blastp -query query.fasta -db dbA -out my_output.txt
+\end{lstlisting}
+\end{frame}

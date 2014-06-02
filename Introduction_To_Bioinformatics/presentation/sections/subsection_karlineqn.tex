@@ -1,0 +1,35 @@
+% Karlin-Altschul Equation
+%
+% Basic introduction to the Karlin-Altschul equation.
+
+\subsection{The Karlin-Altschul Equation}
+\begin{frame}
+  \frametitle{Definition}
+  \begin{itemize}
+    \item The Karlin-Altschul equation
+    \begin{equation*}
+      E = k m n e^{-\lambda S}
+    \end{equation*}
+    \item Symbols:
+    \begin{itemize}
+      \item $k$: minor constant, adjusts for correlation between alignments
+      \item $m$: number of letters in query sequence
+      \item $n$: number of letters in the database
+      \item $\lambda$: scoring matrix scaling factor
+      \item $S$: raw alignment score
+    \end{itemize}
+  \end{itemize}
+\end{frame} 
+
+\begin{frame}
+  \frametitle{Interpretation}
+  \begin{itemize}
+    \item The Karlin-Altschul equation
+    \begin{equation*}
+      E = k m n e^{-\lambda S}
+    \end{equation*}
+    \item $E$ is the number of alignments with a similar score expected by chance when querying a database of that size and symbol frequency, where the letters in the database are randomly-ordered
+    \item Small changes in score $S$ can produce large changes in $E$
+    \item Biological sequence databases are not random!
+  \end{itemize}
+\end{frame} 

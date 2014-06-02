@@ -1,0 +1,86 @@
+% Which BLAST tool should I use?
+%
+% Short introduction to some of the range of BLAST tools available
+
+\subsection{Which BLAST tool should I use?}
+\begin{frame}
+  \frametitle{Multiple BLAST \textit{tools}}
+  \begin{itemize}
+    \item BLASTN \textit{vs} MEGABLAST \textit{vs} TBLASTX \textit{vs} ...?
+    \item Korf \textit{et al.} (2003) BLAST is really good for theory part, \\
+             but practical examples dated due to changes with BLAST+
+  \end{itemize}
+  \begin{center}
+    \includegraphics[width=.2\textwidth]{images/korf_book}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Multiple flavours of BLAST}
+  \begin{itemize}
+    \item NCBI ``legacy'' BLAST
+    \begin{itemize}
+      \item Now obsolete and not being updated
+      \item Spawned offshoots including:
+      \begin{itemize}
+         \item WU-BLAST aka AB-BLAST (commerical)
+         \item MPI-BLAST for use on clusters
+         \item Versions to run on graphics cards
+      \end{itemize}
+    \end{itemize}
+    \item NCBI BLAST+
+    \begin{itemize}
+      \item Re-written in 2009 using C++ instead of C
+      \item Many improvements
+      \item Slightly different output
+      \item Different commands used to run it
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Multiple \textit{ways} to run BLAST}
+  \begin{itemize}
+    \item BLAST+ at the command line (today)
+    \item Via a script or programming language
+    \item Via a graphical tool like BioEdit, CLCbio, Blast2GO
+    \item Via the NCBI website
+    \item Via a genome consortium website
+    \item Via a Galaxy web server
+    \item etc
+    \item Offers flexibility \textit{but} different settings/options/versions
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Multiple \textit{places} to run BLAST}
+  \begin{itemize}
+    \item On the NCBI servers, e.g. via website or tool
+    \item On 3rd party servers, e.g. via websites
+    \item On your own computer
+    \item On our Linux cluster
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Core BLAST tools: Query sequences \textit{vs} Database}
+  \begin{itemize}
+    \item Nucleotide \textit{vs} Nucleotide:
+    \begin{itemize}
+      \item \texttt{blastn} (covering blastn, megablast, dc-megablast)
+    \end{itemize}
+    \item Translated nucleotide \textit{vs} Protein:
+    \begin{itemize}
+      \item \texttt{blastx}
+    \end{itemize}
+    \item Protein \textit{vs} Translated nucleotide:
+    \begin{itemize}
+      \item \texttt{tblastn}
+    \end{itemize}
+    \item Protein \textit{vs} Protein:
+    \begin{itemize}
+      \item \texttt{blastp}, \texttt{psiblast}, \texttt{phiblast}, \texttt{deltablast}
+    \end{itemize}
+  \end{itemize}
+  See \url{http://blast.ncbi.nlm.nih.gov/} for a reminder ;)
+\end{frame}

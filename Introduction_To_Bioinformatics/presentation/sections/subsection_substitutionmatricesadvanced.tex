@@ -1,0 +1,27 @@
+% Substitution Matrices Advanced
+
+\subsection{Substitution Matrices (advanced)}
+\begin{frame}
+  \frametitle{Target Frequencies}
+  \begin{itemize}
+    \item Target frequencies represent the underlying evolutionary model implicit in the substitution matrix
+    \item Each substitution matrix has a scaling factor $\lambda$, estimated from symbol frequency
+    \item $\lambda$ is used to calculate a \emph{normalised score} for the alignment, $\lambda S$
+    \item In modern BLAST, $\lambda$ is also dependent on the query and subject sequence composition
+  \end{itemize}
+\end{frame}   
+
+\begin{frame}
+  \frametitle{Substitution Matrices}
+  \framesubtitle{matrix relative entropy}
+  \begin{itemize}
+    \item Matrix \emph{expected score} $E$ is the sum of raw scores weighted by frequency of occurrence (should be negative)
+    \begin{equation}
+      E = \sum^{20}_{i=1}\sum_{j=1}^{i} p_i p_j S_{ij}
+    \end{equation}
+    \item Matrix \emph{relative entropy} $H$ is the average number of bits per position in an alignment generated from that matrix.
+    \begin{equation}
+      H = \sum^{20}_{i=1}\sum_{j=1}^{i} q_{ij} \lambda S_{ij}
+    \end{equation}
+  \end{itemize}
+\end{frame} 

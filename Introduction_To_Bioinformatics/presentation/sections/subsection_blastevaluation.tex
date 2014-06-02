@@ -1,0 +1,19 @@
+% BLAST Evaluation
+%
+% Basic outline of the extension step of the BLAST algorithm
+
+\subsection{BLAST Evaluation}
+\begin{frame}
+  \frametitle{Evaluation}
+  \begin{itemize}
+    \item The principle is easy: use a score threshold $S$ to determine strong and weak alignments
+    \begin{itemize}
+      \item $S$ is monotonic with $E$, so an equivalent threshold can be calculated
+    \end{itemize}
+    \item Score $S$ is independent of database size and search space. $E$ values are not.
+    \item Alignment consistency is also a consideration
+  \end{itemize}
+  \begin{center}
+    \includegraphics[width=0.5\textwidth]{images/consistency} 
+  \end{center}    
+\end{frame}
