@@ -1,5 +1,86 @@
-\usetheme{Berlin}
-\usecolortheme{beaver}
+\usetheme{default}
 \usepackage{listings}
 \usepackage{multirow}
 \usepackage{xcolor}
+
+\usebackgroundtemplate{
+\includegraphics[width=\paperwidth,height=\paperheight]{images/hutton_background}
+}
+%% PRESENTATION CONFIGURATION PARAMETERS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\titlebackgroundfile{images/hutton_title}
+%\framebackgroundfile{images/hutton_background}
+\definecolor{hutton_green}{HTML}{78A22F}
+\definecolor{hutton_purple}{HTML}{872175}
+\definecolor{hutton_blue}{HTML}{569BBE}
+\usefonttheme{structurebold}
+\setbeamercolor{alerted text}{fg=orange}
+\setbeamercolor{background canvas}{bg=white}
+\setbeamercolor{block title}{bg=hutton_purple}
+\setbeamercolor{frametitle}{fg=hutton_purple}
+\setbeamercolor{title}{fg=black}
+\setbeamercolor{titlelike}{fg=hutton_green}
+\setbeamercolor{author}{fg=hutton_purple}
+\setbeamercolor{author in head/foot}{fg=white}
+\setbeamercolor{title in head/foot}{fg=white}
+\setbeamercolor{section in head/foot}{fg=hutton_purple}
+\setbeamercolor{normal text}{fg=black}
+\setbeamercolor{frametitle}{fg=hutton_purple}
+\setbeamerfont{block title}{size={}}
+\setbeamerfont{author}{size=\footnotesize}
+\setbeamerfont{date}{size=\footnotesize}
+\setbeamercolor{section in toc shaded}{fg=hutton_purple}
+\setbeamercolor{section in toc}{fg=hutton_purple}
+\setbeamercolor{subsection in toc shaded}{fg=hutton_purple}
+\setbeamercolor{subsection in toc}{fg=hutton_purple}
+\setbeamertemplate{itemize item}[circle]
+\setbeamertemplate{itemize subitem}[circle]
+\setbeamertemplate{itemize subsubitem}[circle]
+\setbeamertemplate{itemize subsubsubitem}[circle]
+\setbeamercolor{itemize item}{fg=hutton_purple}
+\setbeamercolor{itemize subitem}{fg=hutton_purple}
+\setbeamercolor{itemize subsubitem}{fg=hutton_purple}
+\setbeamercolor{itemize subsubsubitem}{fg=hutton_purple}
+\setbeamercolor{enumerate item}{fg=hutton_purple}
+\setbeamercolor{enumerate subitem}{fg=hutton_purple}
+\setbeamercolor{enumerate subsubitem}{fg=hutton_purple}
+\setbeamercolor{enumerate subsubsubitem}{fg=hutton_purple}
+\setbeamercolor{alerted text}{fg=hutton_green}
+\setbeamerfont{alerted text}{series=\bfseries}
+% This command makes that acrobat reader doesn't changes the colors of the slide
+% when there are figures with transparencies.
+\pdfpageattr {/Group << /S /Transparency /I true /CS /DeviceRGB>>}
+
+%Disables discrete bottom navigation bar
+%\beamertemplatenavigationsymbolsempty
+
+%Mess about with the slide titles to avoid the corner images,
+\setbeamertemplate{frametitle}
+{
+\vspace{0.05\textheight}
+\noindent\quad\begin{minipage}[t][0.12\textheight][t]{0.85\textwidth}
+\insertframetitle\par
+\end{minipage}
+}
+
+%Mess about with title page to avoid the big logo on right
+\setbeamertemplate{title page}{
+    \begin{picture}(0,0)
+            %This ends up on top of the default background image, rather than replacing it:
+            \put(-30,-165){%
+                \includegraphics[width=\paperwidth,height=\paperheight]{images/hutton_title}
+            }
+            \put(0,-75){%
+                \begin{minipage}[b][0.4\textheight][t]{0.75\textwidth}
+                    \usebeamerfont{title}\usebeamercolor[fg]{title}{\inserttitle\par}
+                    \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}{\insertsubtitle\par}
+                \end{minipage}
+            }
+            \put(0,-135){%
+                \begin{minipage}[b][0.1\textheight][t]{\textwidth}
+                    \usebeamerfont{author}\usebeamercolor[fg]{author}{\insertauthor\par}
+                \end{minipage}
+            }
+    \end{picture}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
