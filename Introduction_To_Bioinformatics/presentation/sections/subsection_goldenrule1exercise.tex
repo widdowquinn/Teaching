@@ -17,8 +17,7 @@
 \end{frame}
   
 \begin{frame}
-  \frametitle{Exercise 1}
-  \framesubtitle{The biological question}
+  \frametitle{The biological question}
   \begin{itemize}
     \item Your dataset \texttt{expn?.tab} describes (log) expression data for two genes: \texttt{gene1} and \texttt{gene2}
     \item Expression measured at eleven time points (including control)
@@ -28,8 +27,7 @@
 \end{frame}  
 
 \begin{frame}
-  \frametitle{Exercise 1}
-  \framesubtitle{Reformulating the question}
+  \frametitle{Reformulating the biological question}
   \begin{itemize}
     \item<1-> Q: Are \texttt{gene1} and \texttt{gene2} genes coregulated?
     \item<1-> A: We cannot determine this from expression data alone
@@ -42,8 +40,7 @@
 
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
 \begin{frame}[fragile]
-  \frametitle{Exercise 1}
-  \framesubtitle{Starting the analysis}
+  \frametitle{Starting the analysis}
   \begin{itemize}
     \item Change directory to where Exercise 1 data is located, and start R.
   \end{itemize}
@@ -55,8 +52,7 @@ $ R
 
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
 \begin{frame}[fragile]
-  \frametitle{Exercise 1}
-  \framesubtitle{Load and inspect data in R}
+  \frametitle{Load and inspect data in R}
 \begin{lstlisting}[language=R]
 > data = read.table("expnA.tab", sep="\t", header=TRUE)
 > head(data)
@@ -68,13 +64,11 @@ $ R
 5    11  8.33
 6    14  9.96
 \end{lstlisting}
-  %\includegraphics[width=.5\textwidth]{images/ex1_screenshot_b}
 \end{frame}
 
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
 \begin{frame}[fragile]
-  \frametitle{Exercise 1}
-  \framesubtitle{Load and inspect data in R}
+  \frametitle{Load and inspect data in R}
 \begin{lstlisting}[language=R]
 > mean(data$gene1)
 [1] 9
@@ -89,12 +83,10 @@ $ R
 gene1 1.0000000 0.8164205
 gene2 0.8164205 1.0000000
 \end{lstlisting}
-  %\includegraphics[width=.5\textwidth]{images/ex1_screenshot_b}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Exercise 1}
-  \framesubtitle{Results}
+  \frametitle{Results}
   \begin{center}
   \begin{tabular}{r|l|l|l|l}
           measure & expnA & expnB & expnC & expnD \\
@@ -109,8 +101,7 @@ gene2 0.8164205 1.0000000
 \end{frame}
 
 \begin{frame}
-  \frametitle{Exercise 1}
-  \framesubtitle{Results}
+  \frametitle{Results}
   \begin{center}
   \begin{tabular}{r|l|l|l|l}
 	  measure & expnA & expnB & expnC & expnD \\
@@ -130,8 +121,7 @@ gene2 0.8164205 1.0000000
 
 % [fragile] frames must end with \end{frame} directly following a newline, or they break!
 \begin{frame}[fragile]
-  \frametitle{Exercise 1}
-  \framesubtitle{Plot the data in R}
+  \frametitle{Plot the data in R}
 \begin{lstlisting}[language=R]
 > plot(data)
 \end{lstlisting}
@@ -139,19 +129,30 @@ gene2 0.8164205 1.0000000
 \end{frame}
 
 \begin{frame}
-  \frametitle{Exercise 1}
-  \framesubtitle{Always plot the data}
+  \frametitle{Always plot the data}
     Which gene pairs are coexpressed?
   \begin{center}
     \includegraphics[width=0.9\textwidth]{images/ex1_rplot} \\
   \end{center}
 \end{frame}
 
+\begin{frame}[fragile]
+  \frametitle{Always plot the data}
+    Is the matrix of (Pearson) correlation values potentially misleading?
+\begin{lstlisting}[language=R]
+> data = anscombe
+> cor(data)[1:4,5:8]
+           y1         y2         y3         y4
+x1  0.8164205  0.8162365  0.8162867 -0.3140467
+x2  0.8164205  0.8162365  0.8162867 -0.3140467
+x3  0.8164205  0.8162365  0.8162867 -0.3140467
+x4 -0.5290927 -0.7184365 -0.3446610  0.8165214
+\end{lstlisting}
+\end{frame}
+
 \begin{frame}
-  \frametitle{Exercise 1}
-  \framesubtitle{Always plot the data}
-    Is a matrix of correlation values potentially misleading?
+  \frametitle{Sometimes real correlation doesn't mean anything}
   \begin{center}
-    \includegraphics[width=0.9\textwidth]{images/ex1_rplot} \\
+    \includegraphics[width=0.8\textwidth]{images/spurious_correlation} \\
   \end{center}
 \end{frame}
